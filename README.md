@@ -1,0 +1,3 @@
+# security_security_cangjie_wrapper
+
+安全模块仓颉封装层
