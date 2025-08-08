@@ -32,7 +32,7 @@
 ## 目录
 
 ```
-base/security/security_cangjie_api
+base/security/security_cangjie_wrapper
 ├── ohos                            # 仓颉安全基础能力子系统接口实现
 ├── kit                             # 仓颉kit化代码
 ├── figures                         # 存放readme中的架构图
@@ -90,7 +90,7 @@ OpenHarmony允许应用安装。为了确保应用的完整性和来源可靠，
 
 **安全基础能力子系统**
 
-security_cangjie_api
+security_cangjie_wrapper
 
 [security_huks](https://gitee.com/openharmony/security_huks)
 

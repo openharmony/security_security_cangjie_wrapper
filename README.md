@@ -31,7 +31,7 @@ The open security capabilities include application integrity verification, appli
 ## Directory Structure
 
 ```
-base/security/security_cangjie_api
+base/security/security_cangjie_wrapper
 ├── ohos                            # Cangjie Security code
 ├── kit                             # Cangjie kit code
 ├── figures                         # architecture pictures
@@ -87,7 +87,7 @@ In OpenHarmony, the data transfer control module provides cross-device data tran
 
 **Security**
 
-security_cangjie_api
+security_cangjie_wrapper
 
 [security_huks](https://gitee.com/openharmony/security_huks)
 

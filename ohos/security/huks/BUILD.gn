@@ -27,14 +27,14 @@ ohos_cj_library("ohos.security_huks") {
   ]
 
   cj_external_deps = [
-    "arkui_cangjie_api:ohos.base",
-    "cangjie_api:ohos.ffi",
-    "cangjie_api:ohos.labels",
+    "arkui_cangjie_wrapper:ohos.base",
+    "cangjie_ark_interop:ohos.ffi",
+    "cangjie_ark_interop:ohos.labels",
   ]
 
   external_deps = [ "huks:cj_huks_ffi" ]
 
   subsystem_name = "security"
-  part_name = "security_cangjie_api"
+  part_name = "security_cangjie_wrapper"
   lib_name = "ohos.security_huks"
 }

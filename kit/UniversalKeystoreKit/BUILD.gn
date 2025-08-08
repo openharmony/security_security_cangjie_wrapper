@@ -21,6 +21,6 @@ ohos_cj_library("kit.UniversalKeystoreKit") {
 
   kit = true
   subsystem_name = "security"
-  part_name = "security_cangjie_api"
+  part_name = "security_cangjie_wrapper"
   lib_name = "UniversalKeystoreKit"
 }

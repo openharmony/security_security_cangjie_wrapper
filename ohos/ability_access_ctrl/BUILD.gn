@@ -22,16 +22,16 @@ ohos_cj_library("ohos.ability_access_ctrl") {
   cj_deps = [ "../security/permission_request_result:ohos.security.permission_request_result" ]
 
   cj_external_deps = [
-    "ability_cangjie_api:ohos.ability",
-    "arkui_cangjie_api:ohos.base",
-    "cangjie_api:ohos.ffi",
-    "cangjie_api:ohos.labels",
-    "hiviewdfx_cangjie_api:ohos.hilog",
+    "ability_cangjie_wrapper:ohos.ability",
+    "arkui_cangjie_wrapper:ohos.base",
+    "cangjie_ark_interop:ohos.ffi",
+    "cangjie_ark_interop:ohos.labels",
+    "hiviewdfx_cangjie_wrapper:ohos.hilog",
   ]
 
   external_deps = [ "access_token:cj_ability_access_ctrl_ffi" ]
 
   subsystem_name = "security"
-  part_name = "security_cangjie_api"
+  part_name = "security_cangjie_wrapper"
   lib_name = "ability_access_ctrl"
 }

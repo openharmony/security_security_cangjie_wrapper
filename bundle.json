@@ -1,11 +1,11 @@
 {
-    "name": "@ohos/security_cangjie_api",
+    "name": "@ohos/security_cangjie_wrapper",
     "description": "The provider of key and certificate manangement capbility, which belongs to security subsystem",
     "version": "4.0.2",
     "license": "Apache License 2.0",
     "publishAs": "code-segment",
     "segment": {
-        "destPath": "base/security/security_cangjie_api"
+        "destPath": "base/security/security_cangjie_wrapper"
     },
     "dirs":{},
     "scripts": {
@@ -16,7 +16,7 @@
     "repository": "https://gitee.com/openharmony/security_huks",
     "supplier": "Organization: OpenHarmony",
     "component": {
-      "name": "security_cangjie_api",
+      "name": "security_cangjie_wrapper",
       "subsystem": "security",
       "syscap": [
         "SystemCapability.Security.AccessToken",
@@ -46,18 +46,18 @@
       },
       "build": {
         "sub_component": [
-            "//base/security/security_cangjie_api/ohos/ability_access_ctrl:ohos.ability_access_ctrl",
-            "//base/security/security_cangjie_api/ohos/security/crypto_framework:ohos.crypto",
-            "//base/security/security_cangjie_api/ohos/security/huks:ohos.security_huks",
-            "//base/security/security_cangjie_api/ohos/security/permission_request_result:ohos.security.permission_request_result",
-            "//base/security/security_cangjie_api/ohos/security:ohos.security",
-            "//base/security/security_cangjie_api/kit/CryptoArchitectureKit:kit.CryptoArchitectureKit",
-            "//base/security/security_cangjie_api/kit/UniversalKeystoreKit:kit.UniversalKeystoreKit"
+            "//base/security/security_cangjie_wrapper/ohos/ability_access_ctrl:ohos.ability_access_ctrl",
+            "//base/security/security_cangjie_wrapper/ohos/security/crypto_framework:ohos.crypto",
+            "//base/security/security_cangjie_wrapper/ohos/security/huks:ohos.security_huks",
+            "//base/security/security_cangjie_wrapper/ohos/security/permission_request_result:ohos.security.permission_request_result",
+            "//base/security/security_cangjie_wrapper/ohos/security:ohos.security",
+            "//base/security/security_cangjie_wrapper/kit/CryptoArchitectureKit:kit.CryptoArchitectureKit",
+            "//base/security/security_cangjie_wrapper/kit/UniversalKeystoreKit:kit.UniversalKeystoreKit"
 
         ],
         "inner_api": [
           {
-            "name": "//base/security/security_cangjie_api/ohos/ability_access_ctrl:ohos.ability_access_ctrl"
+            "name": "//base/security/security_cangjie_wrapper/ohos/ability_access_ctrl:ohos.ability_access_ctrl"
           }
         ],
         "test": [

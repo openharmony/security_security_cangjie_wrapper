@@ -30,15 +30,15 @@ ohos_cj_library("ohos.crypto") {
   ]
 
   cj_external_deps = [
-    "arkui_cangjie_api:ohos.base",
-    "cangjie_api:ohos.ffi",
-    "cangjie_api:ohos.labels",
-    "hiviewdfx_cangjie_api:ohos.hilog",
+    "arkui_cangjie_wrapper:ohos.base",
+    "cangjie_ark_interop:ohos.ffi",
+    "cangjie_ark_interop:ohos.labels",
+    "hiviewdfx_cangjie_wrapper:ohos.hilog",
   ]
 
   external_deps = [ "crypto_framework:cj_cryptoframework_ffi" ]
 
   subsystem_name = "security"
-  part_name = "security_cangjie_api"
+  part_name = "security_cangjie_wrapper"
   lib_name = "ohos.crypto"
 }
