@@ -1,16 +1,16 @@
-# 安全基础能力子系统
+# 安全基础能力仓颉
 
 ## 简介
 
-安全基础能力子系统包括系统安全、数据安全、应用安全等功能，为OpenHarmony提供有效保护应用和用户数据的能力。
+安全基础能力仓颉包括系统安全、数据安全、应用安全等功能，为OpenHarmony提供有效保护应用和用户数据的能力。
 
-安全基础能力子系统当前开源的功能，包括应用完整性保护、应用权限管理、设备认证、密钥管理服务、数据传输管控。
+安全基础能力仓颉当前开源的功能，包括应用完整性保护、应用权限管理、设备认证、密钥管理服务、数据传输管控。
 
 ## 系统架构
 
 **图 1**  子系统架构图
 
-![](figures/security-architecture.png)
+![](figures/security_cangjie_wrapper_architecture.png)
 
 **对外API**：安全子系统的对外API，部分API只针对系统应用开放。
 
@@ -33,7 +33,7 @@
 
 ```
 base/security/security_cangjie_wrapper
-├── ohos                            # 仓颉安全基础能力子系统接口实现
+├── ohos                            # 仓颉安全基础能力仓颉接口实现
 ├── kit                             # 仓颉kit化代码
 ├── figures                         # 存放readme中的架构图
 ```
@@ -88,7 +88,7 @@ OpenHarmony允许应用安装。为了确保应用的完整性和来源可靠，
 
 ## 相关仓
 
-**安全基础能力子系统**
+**安全基础能力仓颉**
 
 security_cangjie_wrapper
 
