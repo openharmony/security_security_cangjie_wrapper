@@ -38,8 +38,8 @@
         ],
       "hisysevent_config": [
         ],
-      "rom": "5120KByte",
-      "ram": "4828KByte",
+      "rom": "600KB",
+      "ram": "1800KB",
       "deps": {
         "components": [
         ]
