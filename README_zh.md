@@ -1,4 +1,4 @@
-# 安全基础能力仓颉
+# 安全基础能力仓颉接口
 
 ## 简介
 
@@ -90,10 +90,8 @@ OpenHarmony允许应用安装。为了确保应用的完整性和来源可靠，
 
 **安全基础能力仓颉**
 
-security_cangjie_wrapper
+[security_huks](https://gitee.com/openharmony/security_huks/blob/master/README_zh.md)
 
-[security_huks](https://gitee.com/openharmony/security_huks)
+[security_crypto_framework](https://gitee.com/openharmony/security_crypto_framework/blob/master/README_zh.md)
 
-[security_crypto_framework](https://gitee.com/openharmony/security_crypto_framework)
-
-[security_access_token](https://gitee.com/openharmony/security_access_token)
+[security_access_token](https://gitee.com/openharmony/security_access_token/blob/master/README_zh.md)
