@@ -1,7 +1,7 @@
 {
     "name": "@ohos/security_cangjie_wrapper",
     "description": "The provider of key and certificate manangement capbility, which belongs to security subsystem",
-    "version": "4.0.2",
+    "version": "6.0",
     "license": "Apache License 2.0",
     "publishAs": "code-segment",
     "segment": {
@@ -39,7 +39,7 @@
       "hisysevent_config": [
         ],
       "rom": "600KB",
-      "ram": "1800KB",
+      "ram": "604KB",
       "deps": {
         "components": [
         ]
