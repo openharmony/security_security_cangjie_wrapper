@@ -1,16 +1,16 @@
-# Security
+# security_cangjie_wrapper
 
 ## Introduction
 
-The security subsystem provides capabilities to protect the system security, data security, and application security of OpenHarmony.
+The security_cangjie_wrapper is a Cangjie API encapsulated on OpenHarmony based on the capabilities of the security subsystem. The security subsystem provides capabilities to protect the system security, data security, and application security of OpenHarmony.
 
 The open security capabilities include application integrity verification, application permission management, device authentication, universal keystore, and data transfer management.
 
 ## System Architecture
 
-**Figure 1** Security subsystem architecture
+**Figure 1** security_cangjie_wrapper architecture
 
-![](figures/en_security-architecture.png)
+![](figures/security_cangjie_wrapper_architecture_en.png)
 
 - **Interface layer**: provides APIs, some of which are available only for system applications.
 - **Device authentication**: verifies devices in distributed scenarios and sets up secure connection channels between trusted devices for data transfer.
@@ -86,8 +86,6 @@ In OpenHarmony, the data transfer control module provides cross-device data tran
 ## Repositories Involved仓
 
 **Security**
-
-security_cangjie_wrapper
 
 [security_huks](https://gitee.com/openharmony/security_huks)
 

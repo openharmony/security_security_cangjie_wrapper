@@ -88,8 +88,6 @@ OpenHarmony允许应用安装。为了确保应用的完整性和来源可靠，
 
 ## 相关仓
 
-**安全基础能力仓颉**
-
 [security_huks](https://gitee.com/openharmony/security_huks/blob/master/README_zh.md)
 
 [security_crypto_framework](https://gitee.com/openharmony/security_crypto_framework/blob/master/README_zh.md)
