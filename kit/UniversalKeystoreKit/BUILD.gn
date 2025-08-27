@@ -14,13 +14,11 @@
 import("//build/ohos.gni")
 import("//build/cangjie/cjc.gni")
 
-ohos_cj_library("kit.UniversalKeystoreKit") {
+ohos_cangjie_shared_library("kit.UniversalKeystoreKit") {
   sources = ["index.cj"]
 
-  cj_deps = ["../../ohos/security/huks:ohos.security_huks",]
+  cj_deps = ["../../ohos/security/huks:ohos.security.huks",]
 
-  kit = true
   subsystem_name = "security"
   part_name = "security_cangjie_wrapper"
-  lib_name = "UniversalKeystoreKit"
 }

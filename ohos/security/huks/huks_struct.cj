@@ -13,165 +13,180 @@
  * limitations under the License.
  */
 
-package ohos.security_huks
+package ohos.security.huks
 
 import ohos.labels.*
-import ohos.base.BusinessException
+import ohos.business_exception.BusinessException
 
 /**
- * Interface of huks param.
+ * Defines the param field in the properties array of options used in the APIs.
  *
- * @typedef HuksParam
- * @syscap SystemCapability.Security.Huks.Core
+ * @relation export interface HuksParam
  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Core"
 ]
 public class HuksParam {
+    /**
+     * tag.
+     *
+     * @relation tag: HuksTag
+     */
     @!APILevel[
         21,
-        atomicservice: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    public HuksParam(
-        @!APILevel[
-            21,
-            atomicservice: true,
-            stagemodelonly: true,
-            syscap: "SystemCapability.Security.Huks.Core"
-        ]
-        public let tag: HuksTag,
-        @!APILevel[
-            21,
-            atomicservice: true,
-            stagemodelonly: true,
-            syscap: "SystemCapability.Security.Huks.Core"
-        ]
-        public let value: HuksParamValue
-    ) {}
+    public var tag: HuksTag
+    /**
+     * Value of the tag.
+     *
+     * @relation value: boolean | int | bigint | Uint8Array
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public var value: HuksParamValue
+
+    /**
+     *HuksParam constructor
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public init(tag: HuksTag, value: HuksParamValue) {
+        this.tag = tag
+        this.value = value
+    }
 }
 
-type Bytes = Array<UInt8>
+/**
+  * Defines type Bytes.
+  *
+  */
+public type Bytes = Array<UInt8>
 
+/**
+  * Defines enum HuksParamValue.
+  *
+  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Core"
 ]
 public enum HuksParamValue {
+    /**
+     * The returned type is Bool.
+     */
     @!APILevel[
         21,
-        atomicservice: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    boolean(Bool)
-    | @!APILevel[
+    BooleanValue(Bool)
+    | 
+        /**
+         * The returned type is Int32.
+         */
+        @!APILevel[
         21,
-        atomicservice: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    int32(Int32)
-    | @!APILevel[
+    Int32Value(Int32)
+    | 
+        /**
+         * The returned type is UInt32.
+         */
+        @!APILevel[
         21,
-        atomicservice: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    uint32(UInt32)
-    | @!APILevel[
+    Uint32Value(UInt32)
+    | 
+        /**
+         * The returned type is UInt64.
+         */
+        @!APILevel[
         21,
-        atomicservice: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    uint64(UInt64)
-    | @!APILevel[
+    Uint64Value(UInt64)
+    | 
+        /**
+         * The returned type is Bytes.
+         */
+        @!APILevel[
         21,
-        atomicservice: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    bytes(Bytes)
+    BytesValue(Bytes)
     | ...
 
-    @!APILevel[
-        21,
-        atomicservice: true,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    public func toBool(): Option<Bool> {
+    /**
+     * The returned type is Option<Bool>.
+     */
+    func toBool(): Option<Bool> {
         match (this) {
-            case boolean(val) => val
+            case BooleanValue(val) => val
             case _ => None
         }
     }
-    @!APILevel[
-        21,
-        atomicservice: true,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    public func toInt32(): Option<Int32> {
+    /**
+     * The returned type is Option<Int32>.
+     */
+    func toInt32(): Option<Int32> {
         match (this) {
-            case int32(val) => val
+            case Int32Value(val) => val
             case _ => None
         }
     }
-    @!APILevel[
-        21,
-        atomicservice: true,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    public func toUInt32(): Option<UInt32> {
+    /**
+     * The returned type is Option<UInt32>.
+     */
+    func toUInt32(): Option<UInt32> {
         match (this) {
-            case uint32(val) => val
+            case Uint32Value(val) => val
             case _ => None
         }
     }
-    @!APILevel[
-        21,
-        atomicservice: true,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    public func toUInt64(): Option<UInt64> {
+    /**
+     * The returned type is Option<UInt64>.
+     */
+    func toUInt64(): Option<UInt64> {
         match (this) {
-            case uint64(val) => val
+            case Uint64Value(val) => val
             case _ => None
         }
     }
-    @!APILevel[
-        21,
-        atomicservice: true,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    public func toBytes(): Option<Bytes> {
+    /**
+     * The returned type is Option<Bytes>.
+     */
+    func toBytes(): Option<Bytes> {
         match (this) {
-            case bytes(val) => val
+            case BytesValue(val) => val
             case _ => None
         }
     }
-    @!APILevel[
-        21,
-        atomicservice: true,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    public operator func |(other: HuksParamValue): HuksParamValue {
+    /**
+     * The returned type is HuksParamValue.
+     * @throws { BusinessException } 401 - operator '|' only support uint32
+     */
+    operator func |(other: HuksParamValue): HuksParamValue {
         match ((this.toUInt32(), other.toUInt32())) {
-            case (Some(left), Some(right)) => HuksParamValue.uint32(left | right)
+            case (Some(left), Some(right)) => HuksParamValue.Uint32Value(left | right)
             case _ => throw BusinessException(
-                HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT,
+                HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(),
                 "operator '|' only support uint32"
             )
         }
@@ -179,136 +194,109 @@ public enum HuksParamValue {
 }
 
 /**
- * Interface of huks option.
+ * Defines options used in the APIs.
  *
- * @typedef HuksOptions
- * @syscap SystemCapability.Security.Huks.Core
+ * @relation export interface HuksOptions 
  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Core"
 ]
 public class HuksOptions {
+    /**
+     * Properties used to hold the HuksParam array.
+     *
+     * @relation properties?: Array<HuksParam>
+     */
     @!APILevel[
         21,
-        atomicservice: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    public HuksOptions(
-        @!APILevel[
-            21,
-            atomicservice: true,
-            stagemodelonly: true,
-            syscap: "SystemCapability.Security.Huks.Core"
-        ]
-        public var properties: Option<Array<HuksParam>>,
-        @!APILevel[
-            21,
-            atomicservice: true,
-            stagemodelonly: true,
-            syscap: "SystemCapability.Security.Huks.Core"
-        ]
-        public var inData: Option<Bytes>
-    ) {}
+    public var properties: Array<HuksParam>
+    /**
+     * Input data.
+     *
+     * @relation inData?: Uint8Array
+     */
     @!APILevel[
         21,
-        atomicservice: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    public static let NONE: HuksOptions = HuksOptions(None, None)
+    public var inData: Bytes
+
+    /**
+     *HuksOptions constructor
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public init(properties!: Array<HuksParam> = Array<HuksParam>(), inData!: Bytes = Bytes()) {
+        this.properties = properties
+        this.inData = inData
+    }
+}
+
+/**
+ * Defines the struct for a HUKS handle.
+ *
+ * @relation export interface HuksSessionHandle 
+
+ */
+@!APILevel[
+    21,
+    stagemodelonly: true,
+    syscap: "SystemCapability.Security.Huks.Core"
+]
+public class HuksSessionHandle {
+    /**
+     * Value of the handle.
+     *
+     * @relation handle: long
+     */
+     @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public var handle: HuksHandleId
+    /**
+     * Challenge obtained after the initSession operation.
+     *
+     * @relation challenge?: Uint8Array
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public var challenge: Bytes
+
+    /**
+     * HuksOptions constructor
+     */
+    init(handle: HuksHandleId, challenge!: Bytes = Bytes()) {
+        this.handle = handle
+        this.challenge = challenge
+    }
 }
 
 /**
  * Interface of huks handle.
  *
- * @typedef HuksSessionHandle
- * @syscap SystemCapability.Security.Huks.Core
  */
 @!APILevel[
     21,
-    atomicservice: true,
-    stagemodelonly: true,
-    syscap: "SystemCapability.Security.Huks.Core"
-]
-public class HuksSessionHandle {
-    @!APILevel[
-        21,
-        atomicservice: true,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    public HuksSessionHandle(
-        @!APILevel[
-            21,
-            atomicservice: true,
-            stagemodelonly: true,
-            syscap: "SystemCapability.Security.Huks.Core"
-        ]
-        public let handle: HuksHandle,
-        @!APILevel[
-            21,
-            atomicservice: true,
-            stagemodelonly: true,
-            syscap: "SystemCapability.Security.Huks.Core"
-        ]
-        public let challenge: Option<Bytes>
-    ) {}
-}
-
-@!APILevel[
-    21,
-    deprecated: 21,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
-public class HuksHandle {
-    HuksHandle(let data: Bytes) {}
-}
-
-/**
- * Interface of huks result.
- *
- * @typedef HuksReturnResult
- * @syscap SystemCapability.Security.Huks.Core
- */
-@!APILevel[
-    21,
-    atomicservice: true,
-    stagemodelonly: true,
-    syscap: "SystemCapability.Security.Huks.Core"
-]
-public class HuksReturnResult {
-    @!APILevel[
-        21,
-        atomicservice: true,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    public HuksReturnResult(
-        @!APILevel[
-            21,
-            atomicservice: true,
-            stagemodelonly: true,
-            syscap: "SystemCapability.Security.Huks.Core"
-        ]
-        public let outData: Option<Bytes>,
-        @!APILevel[
-            21,
-            atomicservice: true,
-            stagemodelonly: true,
-            syscap: "SystemCapability.Security.Huks.Core"
-        ]
-        public let properties: Option<Array<HuksParam>>,
-        @!APILevel[
-            21,
-            atomicservice: true,
-            stagemodelonly: true,
-            syscap: "SystemCapability.Security.Huks.Core"
-        ]
-        public let certChains: Option<Array<String>>
-    ) {}
+public class HuksHandleId {
+    var data: Bytes
+    init(data: Bytes){
+        this.data = data
+    }
 }

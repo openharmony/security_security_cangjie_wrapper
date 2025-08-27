@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package ohos.crypto
+package ohos.security.crypto_framework
 
 import ohos.ffi.*
 import ohos.labels.*
@@ -33,14 +33,13 @@ foreign {
  *
  * @param { String } algName - indicates the algorithm name.
  * @returns { SymKeyGenerator } the symmetric key generator instance.
- * @throws { BusinessException } 401 - invalid parameters.
+ * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+ * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 801 - this operation is not supported.
- * @brief createSymKeyGenerator(algName: string): SymKeyGenerator
+ * @relation function createSymKeyGenerator(algName: string): SymKeyGenerator
  */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
 ]
@@ -50,7 +49,7 @@ public func createSymKeyGenerator(algName: String): SymKeyGenerator {
         var errCode: Int32 = 0
         let id = FfiOHOSCreateSymKeyGenerator(cstr, inout errCode)
         LibC.free(cstr)
-        checkRet(errCode, "[SymKeyGenerator] createSymKeyGenerator: ")
+        checkAndThrow(errCode)
         return SymKeyGenerator(id, algName)
     }
 }
@@ -58,11 +57,10 @@ public func createSymKeyGenerator(algName: String): SymKeyGenerator {
 /**
  * Provides the SymKeyGenerator type, which is used for generating symmetric key.
  *
+ * @relation interface SymKeyGenerator
  */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
 ]
@@ -79,15 +77,12 @@ public class SymKeyGenerator <: RemoteDataLite {
     }
 
     /**
-     * Indicates the algorithm name.
+     * Indicates the algorithm name of the SymKeyGenerator object.
      *
-     * @type { String }
-     * @brief algName : string
+     * @relation readonly algName: string
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
@@ -101,13 +96,11 @@ public class SymKeyGenerator <: RemoteDataLite {
      * Generate a symmetric key object randomly.
      *
      * @returns { SymKey } the SymKey returned by the function.
-     * @throws { BusinessException } 17620001 - memory error.
-     * @brief generateSymKey() : Promise<SymKey>
+     * @throws { BusinessException } 17620001 - memory operation failed.
+     * @relation generateSymKeySync(): SymKey
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
@@ -115,24 +108,23 @@ public class SymKeyGenerator <: RemoteDataLite {
         unsafe {
             var errCode: Int32 = 0
             let id = FfiOHOSGenerateSymKey(getID(), inout errCode)
-            checkRet(errCode, "[SymKeyGenerator] generateSymKey: ")
+            checkAndThrow(errCode)
             return SymKey(id, _algName)
         }
     }
 
     /**
-     * Generate a symmetric key object according to the provided binary key data.
+     * Used to convert symmetric key data to a symmetric key object.
      *
      * @param { DataBlob } key - the key data blob.
      * @returns { SymKey } the SymKey  returned by the function.
-     * @throws { BusinessException } 401 - invalid parameters.
-     * @throws { BusinessException } 17620001 - memory error.
-     * @brief convertKey(key: DataBlob): Promise<SymKey>;
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @throws { BusinessException } 17620001 - memory operation failed.
+     * @relation convertKeySync(key: DataBlob): SymKey
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
@@ -151,7 +143,7 @@ public class SymKeyGenerator <: RemoteDataLite {
             let id = FfiOHOSConvertKey(getID(), cp, inout errCode)
             chb.free()
             LibC.free(cp)
-            checkRet(errCode, "[SymKeyGenerator] convertKey: ")
+            checkAndThrow(errCode)
             return SymKey(id, _algName)
         }
     }

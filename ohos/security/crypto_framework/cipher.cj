@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-package ohos.crypto
+package ohos.security.crypto_framework
 
 import ohos.ffi.*
 import ohos.labels.*
-import ohos.base.*
+import ohos.business_exception.*
 
 foreign {
     func FfiOHOSCreateCipher(transformation: CString, errCode: CPointer<Int32>): Int64
@@ -50,15 +50,14 @@ foreign {
  *
  * @param { String } transformation - indicates the description to be transformed to cipher specifications.
  * @returns { Cipher } the cipher object returned by the function.
- * @throws { BusinessException } 401 - invalid parameters.
+ * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+ * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 801 - this operation is not supported.
- * @throws { BusinessException } 17620001 - memory error.
- * @brief createCipher(transformation: string): Cipher
+ * @throws { BusinessException } 17620001 - memory operation failed.
+ * @relation function createCipher(transformation: string): Cipher
  */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
@@ -68,7 +67,7 @@ public func createCipher(transformation: String): Cipher {
         var errCode: Int32 = 0
         let id = FfiOHOSCreateCipher(cstr, inout errCode)
         LibC.free(cstr)
-        checkRet(errCode, "[Cipher] createCipher: ")
+        checkAndThrow(errCode)
         return Cipher(id, transformation)
     }
 }
@@ -76,11 +75,10 @@ public func createCipher(transformation: String): Cipher {
 /**
  * Provides the Cipher type, which is used for encryption and decryption operations.
  *
+ * @relation interface Cipher
  */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
@@ -97,15 +95,13 @@ public class Cipher <: RemoteDataLite {
     }
 
     /**
-     * Indicates the algorithm name.
+     * Indicates the algorithm name of the cipher object.
      *
      * @type { String }
-     * @brief algName : string
+     * @relation readonly algName: string
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
@@ -137,28 +133,28 @@ public class Cipher <: RemoteDataLite {
 
     /**
      * Init the crypto operation with the given crypto mode, key and parameters.
+     * init, update, and doFinal must be used together. init and doFinal are mandatory, and update is optional.
      *
      * @param { CryptoMode } opMode - indicates the crypto mode is encryption or decryption.
      * @param { Key } key - indicates the symmetric key or the asymmetric key.
      * @param { ParamsSpec } params - indicates the algorithm parameters such as IV.
-     * @throws { BusinessException } 401 - invalid parameters.
-     * @throws { BusinessException } 17620001 - memory error.
-     * @throws { BusinessException } 17620002 - runtime error.
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @throws { BusinessException } 17620001 - memory operation failed.
+     * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @brief init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise<void>
+     * @relation initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public func `init`(opMode: CryptoMode, key: Key, params: ?ParamsSpec): Unit {
+    public func initialize(opMode: CryptoMode, key: Key, params: ?ParamsSpec): Unit {
         unsafe {
             let k = match (key) {
                 case v: SymKey => v.getKey()
-                case _ => throw BusinessException(ERR_PARAMETER_ERROR, "[Cipher] init: invalid parameters.")
+                case _ => throw BusinessException(ERR_PARAMETER_ERROR, "Parameter error.")
             }
             match (params) {
                 case Some(v) => match (v) {
@@ -166,7 +162,7 @@ public class Cipher <: RemoteDataLite {
                         let iv = HcfBlob(spec.iv)
                         let errCode = FfiOHOSCipherInitByIv(getID(), opMode.getValue(), k, iv)
                         iv.free()
-                        checkRet(errCode, "[Cipher] init: ")
+                        checkAndThrow(errCode)
                     case spec: GcmParamsSpec =>
                         let list = getCHcfBlobList(spec.iv, spec.aad, spec.authTag)
                         let errCode = FfiOHOSCipherInitByGcm(getID(), opMode.getValue(), k,
@@ -174,7 +170,7 @@ public class Cipher <: RemoteDataLite {
                         list[0].free()
                         list[1].free()
                         list[2].free()
-                        checkRet(errCode, "[Cipher] init: ")
+                        checkAndThrow(errCode)
                     case spec: CcmParamsSpec =>
                         let list = getCHcfBlobList(spec.iv, spec.aad, spec.authTag)
                         let errCode = FfiOHOSCipherInitByCcm(getID(), opMode.getValue(), k,
@@ -182,12 +178,12 @@ public class Cipher <: RemoteDataLite {
                         list[0].free()
                         list[1].free()
                         list[2].free()
-                        checkRet(errCode, "[Cipher] init: ")
-                    case _ => throw BusinessException(ERR_PARAMETER_ERROR, "[Cipher] init: invalid parameters.")
+                        checkAndThrow(errCode)
+                    case _ => throw BusinessException(ERR_PARAMETER_ERROR, "Parameter error.")
                 }
                 case None =>
                     let errCode = FfiOHOSCipherInitWithOutParams(getID(), opMode.getValue(), k)
-                    checkRet(errCode, "[Cipher] init: ")
+                    checkAndThrow(errCode)
             }
         }
     }
@@ -198,16 +194,14 @@ public class Cipher <: RemoteDataLite {
      *
      * @param { DataBlob } data - indicates the data to be encrypted or decrypted.
      * @returns { DataBlob } the data returned by the function.
-     * @throws { BusinessException } 401 - invalid parameters.
-     * @throws { BusinessException } 17620001 - memory error.
-     * @throws { BusinessException } 17620002 - runtime error.
+     * @throws IllegalArgumentException - invalid parameters.
+     * @throws { BusinessException } 17620001 - memory operation failed.
+     * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @brief update(data : DataBlob) : Promise<DataBlob>
+     * @relation updateSync(data: DataBlob): DataBlob
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
@@ -218,7 +212,7 @@ public class Cipher <: RemoteDataLite {
             var output: HcfBlob = HcfBlob(CPointer<UInt8>(), 0)
             try {
                 let errCode = FfiOHOSCipherUpdate(getID(), inout input, inout output)
-                checkRet(errCode, "[Cipher] update: ")
+                checkAndThrow(errCode)
                 dataBlob = output.toDataBlob()
             } finally {
                 input.free()
@@ -234,16 +228,15 @@ public class Cipher <: RemoteDataLite {
      *
      * @param { DataBlob } data - indicates the data to be finally encrypted or decrypted.
      * @returns { DataBlob } the data returned by the function.
-     * @throws { BusinessException } 401 - invalid parameters.
-     * @throws { BusinessException } 17620001 - memory error.
-     * @throws { BusinessException } 17620002 - runtime error.
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @throws { BusinessException } 17620001 - memory operation failed.
+     * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @brief doFinal(data : DataBlob) : Promise<DataBlob>
+     * @relation doFinalSync(data: DataBlob | null): DataBlob
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
@@ -258,7 +251,7 @@ public class Cipher <: RemoteDataLite {
             var output: HcfBlob = HcfBlob(CPointer<UInt8>(), 0)
             try {
                 let errCode = FfiOHOSCipherDoFinal(getID(), inout input, inout output)
-                checkRet(errCode, "[Cipher] doFinal: ")
+                checkAndThrow(errCode)
                 dataBlob = output.toDataBlob()
             } finally {
                 input.free()

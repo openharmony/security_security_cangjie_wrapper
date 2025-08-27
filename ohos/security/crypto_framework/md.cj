@@ -13,11 +13,10 @@
  * limitations under the License.
  */
 
-package ohos.crypto
+package ohos.security.crypto_framework
 
 import ohos.ffi.*
 import ohos.labels.*
-import ohos.base.*
 
 foreign {
     func FfiOHOSCreateMd(algName: CString, errCode: CPointer<Int32>): Int64
@@ -30,17 +29,17 @@ foreign {
 }
 
 /**
- * Provides the md create func.
+ * Creates an Md instance for MD operations.
  *
  * @param { String } algName - indicates the md algorithm name.
  * @returns { Md } returns the created md instance.
- * @throws { BusinessException } 401 - invalid parameters.
- * @throws { BusinessException } 17620001 - memory error.
+ * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+ * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+ * @throws { BusinessException } 17620001 - memory operation failed.
+ * @relation function createMd(algName: string): Md
  */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
 ]
@@ -50,18 +49,19 @@ public func createMd(algName: String): Md {
         var errCode: Int32 = 0
         let id = FfiOHOSCreateMd(cstr, inout errCode)
         LibC.free(cstr)
-        checkRet(errCode, "[Md] createMd: ")
+        checkAndThrow(errCode)
         return Md(id, algName)
     }
 }
 
 /**
  * Provides the Md type, which is used for Md generation.
+ * Before using any API of the Md class, you must create an Md instance by using createMd.
+ *
+ * @relation interface Md
  */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
 ]
@@ -80,13 +80,10 @@ public class Md <: RemoteDataLite {
     /**
      * Indicates the algorithm name.
      *
-     * @type { String }
-     * @brief algName : string
+     * @relation readonly algName: string
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
@@ -100,13 +97,14 @@ public class Md <: RemoteDataLite {
      * Update md with DataBlob.
      *
      * @param { DataBlob } input - indicates the DataBlob.
-     * @throws { BusinessException } 401 - invalid parameters.
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
+     * @relation updateSync(input: DataBlob): void
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
@@ -124,20 +122,22 @@ public class Md <: RemoteDataLite {
             let errCode = FfiOHOSMdUpdate(getID(), cptr)
             chb.free()
             LibC.free(cptr)
-            checkRet(errCode, "[Md] update: ")
+            checkAndThrow(errCode)
         }
     }
 
     /**
      * Output the result of md calculation.
      *
-     * @throws { BusinessException } 17620001 - memory error.
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @throws { BusinessException } 17620001 - memory operation failed.
+     * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
+     * @relation digestSync(): DataBlob
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
@@ -145,7 +145,7 @@ public class Md <: RemoteDataLite {
         unsafe {
             var errCode: Int32 = 0
             let returnBlob: HcfBlob = FfiOHOSDigest(getID(), inout errCode)
-            checkRet(errCode, "[Md] digest: ")
+            checkAndThrow(errCode)
             let blob = returnBlob.toDataBlob()
             returnBlob.free()
             return blob
@@ -155,13 +155,12 @@ public class Md <: RemoteDataLite {
     /**
      * Output the length of md result.
      *
-     * @returns { UInt32 } returns the length of the hmac result.
+     * @returns { UInt32 } returns the length of the md result.
      * @throws { BusinessException } 17630001 - crypto operation error.
+     * @relation getMdLength(): number
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
@@ -169,7 +168,7 @@ public class Md <: RemoteDataLite {
         unsafe {
             var errCode: Int32 = 0
             let res = FfiOHOSGetMdLength(getID(), inout errCode)
-            checkRet(errCode, "[Md] getMdLength: ")
+            checkAndThrow(errCode)
             return res
         }
     }

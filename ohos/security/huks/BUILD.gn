@@ -13,12 +13,11 @@
 
 import("//build/cangjie/cjc.gni")
 
-ohos_cj_library("ohos.security_huks") {
+ohos_cangjie_shared_library("ohos.security.huks") {
   sources = [
     "huks_enum.cj",
     "huks_err.cj",
     "huks_ffi.cj",
-    "huks_get_sdk_version.cj",
     "huks_key_item.cj",
     "huks_limit.cj",
     "huks_session.cj",
@@ -27,7 +26,7 @@ ohos_cj_library("ohos.security_huks") {
   ]
 
   cj_external_deps = [
-    "arkui_cangjie_wrapper:ohos.base",
+    "cangjie_ark_interop:ohos.business_exception",
     "cangjie_ark_interop:ohos.ffi",
     "cangjie_ark_interop:ohos.labels",
   ]
@@ -36,5 +35,4 @@ ohos_cj_library("ohos.security_huks") {
 
   subsystem_name = "security"
   part_name = "security_cangjie_wrapper"
-  lib_name = "ohos.security_huks"
 }

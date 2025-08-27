@@ -13,11 +13,10 @@
  * limitations under the License.
  */
 
-package ohos.crypto
+package ohos.security.crypto_framework
 
 import ohos.ffi.*
 import ohos.labels.*
-import ohos.base.*
 
 foreign {
     func FfiOHOSCreateRandom(errCode: CPointer<Int32>): Int64
@@ -33,12 +32,11 @@ foreign {
  * Create a random generator instance.
  *
  * @returns { Random } returns the created rand instance.
- * @throws { BusinessException } 17620001 - memory error.
+ * @throws { BusinessException } 17620001 - memory operation failed.
+ * @relation function createRandom(): Random
  */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Rand"
 ]
@@ -46,19 +44,18 @@ public func createRandom(): Random {
     unsafe {
         var errCode: Int32 = 0
         let id = FfiOHOSCreateRandom(inout errCode)
-        checkRet(errCode, "[Random] createRandom: ")
+        checkAndThrow(errCode)
         return Random(id)
     }
 }
 
 /**
- * Provides the random interface.
+ * Provides APIs for computing random numbers and setting seeds.
  *
+ * @relation interface Random
  */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Rand"
 ]
@@ -72,15 +69,12 @@ public class Random <: RemoteDataLite {
     }
 
     /**
-     * Indicates the algorithm name.
+     * Indicates the random generation algorithm name. Currently, only CTR_DRBG is supported.
      *
-     * @type { String }
-     * @brief algName : string
+     * @relation readonly algName: string
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Rand"
     ]
@@ -89,7 +83,7 @@ public class Random <: RemoteDataLite {
             unsafe {
                 var errCode: Int32 = 0
                 let cstr = FfiOHOSRandomGetAlgName(getID(), inout errCode)
-                checkRet(errCode, "[Random] algName: ")
+                checkAndThrow(errCode)
                 // if free cstr, maybe double free. Please modify after testing.
                 return cstr.toString()
             }
@@ -97,18 +91,18 @@ public class Random <: RemoteDataLite {
     }
 
     /**
-     * Generate random DataBlob by given length.
+     * Generate random DataBlob by given length synchronously.
      *
      * @param { Int32 } len - indicates the length of random DataBlob.
      * @returns { DataBlob } return the generated random blob.
-     * @throws { BusinessException } 401 - invalid parameters.
-     * @throws { BusinessException } 17620001 - memory error.
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
+     * @relation generateRandomSync(len: number): DataBlob
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Rand"
     ]
@@ -116,7 +110,7 @@ public class Random <: RemoteDataLite {
         unsafe {
             var errCode: Int32 = 0
             let returnBlob: HcfBlob = FfiOHOSGenerateRandom(getID(), len, inout errCode)
-            checkRet(errCode, "[Random] generateRandom: ")
+            checkAndThrow(errCode)
             let blob = returnBlob.toDataBlob()
             returnBlob.free()
             return blob
@@ -127,12 +121,11 @@ public class Random <: RemoteDataLite {
      * Set seed by given DataBlob.
      *
      * @param { DataBlob } seed - indicates the seed DataBlob.
-     * @throws { BusinessException } 17620001 - memory error.
+     * @throws { BusinessException } 17620001 - memory operation failed.
+     * @relation setSeed(seed: DataBlob): void
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Rand"
     ]
@@ -151,7 +144,7 @@ public class Random <: RemoteDataLite {
             FfiOHOSSetSeed(getID(), cp, inout errCode)
             chb.free()
             LibC.free(cp)
-            checkRet(errCode, "[Random] setSeed: ")
+            checkAndThrow(errCode)
         }
     }
 }

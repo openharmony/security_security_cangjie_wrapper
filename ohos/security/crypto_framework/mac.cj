@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package ohos.crypto
+package ohos.security.crypto_framework
 
 import ohos.ffi.*
 import ohos.labels.*
@@ -31,12 +31,15 @@ foreign {
 }
 
 /**
- * @brief createMac(algName: string): Mac
+ * Creates a Mac instance for MAC operations.
+ *
+ * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+ * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+ * @throws { BusinessException } 17620001 - memory operation failed.
+ * @relation function createMac(algName: string): Mac
  */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Mac"
 ]
@@ -46,15 +49,19 @@ public func createMac(algName: String): Mac {
         var errCode: Int32 = 0
         let id = FFiOHOSCryptoMacConstructor(cstr, inout errCode)
         LibC.free(cstr)
-        checkRet(errCode, "[Mac] createMd: ")
+        checkAndThrow(errCode)
         return Mac(id, algName)
     }
 }
 
+/**
+ * Provides the Mac type, which is used for Mac generation.
+ * Before using any API of the Mac class, you must create a Mac instance by using createMac.
+ *
+ * @relation interface Mac
+ */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Mac"
 ]
@@ -71,12 +78,12 @@ public class Mac <: RemoteDataLite {
     }
 
     /**
-     * @brief algName: string
+     * Indicates the algorithm name.
+     *
+     * @relation readonly algName: string
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
@@ -87,29 +94,39 @@ public class Mac <: RemoteDataLite {
     }
 
     /**
-     * @brief init(key : SymKey) : Promise<void>
+     * Init mac with given SymKey.
+     * This API uses an asynchronous callback to return the result. init, update, and doFinal must be used together.
+     * init and doFinal are mandatory, and update is optional.
+     *
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @throws { BusinessException } 17620001 - memory operation failed.
+     * @throws { BusinessException } 17630001 - crypto operation error.
+     * @relation initSync(key: SymKey): void
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
-    public func `init`(key: SymKey): Unit {
+    public func initialize(key: SymKey): Unit {
         unsafe {
             let errCode = FfiOHOSCryptoMacInit(getID(), key.getID())
-            checkRet(errCode, "[Mac] init: ")
+            checkAndThrow(errCode)
         }
     }
 
     /**
-     * @brief update(input : DataBlob) : Promise<void>
+     * Update mac with DataBlob.
+     *
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @throws { BusinessException } 17620001 - memory operation failed.
+     * @throws { BusinessException } 17630001 - crypto operation error.
+     * @relation updateSync(input: DataBlob): void
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
@@ -127,17 +144,22 @@ public class Mac <: RemoteDataLite {
             let errCode = FfiOHOSCryptoMacUpdate(getID(), cp)
             chb.free()
             LibC.free(cp)
-            checkRet(errCode, "[Mac] update: ")
+            checkAndThrow(errCode)
         }
     }
 
     /**
-     * @brief doFinal() : Promise<DataBlob>
+     * Output the result of mac calculation.
+     *
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @throws { BusinessException } 17620001 - memory operation failed.
+     * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
+     * @throws { BusinessException } 17630001 - crypto operation error.
+     * @relation doFinalSync(): DataBlob
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
@@ -145,7 +167,7 @@ public class Mac <: RemoteDataLite {
         unsafe {
             var errCode: Int32 = 0
             let returnBlob: HcfBlob = FfiOHOSCryptoMacDoFinal(getID(), inout errCode)
-            checkRet(errCode, "[Mac] doFinal: ")
+            checkAndThrow(errCode)
             let blob = returnBlob.toDataBlob()
             returnBlob.free()
             return blob
@@ -153,12 +175,13 @@ public class Mac <: RemoteDataLite {
     }
 
     /**
-     * @brief getMacLength() : number
+     * Output the length of hmac result.
+     *
+     * @throws { BusinessException } 17630001 - crypto operation error.
+     * @relation getMacLength(): number
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]

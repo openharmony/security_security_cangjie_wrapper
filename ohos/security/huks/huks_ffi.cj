@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package ohos.security_huks
+package ohos.security.huks
 
 foreign {
     func memcpy_s(dest: CPointer<Byte>, destMax: UIntNative, src: CPointer<Byte>, count: UIntNative): Int32
@@ -98,5 +98,4 @@ foreign {
         key: CPointer<OhosHksBlob>
     ): Int32
 
-    func FfiOHOSGetSdkVersion(sdkVersion: CPointer<OhosHksBlob>): Int32
 }

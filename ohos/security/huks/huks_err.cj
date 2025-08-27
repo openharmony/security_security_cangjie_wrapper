@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-package ohos.security_huks
+package ohos.security.huks
 
-import ohos.base.BusinessException
+import ohos.business_exception.BusinessException
 
 func hksCodeToException(hksCode: Int32): BusinessException {
     var queryData: OhosHksResult = OhosHksResult(0, CString(CPointer()), CPointer())

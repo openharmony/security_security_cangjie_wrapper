@@ -13,17 +13,13 @@
  * limitations under the License.
  */
 
-package ohos.security_huks
+package ohos.security.huks
 
 import ohos.labels.*
-import ohos.base.BusinessException
+import ohos.business_exception.BusinessException
 
 /**
  * Init Operation.
- *
- * @param { String } keyAlias - keyAlias indicates the key's name.
- * @param { HuksOptions } options - options indicates the properties of the key.
- * @return { HuksSessionHandle } - the session handle.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
@@ -36,21 +32,23 @@ import ohos.base.BusinessException
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @syscap SystemCapability.Security.Huks.Core
+ * @relation function initSession(keyAlias: string, options: HuksOptions): Promise<HuksSessionHandle>
  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func initSession(keyAlias: String, options: HuksOptions): HuksSessionHandle {
     if (keyAlias.isEmpty()) {
-        throw BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "key alias is empty")
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
     }
-    let properties = options.properties.getOrThrow {
-        BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "properties is None")
-    }
+
+    if (options.properties.isEmpty()) {
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "properties is None")
+    } 
+    let properties = options.properties
+
     let paramSet: HksParamSet = HksParamSet(properties)
     let keyAliasCstr = unsafe { LibC.mallocCString(keyAlias) }
     var handle: OhosHksBlob
@@ -77,9 +75,9 @@ public func initSession(keyAlias: String, options: HuksOptions): HuksSessionHand
             let retToken = if (token.size > 0) {
                 token.copyToBytes()
             } else {
-                Option<Bytes>.None
+                Bytes()
             }
-            return HuksSessionHandle(retHandle, retToken)
+            return HuksSessionHandle(retHandle, challenge: retToken)
         } else {
             throw hksCodeToException(retCode)
         }
@@ -92,105 +90,88 @@ public func initSession(keyAlias: String, options: HuksOptions): HuksSessionHand
     }
 }
 
-func getHuksHandle(handle: OhosHksBlob): HuksHandle {
+func getHuksHandle(handle: OhosHksBlob): HuksHandleId {
     if (handle.size == HANDLE_SIZE) {
-        HuksHandle(handle.copyToBytes())
+        HuksHandleId(handle.copyToBytes())
     } else {
-        HuksHandle(Array())
+        HuksHandleId(Array())
     }
 }
 
-/**
- * Update Operation.
- *
- * @param { HuksHandle } handle - the handle of the init operation.
- * @param { HuksOptions } options - options indicates the properties of the update operation.
- * @param { Bytes } token - token indicates the value of AuthToken from USER IAM service.
- * @return { Option<Array<UInt8>> } - the output data of update operation.
- * @throws { BusinessException } 401 - argument is invalid
- * @throws { BusinessException } 801 - api is not supported
- * @throws { BusinessException } 12000001 - algorithm mode is not supported
- * @throws { BusinessException } 12000002 - algorithm param is missing
- * @throws { BusinessException } 12000003 - algorithm param is invalid
- * @throws { BusinessException } 12000004 - operating file failed
- * @throws { BusinessException } 12000005 - IPC communication failed
- * @throws { BusinessException } 12000006 - error occured in crypto engine
- * @throws { BusinessException } 12000007 - this credential is already invalidated permanently
- * @throws { BusinessException } 12000008 - verify authtoken failed
- * @throws { BusinessException } 12000009 - authtoken is already timeout
- * @throws { BusinessException } 12000011 - queried entity does not exist
- * @throws { BusinessException } 12000012 - external error
- * @throws { BusinessException } 12000014 - memory is insufficient
- * @syscap SystemCapability.Security.Huks.Extension
- */
+ /**
+   * Updates the key operation by segment. This API uses an asynchronous callback to return the result.
+   * huks.initSession, huks.updateSession, and huks.finishSession must be used together.
+   * @throws { BusinessException } 401 - Parameter error. Possible causes:
+   *                                 1. Mandatory parameters are left unspecified.
+   *                                 2. Incorrect parameter types.
+   *                                 3. Parameter verification failed.
+   * @throws { BusinessException } 801 - api is not supported
+   * @throws { BusinessException } 12000001 - algorithm mode is not supported
+   * @throws { BusinessException } 12000002 - algorithm param is missing
+   * @throws { BusinessException } 12000003 - algorithm param is invalid
+   * @throws { BusinessException } 12000004 - operating file failed
+   * @throws { BusinessException } 12000005 - IPC communication failed
+   * @throws { BusinessException } 12000006 - error occurred in crypto engine
+   * @throws { BusinessException } 12000007 - this credential is already invalidated permanently
+   * @throws { BusinessException } 12000008 - verify auth token failed
+   * @throws { BusinessException } 12000009 - auth token is already timeout
+   * @throws { BusinessException } 12000011 - queried entity does not exist
+   * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
+   * @throws { BusinessException } 12000014 - memory is insufficient
+   * @relation function updateSession(handle: long, options: HuksOptions, token?: Uint8Array): Promise<HuksReturnResult>
+   */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
-public func updateSession(handle: HuksHandle, options: HuksOptions): Option<Bytes> {
-    return updateOrFinish(handle, options, Array(), true)
-}
-
-@!APILevel[
-    21,
-    atomicservice: true,
-    stagemodelonly: true,
-    syscap: "SystemCapability.Security.Huks.Extension"
-]
-public func updateSession(handle: HuksHandle, options: HuksOptions, token: Bytes): Option<Bytes> {
+public func updateSession(handle: HuksHandleId, options: HuksOptions, token!: Bytes = Bytes()): Option<Bytes> {
     return updateOrFinish(handle, options, token, true)
 }
 
 /**
- * Finish Operation.
- *
- * @param { HuksHandle } handle - indicates the handle of the init operation.
- * @param { HuksOptions } options - options indicates the properties of the finish operation.
- * @param { Bytes } token - token indicates the value of AuthToken from USER IAM service.
- * @return { Option<Array<UInt8>> } - the output data of update operation.
- * @throws { BusinessException } 401 - argument is invalid
- * @throws { BusinessException } 801 - api is not supported
- * @throws { BusinessException } 12000001 - algorithm mode is not supported
- * @throws { BusinessException } 12000002 - algorithm param is missing
- * @throws { BusinessException } 12000003 - algorithm param is invalid
- * @throws { BusinessException } 12000004 - operating file failed
- * @throws { BusinessException } 12000005 - IPC communication failed
- * @throws { BusinessException } 12000006 - error occured in crypto engine
- * @throws { BusinessException } 12000007 - this credential is already invalidated permanently
- * @throws { BusinessException } 12000008 - verify authtoken failed
- * @throws { BusinessException } 12000009 - authtoken is already timeout
- * @throws { BusinessException } 12000011 - queried entity does not exist
- * @throws { BusinessException } 12000012 - external error
- * @throws { BusinessException } 12000014 - memory is insufficient
- * @syscap SystemCapability.Security.Huks.Extension
- */
+   * Finishes the key operation. This API uses an asynchronous callback to return the result.
+   * huks.initSession, huks.updateSession, and huks.finishSession must be used together.
+   * @throws { BusinessException } 401 - Parameter error. Possible causes:
+   *                                 1. Mandatory parameters are left unspecified.
+   *                                 2. Incorrect parameter types.
+   *                                 3. Parameter verification failed.
+   * @throws { BusinessException } 801 - api is not supported
+   * @throws { BusinessException } 12000001 - algorithm mode is not supported
+   * @throws { BusinessException } 12000002 - algorithm param is missing
+   * @throws { BusinessException } 12000003 - algorithm param is invalid
+   * @throws { BusinessException } 12000004 - operating file failed
+   * @throws { BusinessException } 12000005 - IPC communication failed
+   * @throws { BusinessException } 12000006 - error occurred in crypto engine
+   * @throws { BusinessException } 12000007 - this credential is already invalidated permanently
+   * @throws { BusinessException } 12000008 - verify auth token failed
+   * @throws { BusinessException } 12000009 - auth token is already timeout
+   * @throws { BusinessException } 12000011 - queried entity does not exist
+   * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
+   * @throws { BusinessException } 12000014 - memory is insufficient
+   * @relation function finishSession(handle: long, options: HuksOptions, token?: Uint8Array): Promise<HuksReturnResult>
+   */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
-public func finishSession(handle: HuksHandle, options: HuksOptions): Option<Bytes> {
-    return updateOrFinish(handle, options, Array(), false)
-}
-
-@!APILevel[
-    21,
-    atomicservice: true,
-    stagemodelonly: true,
-    syscap: "SystemCapability.Security.Huks.Extension"
-]
-public func finishSession(handle: HuksHandle, options: HuksOptions, token: Bytes): Option<Bytes> {
+public func finishSession(handle: HuksHandleId, options: HuksOptions, token!: Bytes = Bytes()): Option<Bytes> {
     return updateOrFinish(handle, options, token, false)
 }
 
-func updateOrFinish(handle: HuksHandle, options: HuksOptions, token: Bytes, isUpdate: Bool): Option<Bytes> {
-    let properties = options.properties.getOrThrow {
-        BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "properties is None")
+func updateOrFinish(handle: HuksHandleId, options: HuksOptions, token: Bytes, isUpdate: Bool): Option<Bytes> {
+    if (options.properties.isEmpty()) {
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "properties is None")
+    } 
+    let properties = options.properties
+
+    let inData = if (options.inData.isEmpty()) {
+        Bytes()
+    } else {
+       options.inData
     }
-    let inData = options.inData.getOrDefault({=> Array()})
+
     var inBlob: OhosHksBlob = unsafe { OhosHksBlob.mallocFromBytes(inData) }
     let outBlobSize = getOutBlogSize(inData)
     var outBlob: OhosHksBlob
@@ -209,11 +190,11 @@ func updateOrFinish(handle: HuksHandle, options: HuksOptions, token: Bytes, isUp
         throw e
     }
     if (!token.isEmpty()) {
-        if (!paramSet.write(HuksTag.HUKS_TAG_AUTH_TOKEN.getValue(), token)) {
+        if (!paramSet.write(HuksTag.HuksTagAuthToken.getValue(), token)) {
             unsafe { outBlob.free() }
             unsafe { inBlob.free() }
             throw BusinessException(
-                HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT,
+                HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(),
                 "properties too big"
             )
         }
@@ -263,10 +244,7 @@ func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, i
 }
 
 /**
- * Abort Operation.
- *
- * @param { HuksHandle } handle - indicates the handle of the init operation.
- * @param { HuksOptions } options - options indicates the properties of the abort operation.
+ * Aborts a key operation. This API uses an asynchronous callback to return the result.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000004 - operating file failed
@@ -274,18 +252,18 @@ func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, i
  * @throws { BusinessException } 12000006 - error occured in crypto engine
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @syscap SystemCapability.Security.Huks.Core
+ * @relation function abortSession(handle: long, options: HuksOptions): Promise<void>
  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
-public func abortSession(handle: HuksHandle, options: HuksOptions): Unit {
-    let properties = options.properties.getOrThrow {
-        BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "properties is None")
-    }
+public func abortSession(handle: HuksHandleId, options: HuksOptions): Unit {
+    if (options.properties.isEmpty()) {
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "properties is None")
+    } 
+    let properties =  options.properties
 
     let paramSet: HksParamSet = HksParamSet(properties)
 

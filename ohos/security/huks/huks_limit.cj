@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package ohos.security_huks
+package ohos.security.huks
 
 const HKS_PARAM_SET_MAX_CNT: UInt32 = 32
 const HKS_PARAM_SET_MAX_SIZE: UInt32 = 4 * 1024 * 1024
