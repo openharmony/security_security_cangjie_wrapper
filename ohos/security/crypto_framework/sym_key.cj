@@ -13,11 +13,10 @@
  * limitations under the License.
  */
 
-package ohos.crypto
+package ohos.security.crypto_framework
 
 import ohos.ffi.*
 import ohos.labels.*
-import ohos.base.*
 
 foreign {
     func FfiOHOSSymKeyGetAlgName(id: Int64, errCode: CPointer<Int32>): CString
@@ -32,12 +31,13 @@ foreign {
 }
 
 /**
- * Provides the SymKey type, which is used for symmetric cryptography.
+ * Provides APIs for symmetric key operations.
+ * Its objects need to be passed to init of the Cipher instance in symmetric encryption and decryption.
+ *
+ * @relation interface SymKey extends Key
  */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
 ]
@@ -54,17 +54,13 @@ public class SymKey <: RemoteDataLite & Key {
     }
 
     /**
-     * Indicates the algorithm name.
+     * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric key.
      *
-     * @type { String }
-     * @brief algName : string
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
-        syscap: "SystemCapability.Security.CryptoFramework.Key"
+        syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public prop algName: String {
         get() {
@@ -75,15 +71,11 @@ public class SymKey <: RemoteDataLite & Key {
     /**
      * Indicates the format of the key object.
      *
-     * @type { String }
-     * @brief format: string
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
-        syscap: "SystemCapability.Security.CryptoFramework.Key"
+        syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public prop format: String {
         get() {
@@ -91,7 +83,7 @@ public class SymKey <: RemoteDataLite & Key {
                 var errCode: Int32 = 0
                 let cstr = FfiOHOSSymKeyGetFormat(getID(), inout errCode)
                 // if free cstr, maybe double free. Please modify after testing.
-                checkRet(errCode, "[SymKey] format: ")
+                checkAndThrow(errCode)
                 return cstr.toString()
             }
         }
@@ -99,26 +91,26 @@ public class SymKey <: RemoteDataLite & Key {
 
     /**
      * Encode the key object to binary data.
+     * The key can be a symmetric key, public key, or private key.
+     * The public key must be in DER encoding format and comply with the ASN.1 syntax and X.509 specifications.
+     * The private key must be in DER encoding format and comply with the ASN.1 syntax and PKCS#8 specifications.
      *
      * @returns { DataBlob } the binary data of the key object.
      * @throws { BusinessException } 801 - this operation is not supported.
-     * @throws { BusinessException } 17620001 - memory error.
+     * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @brief algName : getEncoded(): DataBlob
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
-        syscap: "SystemCapability.Security.CryptoFramework.Key"
+        syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public func getEncoded(): DataBlob {
         unsafe {
             let cp: CPointer<HcfBlob> = safeMalloc<HcfBlob>(count: 1)
             try {
                 let errCode = FfiOHOSSymKeyGetEncoded(getID(), cp)
-                checkRet(errCode, "[SymKey] getEncoded: ")
+                checkAndThrow(errCode)
                 let blob = cp.read().toDataBlob()
                 cp.read().free()
                 return blob
@@ -129,14 +121,13 @@ public class SymKey <: RemoteDataLite & Key {
     }
 
     /**
-     * Reset the key data to zero in the memory.
+     * Clears the keys in the memory. This API returns the result synchronously.
+     * You are advised to use this API when symmetric key instances are no longer used.
      *
-     * @brief clearMem(): void
+     * @relation clearMem(): void
      */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]

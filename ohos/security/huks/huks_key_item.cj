@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-package ohos.security_huks
+package ohos.security.huks
 
 import ohos.labels.*
-import std.collection.{ArrayList, collectArray, forEach, map}
-import ohos.base.BusinessException
+import std.collection.{ collectArray, forEach, map}
+import ohos.business_exception.BusinessException
 
 /**
- * Check whether the key exists.
+ * Checks whether a key exists. This API uses a promise to return the result.
  *
  * @param { String } keyAlias - keyAlias indicates the key's name.
  * @param { HuksOptions } options - options indicates the properties of the key.
@@ -34,21 +34,21 @@ import ohos.base.BusinessException
  * @throws { BusinessException } 12000006 - error occured in crypto engine
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @syscap SystemCapability.Security.Huks.Core
+ * @relation function isKeyItemExist(keyAlias: string, options: HuksOptions): Promise<boolean>
  */
 @!APILevel[
     21,
     stagemodelonly: true,
-    syscap: "SystemCapability.Security.Huks.Core"
+    syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func isKeyItemExist(keyAlias: String, options: HuksOptions): Bool {
     if (keyAlias.isEmpty()) {
-        throw BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "key alias is empty")
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
     }
 
-    let paramSet: Option<HksParamSet> = if (let Some(properties) <- options.properties) {
+    let paramSet: Option<HksParamSet> = if (!options.properties.isEmpty()) {
         // may throw exception
-        HksParamSet(properties)
+        HksParamSet(options.properties)
     } else {
         None
     }
@@ -77,7 +77,7 @@ public func isKeyItemExist(keyAlias: String, options: HuksOptions): Bool {
 }
 
 /**
- * Get properties of the key.
+ * Obtains key properties. This API uses a promise to return the result.
  *
  * @param { String } keyAlias - keyAlias indicates the key's name.
  * @param { HuksOptions } options - options indicates the properties of the key.
@@ -93,18 +93,17 @@ public func isKeyItemExist(keyAlias: String, options: HuksOptions): Bool {
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @syscap SystemCapability.Security.Huks.Extension
+ * @relation function getKeyItemProperties(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult>
  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
-    syscap: "SystemCapability.Security.Huks.Core"
+    syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksParam> {
     // options is a reserved parameter and does not need to be processed currently.
     if (keyAlias.isEmpty()) {
-        throw BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "key alias is empty")
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
     }
 
     let outParamSet = ReadOnlyHksParamSet(HKS_DEFAULT_OUTPARAMSET_SIZE)
@@ -130,7 +129,7 @@ public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksPa
 }
 
 /**
- * Key Attestation.
+ * Obtains the certificate used to attest a key. This API uses an asynchronous callback to return the result.
  *
  * @param { String } keyAlias - keyAlias indicates the key's name.
  * @param { HuksOptions } options - options indicates the properties of the key attestation operation.
@@ -147,23 +146,25 @@ public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksPa
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @syscap SystemCapability.Security.Huks.Extension
+ * @permission ohos.permission.ATTEST_KEY
+ * @relation function attestKeyItem(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult>
  */
 @!APILevel[
     21,
-    atomicservice: true,
+    permission: "ohos.permission.ATTEST_KEY",
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func attestKeyItem(keyAlias: String, options: HuksOptions): Array<String> {
     if (keyAlias.isEmpty()) {
-        throw BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "key alias is empty")
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
     }
 
-    let properties = options.properties.getOrThrow {
-        BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "properties is None")
-    }
-
+    if (options.properties.isEmpty()) {
+       throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "properties is None")
+    } 
+    let properties = options.properties
+    
     // write another HksParam { .tag = HKS_TAG_ATTESTATION_BASE64, .boolParam = true };
     let propertiesPlus = Array<HuksParam>(
         properties.size + 1,
@@ -171,7 +172,7 @@ public func attestKeyItem(keyAlias: String, options: HuksOptions): Array<String>
             i => if (i < properties.size) {
                 properties[i]
             } else {
-                HuksParam(HuksTag.HUKS_TAG_ATTESTATION_BASE64, HuksParamValue.boolean(true))
+                HuksParam(HuksTag.HuksTagAttestationBase64, HuksParamValue.BooleanValue(true))
             }
         }
     )
@@ -215,7 +216,10 @@ public func attestKeyItem(keyAlias: String, options: HuksOptions): Array<String>
 }
 
 /**
- * Anonymous key Attestation.
+ * Obtains the certificate for anonymous attestation. This API uses an asynchronous callback to return
+ * the result. This operation requires Internet access and takes time. If error code 12000012 is returned, the network
+ * is abnormal. If the device is not connected to the network, display a message, indicating that the network is not
+ * connected. If the network is connected, the failure may be caused by network jitter. Try again later.
  *
  * @param { String } keyAlias - keyAlias indicates the key's name.
  * @param { HuksOptions } options - options indicates the properties of the key attestation operation.
@@ -232,22 +236,22 @@ public func attestKeyItem(keyAlias: String, options: HuksOptions): Array<String>
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @syscap SystemCapability.Security.Huks.Extension
+ * @relation function anonAttestKeyItem(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult>
  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<String> {
     if (keyAlias.isEmpty()) {
-        throw BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "key alias is empty")
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
     }
 
-    let properties = options.properties.getOrThrow {
-        BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "properties is None")
-    }
+    if (options.properties.isEmpty()) {
+       throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "properties is None")
+    } 
+    let properties = options.properties
 
     let propertiesPlus = Array<HuksParam>(
         properties.size + 1,
@@ -255,7 +259,7 @@ public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<Str
             i => if (i < properties.size) {
                 properties[i]
             } else {
-                HuksParam(HuksTag.HUKS_TAG_ATTESTATION_BASE64, HuksParamValue.boolean(true))
+                HuksParam(HuksTag.HuksTagAttestationBase64, HuksParamValue.BooleanValue(true))
             }
         }
     )
@@ -296,7 +300,7 @@ public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<Str
 }
 
 /**
- * Export Key.
+ * Exports a key. This API uses a promise to return the result.
  *
  * @param { String } keyAlias - keyAlias indicates the key's name.
  * @param { HuksOptions } options - options indicates the properties of the key.
@@ -312,17 +316,16 @@ public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<Str
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @syscap SystemCapability.Security.Huks.Extension
+ * @relation function exportKeyItem(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult>
  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
     if (keyAlias.isEmpty()) {
-        throw BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "key alias is empty")
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
     }
 
     let keyAliasCstr = unsafe { LibC.mallocCString(keyAlias) }
@@ -355,7 +358,7 @@ public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
 }
 
 /**
- * Import Wrapped Key.
+ * Imports a wrapped key. This API uses a promise to return the result.
  *
  * @param { String } keyAlias - keyAlias indicates the name of key to be imported.
  * @param { String } wrappingKeyAlias - wrappingKeyAlias indicates the name of key for wrapping the key to be imported.
@@ -373,28 +376,29 @@ public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
  * @throws { BusinessException } 12000013 - queried credential does not exist
  * @throws { BusinessException } 12000014 - memory is insufficient
  * @throws { BusinessException } 12000015 - call service failed
- * @syscap SystemCapability.Security.Huks.Extension
+ * @relation function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, options: HuksOptions): Unit {
     if (keyAlias.isEmpty()) {
-        throw BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "key alias is empty")
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
     }
 
-    let properties = options.properties.getOrThrow {
-        BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "properties is None")
-    }
-
+    if (options.properties.isEmpty()) {
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "properties is None")
+    } 
+    let properties = options.properties
+    
     let paramSet: HksParamSet = HksParamSet(properties)
 
-    let inData = options.inData.getOrThrow {
-        BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "indata is None")
-    }
+     if (options.inData.isEmpty()) {
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "properties is None")
+    } 
+    let inData = options.inData
 
     try (
         keyAliasCstr = unsafe { LibC.mallocCString(keyAlias).asResource() },
@@ -420,8 +424,10 @@ public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, opt
 }
 
 /**
- * Key generation.
- *
+ * Generates a key. This API uses a promise to return the result. Because the key is always
+ * protected in a trusted environment (such as a TEE), the promise does not return the key content.
+ * It returns only the information indicating whether the API is successfully called.
+ * @returns { Promise<void> } the promise returned by the function.
  * @param { String } keyAlias - keyAlias indicates the key's name.
  * @param { HuksOptions } options - options indicates the properties of the key.
  * @throws { BusinessException } 401 - argument is invalid
@@ -436,22 +442,22 @@ public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, opt
  * @throws { BusinessException } 12000013 - queried credential does not exist
  * @throws { BusinessException } 12000014 - memory is insufficient
  * @throws { BusinessException } 12000015 - call service failed
- * @syscap SystemCapability.Security.Huks.Extension
+ * @relation function generateKeyItem(keyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit {
     if (keyAlias.isEmpty()) {
-        throw BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "key alias is empty")
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
     }
 
-    let properties = options.properties.getOrThrow {
-        BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "properties is None")
+    if (options.properties.isEmpty()) {
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "properties is None")
     }
+    let properties = options.properties
 
     var paramSetIn: HksParamSet = HksParamSet(properties)
 
@@ -473,10 +479,8 @@ public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit {
 }
 
 /**
- * Key deletion.
+ * Deletes a key. This API uses a promise to return the result.
  *
- * @param { String } keyAlias - keyAlias indicates the key's name.
- * @param { HuksOptions } options - options indicates the properties of the key.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000004 - operating file failed
@@ -484,23 +488,31 @@ public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit {
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @syscap SystemCapability.Security.Huks.Core
+ * @relation function deleteKeyItem(keyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
-public func deleteKeyItem(keyAlias: String, _: HuksOptions): Unit {
+public func deleteKeyItem(keyAlias: String, options: HuksOptions): Unit {
     if (keyAlias.isEmpty()) {
-        throw BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "key alias is empty")
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
+    }
+
+    let paramSet: Option<HksParamSet> = if (!options.properties.isEmpty()) {
+        // may throw exception
+        HksParamSet(options.properties)
+    } else {
+        None
     }
 
     let keyAliasCstr: CString = unsafe { LibC.mallocCString(keyAlias) }
 
-    let retCode = unsafe {
-        FfiOHOSDeleteKey(keyAliasCstr, CPointer())
+    let retCode: Int32 = if (let Some(_paramSet) <- paramSet) {
+        unsafe { FfiOHOSDeleteKey(keyAliasCstr, _paramSet.toPointer()) }
+    } else {
+        unsafe { FfiOHOSDeleteKey(keyAliasCstr, CPointer()) }
     }
 
     try {
@@ -515,10 +527,8 @@ public func deleteKeyItem(keyAlias: String, _: HuksOptions): Unit {
 }
 
 /**
- * Import key.
+ * Imports a key in plaintext. This API uses a promise to return the result.
  *
- * @param { String } keyAlias - keyAlias indicates the key's name.
- * @param { HuksOptions } options - options indicates the properties of the key.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
@@ -532,25 +542,27 @@ public func deleteKeyItem(keyAlias: String, _: HuksOptions): Unit {
  * @throws { BusinessException } 12000013 - queried credential does not exist
  * @throws { BusinessException } 12000014 - memory is insufficient
  * @throws { BusinessException } 12000015 - call service failed
- * @syscap SystemCapability.Security.Huks.Extension
+ * @relation function importKeyItem(keyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
     21,
-    atomicservice: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func importKeyItem(keyAlias: String, options: HuksOptions): Unit {
     if (keyAlias.isEmpty()) {
-        throw BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "key alias is empty")
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
     }
 
-    let properties = options.properties.getOrThrow {
-        BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "properties is None")
+    if (options.properties.isEmpty()) {
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "properties is None")
     }
-    let inData = options.inData.getOrThrow {
-        BusinessException(HuksExceptionErrCode.HUKS_ERR_CODE_ILLEGAL_ARGUMENT, "indata is None")
-    }
+    let properties = options.properties
+    
+    if (options.inData.isEmpty()) {
+        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "properties is None")
+    } 
+    let inData = options.inData
 
     var paramSet: HksParamSet = HksParamSet(properties)
 

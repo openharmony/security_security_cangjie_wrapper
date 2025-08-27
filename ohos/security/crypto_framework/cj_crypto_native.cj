@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package ohos.crypto
+package ohos.security.crypto_framework
 
 import ohos.ffi.*
 import std.math.numeric.*

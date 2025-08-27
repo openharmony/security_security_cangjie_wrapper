@@ -13,277 +13,216 @@
  * limitations under the License.
  */
 
-package ohos.crypto
+package ohos.security.crypto_framework
 
-import std.math.numeric.*
 import ohos.labels.*
-import ohos.ffi.*
 
 foreign func memcpy_s(dest: CPointer<UInt8>, destMax: UIntNative, src: CPointer<UInt8>, count: UIntNative): Int32
 
+/**
+ * Defines a buffer array of the Binary Large Object (BLOB) type.
+ *
+ * @relation interface DataBlob
+ */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework"
 ]
-public struct DataBlob {
+public class DataBlob {
+    /**
+     * Indicates the content of data blob.
+     *
+     * @relation data: Uint8Array
+     */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
-    public DataBlob(
-        @!APILevel[
-            21,
-            atomicservice: true,
-            crossplatform: true,
-            stagemodelonly: true,
-            syscap: "SystemCapability.Security.CryptoFramework"
-        ]
-        public let data: Array<UInt8>
-    ) {}
+    public var data: Array<UInt8>
+
+    /**
+     * DataBlob constructor.
+     *
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.CryptoFramework"
+    ]
+    public init(data: Array<UInt8>) {
+        this.data = data
+    }
 }
 
+/**
+ * Defines the child class of ParamsSpec. It is a parameter of init for symmetric encryption or decryption.
+ * IvParamsSpec applies to the cipher modes such as CBC, CTR, OFB, and CFB, which use only the IV.
+ *
+ * @relation interface IvParamsSpec extends ParamsSpec
+ */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
-public struct IvParamsSpec <: ParamsSpec {
-    var _algName: String
-    var _iv: DataBlob
-
+public class IvParamsSpec <: ParamsSpec {
+    /**
+     * IV for encryption or decryption.
+     * Options:
+     * - AES CBC, CTR, OFB, or CFB mode: 16-byte IV
+     * - 3DES CBC, OFB, or CFB mode: 8-byte IV
+     * - SM4 CBC, CTR, OFB, or CFB mode: 16-byte IV
+     *
+     * @relation iv: DataBlob
+     */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public mut prop algName: String {
-        get() {
-            return _algName
-        }
-        set(v) {
-            this._algName = v
-        }
-    }
+    public var iv: DataBlob
 
+    /**
+     * IvParamsSpec constructor.
+     *
+     */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.CryptoFramework.Cipher"
-    ]
-    public mut prop iv: DataBlob {
-        get() {
-            return _iv
-        }
-        set(v) {
-            this._iv = v
-        }
-    }
-
-    @!APILevel[
-        21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public init(algName: String, iv: DataBlob) {
-        this._algName = algName
-        this._iv = iv
+        super(algName)
+        this.iv = iv
     }
 }
 
+/**
+ * Provides the GcmParamsSpec type, including the parameter iv, aad and authTag.
+ *
+ * @relation interface GcmParamsSpec extends ParamsSpec
+ */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
-public struct GcmParamsSpec <: ParamsSpec {
-    var _algName: String
-    var _aad: DataBlob
-    var _authTag: DataBlob
-    var _iv: DataBlob
-
+public class GcmParamsSpec <: ParamsSpec {
+    /**
+     * Indicates the additional Authenticated Data in GCM mode.
+     *
+     * @relation aad: DataBlob
+     */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public mut prop algName: String {
-        get() {
-            return _algName
-        }
-        set(v) {
-            this._algName = v
-        }
-    }
+    public var aad: DataBlob
 
+    /**
+     * Indicates the GCM algorithm parameters such as iv.
+     *
+     * @relation iv: DataBlob
+     */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public mut prop aad: DataBlob {
-        get() {
-            return _aad
-        }
-        set(v) {
-            this._aad = v
-        }
-    }
+    public var iv: DataBlob
 
+    /**
+     * Indicates the output tag from the encryption operation. The tag is used for integrity check.
+     *
+     * @relation authTag: DataBlob
+     */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public mut prop iv: DataBlob {
-        get() {
-            return _iv
-        }
-        set(v) {
-            this._iv = v
-        }
-    }
+    public var authTag: DataBlob
 
+    /**
+     * GcmParamsSpec constructor.
+     *
+     */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public mut prop authTag: DataBlob {
-        get() {
-            return _authTag
-        }
-        set(v) {
-            this._authTag = v
-        }
-    }
-
-    @!APILevel[
-        21,
-        atomicservice: true,
-        crossplatform: true,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.CryptoFramework.Cipher"
-    ]
-    public init(algName: String, iv: DataBlob, add: DataBlob, authTag: DataBlob) {
-        this._algName = algName
-        this._iv = iv
-        this._aad = add
-        this._authTag = authTag
+    public init(algName: String, iv: DataBlob, aad: DataBlob, authTag: DataBlob) {
+        super(algName)
+        this.iv = iv
+        this.aad = aad
+        this.authTag = authTag
     }
 }
 
+/**
+ * Provides the CcmParamsSpec type, including the parameter iv, aad and authTag.
+ *
+ * @relation interface CcmParamsSpec extends ParamsSpec
+ */
 @!APILevel[
     21,
-    atomicservice: true,
-    crossplatform: true,
     stagemodelonly: true,
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
-public struct CcmParamsSpec <: ParamsSpec {
-    var _algName: String
-    var _aad: DataBlob
-    var _iv: DataBlob
-    var _authTag: DataBlob
-
+public class CcmParamsSpec <: ParamsSpec {
+    /**
+     * Indicates the output tag from the encryption operation. The tag is used for integrity check.
+     *
+     * @relation authTag: DataBlob
+     */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public mut prop algName: String {
-        get() {
-            return _algName
-        }
-        set(v) {
-            this._algName = v
-        }
-    }
+    public var authTag: DataBlob
 
+    /**
+     * Indicates the Additional Authenticated Data in CCM mode.
+     *
+     * @relation aad: DataBlob
+     */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public mut prop authTag: DataBlob {
-        get() {
-            return _authTag
-        }
-        set(v) {
-            this._authTag = v
-        }
-    }
+    public var aad: DataBlob
 
+    /**
+     * Indicates the GCM algorithm parameters such as IV.
+     *
+     * @relation iv: DataBlob
+     */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public mut prop aad: DataBlob {
-        get() {
-            return _aad
-        }
-        set(v) {
-            this._aad = v
-        }
-    }
+    public var iv: DataBlob
 
+    /**
+     * CcmParamsSpec constructor.
+     *
+     */
     @!APILevel[
         21,
-        atomicservice: true,
-        crossplatform: true,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public mut prop iv: DataBlob {
-        get() {
-            return _iv
-        }
-        set(v) {
-            this._iv = v
-        }
-    }
-
-    @!APILevel[
-        21,
-        atomicservice: true,
-        crossplatform: true,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.CryptoFramework.Cipher"
-    ]
-    public init(algName: String, iv: DataBlob, add: DataBlob, authTag: DataBlob) {
-        this._algName = algName
-        this._iv = iv
-        this._aad = add
-        this._authTag = authTag
+    public init(algName: String, iv: DataBlob, aad: DataBlob, authTag: DataBlob) {
+        super(algName)
+        this.iv = iv
+        this.aad = aad
+        this.authTag = authTag
     }
 }
