@@ -1880,11 +1880,7 @@ public enum HuksTag {
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-<<<<<<< HEAD
     HuksTagPrivateKeyAliasForAgreement
-=======
-    HuksTagAgreePrivateKeyAliasForAgreement
->>>>>>> 1726459bfb625301ae080b33e113cf0cdb3e29af
     |
         /**
          * Public key used in key agreement.
@@ -1896,11 +1892,7 @@ public enum HuksTag {
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-<<<<<<< HEAD
     HuksTagPublicKeyForAgreement
-=======
-    HuksTagAgreePublicKeyForAgreement
->>>>>>> 1726459bfb625301ae080b33e113cf0cdb3e29af
     | 
         /**
          * Key alias.
@@ -2476,13 +2468,8 @@ public enum HuksTag {
             case HuksTagKeyGenerationType => HuksTagType.HUKS_TAG_TYPE_UINT | 15
             case HuksTagAlgForAgreement => HuksTagType.HUKS_TAG_TYPE_UINT | 19
             case HuksTagPublicKeyAliasForAgreement => HuksTagType.HUKS_TAG_TYPE_BOOL | 20
-<<<<<<< HEAD
             case HuksTagPrivateKeyAliasForAgreement => HuksTagType.HUKS_TAG_TYPE_BYTES | 21
             case HuksTagPublicKeyForAgreement => HuksTagType.HUKS_TAG_TYPE_BYTES | 22
-=======
-            case HuksTagAgreePrivateKeyAliasForAgreement => HuksTagType.HUKS_TAG_TYPE_BYTES | 21
-            case HuksTagAgreePublicKeyForAgreement => HuksTagType.HUKS_TAG_TYPE_BYTES | 22
->>>>>>> 1726459bfb625301ae080b33e113cf0cdb3e29af
             case HuksTagKeyAlias => HuksTagType.HUKS_TAG_TYPE_BYTES | 23
             case HuksTagDeriveKeySize => HuksTagType.HUKS_TAG_TYPE_UINT | 24
             case HuksTagImportKeyType => HuksTagType.HUKS_TAG_TYPE_UINT | 25
@@ -2551,13 +2538,8 @@ public enum HuksTag {
             case 0x2000000f => HuksTagKeyGenerationType
             case 0x20000013 => HuksTagAlgForAgreement
             case 0x40000014 => HuksTagPublicKeyAliasForAgreement
-<<<<<<< HEAD
             case 0x50000015 => HuksTagPrivateKeyAliasForAgreement
             case 0x50000016 => HuksTagPublicKeyForAgreement
-=======
-            case 0x50000015 => HuksTagAgreePrivateKeyAliasForAgreement
-            case 0x50000016 => HuksTagAgreePublicKeyForAgreement
->>>>>>> 1726459bfb625301ae080b33e113cf0cdb3e29af
             case 0x50000017 => HuksTagKeyAlias
             case 0x20000018 => HuksTagDeriveKeySize
             case 0x20000019 => HuksTagImportKeyType
