@@ -1,6 +1,6 @@
 {
     "name": "@ohos/security_cangjie_wrapper",
-    "description": "The provider of key and certificate manangement capbility, which belongs to security subsystem",
+    "description": "安全基础能力仓颉接口是在OpenHarmony上基于安全子系统能力之上封装的仓颉的API",
     "version": "6.0",
     "license": "Apache License 2.0",
     "publishAs": "code-segment",
@@ -42,6 +42,8 @@
       "ram": "604KB",
       "deps": {
         "components": [
+            "cangjie_ark_interop",
+            "hiviewdfx_cangjie_wrapper"
         ]
       },
       "build": {
