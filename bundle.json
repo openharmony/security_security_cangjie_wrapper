@@ -1,6 +1,6 @@
 {
     "name": "@ohos/security_cangjie_wrapper",
-    "description": "安全基础能力仓颉接口是在OpenHarmony上基于安全子系统能力之上封装的仓颉的API",
+    "description": "The provider of key and certificate manangement capbility, which belongs to security subsystem",
     "version": "6.0",
     "license": "Apache License 2.0",
     "publishAs": "code-segment",
@@ -12,8 +12,8 @@
       "install": "DEST_PATH=${DEP_BUNDLE_BASE}/base/security/huks && mkdir -p $DEST_PATH && cp -r ./* $DEST_PATH"
     },
     "author": {},
-    "homePage": "https://gitee.com/openharmony",
-    "repository": "https://gitee.com/openharmony/security_huks",
+    "homePage": "https://gitcode.com/openharmony",
+    "repository": "https://gitcode.com/openharmony-sig/security_security_cangjie_wrapper",
     "supplier": "Organization: OpenHarmony",
     "component": {
       "name": "security_cangjie_wrapper",
