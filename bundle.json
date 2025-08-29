@@ -42,6 +42,8 @@
       "ram": "604KB",
       "deps": {
         "components": [
+            "cangjie_ark_interop",
+            "hiviewdfx_cangjie_wrapper"
         ]
       },
       "build": {
