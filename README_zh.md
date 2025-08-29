@@ -10,8 +10,7 @@
 
 ![安全基础能力仓颉架构图](figures/security_cangjie_wrapper_architecture.png "安全基础能力仓颉架构图")
 
-安全基础能力仓颉接口当前由两个部件组成。
-
+安全基础能力仓颉接口当前由两个部件组成:
 加解密算法框架提供加解密、签名验签、消息验证码、哈希、安全随机数等相关功能。
 设备密钥管理框架密钥生成、导入、删除、密钥会话等功能。
 
@@ -19,7 +18,6 @@
 ## 目录
 
 ```cangjie
-base/security/security_cangjie_wrapper
 ├── figures                         # 存放README中的架构图
 ├── kit                             # 仓颉安全kit化代码
 |   ├── CryptoArchitectureKit
