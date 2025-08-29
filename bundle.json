@@ -43,7 +43,9 @@
       "deps": {
         "components": [
             "cangjie_ark_interop",
-            "hiviewdfx_cangjie_wrapper"
+            "hiviewdfx_cangjie_wrapper",
+            "crypto_framework",
+            "huks"
         ]
       },
       "build": {

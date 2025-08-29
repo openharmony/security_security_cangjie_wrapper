@@ -2,9 +2,14 @@
 
 ## 简介
 
-安全基础能力仓颉包括系统安全、数据安全、应用安全等功能，为OpenHarmony提供有效保护应用和用户数据的能力。
+安全基础能力仓颉接口包括系统安全、数据安全、应用安全等功能，为OpenHarmony提供有效保护应用和用户数据的能力。
 
-安全基础能力仓颉当前开源的功能，包括密钥管理服务、密钥加解密算法服务。
+安全基础能力仓颉接口当前支持的功能，包括加解密算法基础功能、密钥管理功能、密钥会话功能。
+
+当前开放的安全基础能力仓颉接口仅支
+持standard设备。
+
+## 系统架构
 
 **图 1**  安全基础能力仓颉架构图
 
@@ -12,37 +17,34 @@
 
 安全基础能力仓颉接口当前由两个部件组成:
 加解密算法框架提供加解密、签名验签、消息验证码、哈希、安全随机数等相关功能。
-设备密钥管理框架密钥生成、导入、删除、密钥会话等功能。
+设备密钥管理框架为应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。
 
 
 ## 目录
 
-```cangjie
+```
 ├── figures                         # 存放README中的架构图
 ├── kit                             # 仓颉安全kit化代码
-|   ├── CryptoArchitectureKit
-|   ├── UniversalKeystoreKit
+|   ├── CryptoArchitectureKit       # 加解密算法库Kit
+|   ├── UniversalKeystoreKit        # 设备密钥管理Kit
 ├── ohos                            # 仓颉安全基础能力接口实现
-    ├── crypto_framework
-    ├── huks
+    ├── crypto_framework            # 密码算法库加解密相关接口
+    ├── huks                        # 密钥管理相关接口
 ```
-
-## 约束
-
-- 当前开放的安全基础能力仓颉接口仅支持standard设备。
 
 ## 使用说明
 
-如架构图所示，安全基础能力仓颉接口提供如下功能：
+当前安全基础能力仓颉接口提供了以下功能：
 -  加解密算法基础功能
 -  密钥管理功能
 -  密钥会话功能
 
-安全基础能力相关API请参见
-1. [ohos.security.huks](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/UniversalKeystoreKit/cj-apis-security_huks.md)。
-2. [ohos.security.crypto_framework](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/CryptoArchitectureKit/cj-apis-crypto.md)。
+与ArkTS相比，暂不支持以下功能：
+-   程序访问控制功能
+-   证书模块
+-   用户认证
 
-相关指导请参见[安全基础能力开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_zh_cn/security)。
+安全基础能力相关API请参见[ohos.security.huks](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/UniversalKeystoreKit/cj-apis-security_huks.md)，[ohos.security.crypto_framework](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/CryptoArchitectureKit/cj-apis-crypto.md)，相关指导请参见[安全基础能力开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_zh_cn/security)。
 
 ## 参与贡献
 
