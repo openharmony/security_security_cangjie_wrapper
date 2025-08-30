@@ -22,13 +22,15 @@
 ## 目录
 
 ```
+base/security/security_cangjie_wrapper
 ├── figures                         # 存放README中的架构图
 ├── kit                             # 仓颉安全kit化代码
 |   ├── CryptoArchitectureKit       # 加解密算法库Kit
 |   ├── UniversalKeystoreKit        # 设备密钥管理Kit
 ├── ohos                            # 仓颉安全基础能力接口实现
-    ├── crypto_framework            # 密码算法库加解密相关接口
-    ├── huks                        # 密钥管理相关接口
+|   ├── crypto_framework            # 密码算法库加解密相关接口
+|   └── huks                        # 密钥管理相关接口
+└── test                            # 仓颉测试代码  
 ```
 
 ## 使用说明

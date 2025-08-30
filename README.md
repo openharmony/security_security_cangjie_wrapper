@@ -32,13 +32,15 @@ abortSession: Cancel the ongoing session.
 ## Directory Structure
 
 ```
+base/security/security_cangjie_wrapper
 ├── figures                         # Architecture Pictures
 ├── kit                             # Cangjie Kit Code
 |   ├── CryptoArchitectureKit       # Encryption and Decryption Algorithms Kit
 |   ├── UniversalKeystoreKit        # Huks Management And Huks Session Kit
 ├── ohos                            # Cangjie Security Code
-    ├── crypto_framework            # Encryption And Decryption Algorithms Interface
-    ├── huks                        # Huks Management And Huks Seesion Interface
+|    ├── crypto_framework           # Encryption And Decryption Algorithms Interface
+|    └── huks                       # Huks Management And Huks Seesion Interface
+└── test                            # Cangjie test code    
 ```
 
 ## Usage
