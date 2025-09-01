@@ -20,13 +20,7 @@ import ohos.labels.*
 /**
  * Enum for huks exception error code.
  *
- * @relation export enum HuksExceptionErrCode
  */
-@!APILevel[
-    21,
-    stagemodelonly: true,
-    syscap: "SystemCapability.Security.Huks.Core"
-]
 enum HuksExceptionErrCode {
     /**
      * Permission verification failed.
@@ -2106,7 +2100,7 @@ public enum HuksTag {
         /**
          * Key authentication purpose.
          *   
-         * @relation HUKS_TAG_KEY_AUTH_Storage_Level = HuksTagType.HUKS_TAG_TYPE_UINT | 316
+         * @relation HUKS_TAG_AUTH_STORAGE_LEVEL = HuksTagType.HUKS_TAG_TYPE_UINT | 316
          */
         @!APILevel[
         21,
