@@ -690,17 +690,6 @@ public class HuksKeySize {
     ]
     public static const HUKS_AES_KEY_SIZE_256: HuksParamValue = HuksParamValue.Uint32Value(256)
     /**
-     * AES key of 512 bits.
-     *
-     * @relation HUKS_AES_KEY_SIZE_512 = 512
-     */
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    public static const HUKS_AES_KEY_SIZE_512: HuksParamValue = HuksParamValue.Uint32Value(512)
-    /**
      * Curve25519 key of 256 bits.
      *
      * @relation HUKS_CURVE25519_KEY_SIZE_256 = 256
@@ -1446,40 +1435,6 @@ public class HuksSecureSignType {
     public static const HUKS_SECURE_SIGN_WITH_AUTHINFO: HuksParamValue = HuksParamValue.Uint32Value(1)
 }
 /**
- * Enumerates the tag transfer modes.
- *
- * @relation export enum HuksSendType
- */
-@!APILevel[
-    21,
-    stagemodelonly: true,
-    syscap: "SystemCapability.Security.Huks.Core"
-]
-public class HuksSendType {
-    /**
-     * The tag is sent asynchronously.
-     *
-     * @relation HUKS_SEND_TYPE_ASYNC = 0
-     */
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    public static const HUKS_SEND_TYPE_ASYNC: HuksParamValue = HuksParamValue.Uint32Value(0)
-    /**
-     * The tag is sent synchronously.
-     *
-     * @relation HUKS_SEND_TYPE_SYNC = 1
-     */
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    public static const HUKS_SEND_TYPE_SYNC: HuksParamValue = HuksParamValue.Uint32Value(1)
-}
-/**
  * Enumerates the tag data types.
  *
  * @relation export enum HuksTagType
@@ -1567,933 +1522,528 @@ public class HuksTagType {
     stagemodelonly: true,
     syscap: "SystemCapability.Security.Huks.Core"
 ]
-public enum HuksTag {
-    /**		
-     * Invalid TAG.		
-     *		
-     * @relation HUKS_TAG_INVALID = HuksTagType.HUKS_TAG_TYPE_INVALID | 0	
-     	
-     */		
-    @!APILevel[	
-
-        21,	
-        stagemodelonly: true,	
-        syscap: "SystemCapability.Security.Huks.Core"	
-    ]	
-    HuksTagInvalid
-    |
-        /**
-         * Algorithm.
-         *
-         * @relation HUKS_TAG_ALGORITHM = HuksTagType.HUKS_TAG_TYPE_UINT | 1
-         */
-        @!APILevel[
-        21,	
-        stagemodelonly: true,	
-        syscap: "SystemCapability.Security.Huks.Core"	
-    ]
-    HuksTagAlgorithm
-    | 
-        /**
-         * Purpose of the key.
-         *
-         * @relation HUKS_TAG_PURPOSE = HuksTagType.HUKS_TAG_TYPE_UINT | 2
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagPurpose
-    |
-        /**
-         * Key size.
-         *
-         * @relation HUKS_TAG_KEY_SIZE = HuksTagType.HUKS_TAG_TYPE_UINT | 3
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagKeySize
-    |
-        /**
-         * Digest algorithm.
-         *
-         * @relation HUKS_TAG_DIGEST = HuksTagType.HUKS_TAG_TYPE_UINT | 4
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagDigest
-    |
-        /**
-         * Padding mode.
-         *
-         * @relation HUKS_TAG_PADDING = HuksTagType.HUKS_TAG_TYPE_UINT | 5
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagPadding
-    | 
-        /**
-         * Cipher mode.
-         *
-         * @relation HUKS_TAG_BLOCK_MODE = HuksTagType.HUKS_TAG_TYPE_UINT | 6
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagBlockMode
-    | 
-        /**
-         * Key type.
-         *
-         * @relation HUKS_TAG_KEY_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 7
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagKeyType
-    |
-        /**
-         * Associated authentication data.
-         *
-         * @relation HUKS_TAG_ASSOCIATED_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 8
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagAssociatedData
-    | 
-        /**
-         * Nonce for key encryption and decryption.
-         *
-         * @relation HUKS_TAG_NONCE = HuksTagType.HUKS_TAG_TYPE_BYTES | 9
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagNonce
-    | 
-        /**
-         * IV.
-         *
-         * @relation HUKS_TAG_IV = HuksTagType.HUKS_TAG_TYPE_BYTES | 10
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagIv
-    |
-        /**
-         * Information generated during key derivation.
-         *
-         * @relation HUKS_TAG_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 11
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagInfo
-    |
-        /**
-         * Salt value used for key derivation.
-         *
-         * @relation HUKS_TAG_SALT = HuksTagType.HUKS_TAG_TYPE_BYTES | 12   
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagSalt
-    |
-        /**
-         * Number of iterations for key derivation.
-         *
-         * @relation HUKS_TAG_ITERATION = HuksTagType.HUKS_TAG_TYPE_UINT | 14
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagIteration
-    |
-        /**
-         * Key generation type.
-         *
-         * @relation HUKS_TAG_KEY_GENERATE_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 15
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagKeyGenerationType
-    |
-        /**
-         * Type of the algorithm used for key agreement.
-         *
-         * @relation HUKS_TAG_AGREE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT | 19
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagAlgForAgreement
-    |
-        /**
-         * Public key alias used in key agreement.
-         *
-         * @relation HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 20
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagPublicKeyAliasForAgreement
-    |
-        /**
-         * Private key alias used in key agreement.
-         *
-         * @relation HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 21
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagPrivateKeyAliasForAgreement
-    |
-        /**
-         * Public key used in key agreement.
-         *
-         * @relation HUKS_TAG_AGREE_PUBLIC_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 22
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagPublicKeyForAgreement
-    | 
-        /**
-         * Key alias.
-         *
-         * @relation HUKS_TAG_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 23
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagKeyAlias
-    |
-        /**
-         * Size of the derived key.
-         *
-         * @relation HUKS_TAG_DERIVE_KEY_SIZE = HuksTagType.HUKS_TAG_TYPE_UINT | 24
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagDeriveKeySize
-    |
-        /**
-         * Type of the imported key.
-         *
-         * @relation HUKS_TAG_IMPORT_KEY_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 25
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagImportKeyType
-    |
-        /**
-         * Algorithm suite required for encrypted imports.
-         *
-         * @relation HUKS_TAG_UNWRAP_ALGORITHM_SUITE = HuksTagType.HUKS_TAG_TYPE_UINT | 26
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagUnwrapAlgorithmSuite
-    |
-        /**
-         * Storage type of the derived key or agreed key.
-         *
-         * @relation HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 29
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagDerivedAgreedKeyStorageFlag
-    |
-        /**
-         * Type of the rsa_pss_salt_length.
-         *
-         * @relation HUKS_TAG_RSA_PSS_SALT_LEN_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 30
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagRsaPssSaltLenType
-    |
-        /**
-         * Reserved.
-         *
-         * @relation HUKS_TAG_ALL_USERS = HuksTagType.HUKS_TAG_TYPE_BOOL | 301
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagAllUsers
-    |
-        /**
-         * ID of the user to which the key belongs.
-         *
-         * @relation HUKS_TAG_USER_ID = HuksTagType.HUKS_TAG_TYPE_UINT | 302
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagUserId
-    |
-        /**
-         * Reserved.
-         *
-         * @relation HUKS_TAG_NO_AUTH_REQUIRED = HuksTagType.HUKS_TAG_TYPE_BOOL | 303
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagNoAuthRequired
-    |
-        /**
-         * User authentication type. For details, see HuksUserAuthType. This parameter must be set together with
-         * HuksAuthAccessType. You can set a maximum of two user authentication types at a time. For example, if
-         * HuksAuthAccessType is HUKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL, you can set the user authentication type to
-         * HUKS_USER_AUTH_TYPE_FACE, HUKS_USER_AUTH_TYPE_FINGERPRINT or
-         * HUKS_USER_AUTH_TYPE_FACE | HUKS_USER_AUTH_TYPE_FINGERPRINT.
-         *
-         * @relation HUKS_TAG_USER_AUTH_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 304
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagUserAuthType
-    |
-        /**
-         * One-time validity period of the authentication token.
-         *
-         * @relation HUKS_TAG_AUTH_TIMEOUT = HuksTagType.HUKS_TAG_TYPE_UINT | 305
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagAuthTimeout
-    |
-        /**
-         * Authentication token.
-         *
-         * @relation HUKS_TAG_AUTH_TOKEN = HuksTagType.HUKS_TAG_TYPE_BYTES | 306
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagAuthToken
-    |
-        /**
-         * Access control type. For details, see HuksAuthAccessType. This parameter must be set together with
-         * HuksUserAuthType.
-         *
-         * @relation HUKS_TAG_KEY_AUTH_ACCESS_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 307
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagKeyAuthAccessType
-    |
-        /**
-         * Signature type of the key generated or imported.
-         *
-         * @relation HUKS_TAG_KEY_SECURE_SIGN_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 308
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagKeySecureSignType
-    |
-        /**
-         * Type of the challenge generated for a key. For details, see HuksChallengeType.
-         *
-         * @relation HUKS_TAG_CHALLENGE_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 309
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagChallengeType
-    |
-        /**
-         * Position of the 8-byte valid value in a custom challenge. For details, see HuksChallengePosition.
-         *
-         * @relation HUKS_TAG_CHALLENGE_POS = HuksTagType.HUKS_TAG_TYPE_UINT | 310
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagChallengePos
-    |
-        /**
-         * Key authentication purpose.
-         *
-         * @relation HUKS_TAG_KEY_AUTH_PURPOSE = HuksTagType.HUKS_TAG_TYPE_UINT | 311
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagKeyAuthPurpose
-    |
-        /**
-         * Key authentication purpose.
-         *   
-         * @relation HUKS_TAG_AUTH_STORAGE_LEVEL = HuksTagType.HUKS_TAG_TYPE_UINT | 316
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagAuthStorageLevel
-    |
-        /**
-         * Challenge value used in the attestation.
-         *
-         * @relation HUKS_TAG_ATTESTATION_CHALLENGE = HuksTagType.HUKS_TAG_TYPE_BYTES | 501
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagAttestationChallenge
-    |
-        /**
-         * Application ID used in the attestation.
-         *
-         * @relation HUKS_TAG_ATTESTATION_APPLICATION_ID = HuksTagType.HUKS_TAG_TYPE_BYTES | 502
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagAttestationApplicationId
-    |
-        /**
-         * Security level used in the attestation.
-         *
-         * @relation HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 514
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagAttestationIdSecLevelInfo
-    |
-        /**
-         * Version information used in the attestation.
-         *
-         * @relation HUKS_TAG_ATTESTATION_ID_VERSION_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 515
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagAttestationIdVersionInfo
-    | 
-        /**
-         * Huks Tag Attestation Base64
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagAttestationBase64
-    | 
-        /**
-         * Huks Tag Attestation Mode
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagAttestationMode
-    | 
-        /**
-         * Huks Tag Attestation Application Id Type
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagAttestationApplicationIdType
-    |
-        /*
-         * Whether to use the alias passed in during key generation.
-         *
-         * @relation HUKS_TAG_IS_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 1001
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagIsKeyAlias
-    |
-        /*
-         * Key storage mode.
-         *
-         * @relation HUKS_TAG_KEY_STORAGE_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 1002
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagKeyStorageFlag
-    |
-        /*
-         * Reserved.
-         *
-         * @relation HUKS_TAG_IS_ALLOWED_WRAP = HuksTagType.HUKS_TAG_TYPE_BOOL | 1003
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagIsWrapAllowed
-    |
-        /*
-         * Reserved.
-         *
-         * @relation HUKS_TAG_KEY_WRAP_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 1004
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagKeyWrapType
-    |
-        /*
-         * Reserved.
-         *
-         * @relation HUKS_TAG_KEY_AUTH_ID = HuksTagType.HUKS_TAG_TYPE_BYTES | 1005
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagKeyAuthId
-    |
-        /*
-         * Reserved.
-         *
-         * @relation HUKS_TAG_KEY_ROLE = HuksTagType.HUKS_TAG_TYPE_UINT | 1006
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagKeyRole
-    |
-        /*
-         * Flag of the key.
-         *
-         * @relation HUKS_TAG_KEY_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 1007
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagKeyFlag
-    |
-        /*
-         * Reserved.
-         *
-         * @relation HUKS_TAG_IS_ASYNCHRONIZED = HuksTagType.HUKS_TAG_TYPE_UINT | 1008
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagIsAsync
-    |
-        /*
-         * Reserved.
-         *
-         * @relation HUKS_TAG_KEY_DOMAIN = HuksTagType.HUKS_TAG_TYPE_UINT | 1011
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagKeyDomain
-    |
-        /**
-         * Inner-use TAG: 10001 - 10999
-         *
-         * @relation HUKS_TAG_PROCESS_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES | 10001
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagProcessName
-    |   
-        /*
-         * Reserved.
-         *
-         * @relation HUKS_TAG_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 10006
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagKey
-    |
-        /**
-         * Key version.
-         *
-         * @relation HUKS_TAG_KEY_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT | 10007
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Extension"
-    ]
-    HuksTagKeyVersion
-    | 
-        /*
-         * Used to pass in the AEAD in GCM mode.
-         *
-         * @relation HUKS_TAG_AE_TAG = HuksTagType.HUKS_TAG_TYPE_BYTES | 10009
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagAeTag
-    |
-        /**
-         * Reserved field.
-         *
-         * @relation HUKS_TAG_IS_KEY_HANDLE = HuksTagType.HUKS_TAG_TYPE_ULONG | 10010
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagIsKeyHandle
-    |
-        /**
-         * Os version related TAG.
-         *
-         * @relation HUKS_TAG_OS_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT | 10101
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagOsVersion
-    |
-        /**
-         * OS patch level.
-         *
-         * @relation HUKS_TAG_OS_PATCHLEVEL = HuksTagType.HUKS_TAG_TYPE_UINT | 10102
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagOsPatchLevel
-    |
-        /*
-         * Used to pass in the AEAD in GCM mode.
-         *
-         * @relation HUKS_TAG_SYMMETRIC_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20001
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagSymmetricKeyData
-    |
-        /*
-         * Reserved.
-         *
-         * @relation HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20002
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagAsymmetricPublicKeyData
-    |
-        /*
-         * Reserved.
-         *
-         * @relation HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20003
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagAsymmetricPrivateKeyData
-    |
-        /*
-         * Huks Tag Screen State
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagScreenState
-    |
-        /*
-         * Huks Tag Derive Main Key Mode.
-         * 
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
-    HuksTagDeriveMainKeyMode
-    | ...
-
+public class HuksTag {
     /**
-     * get the corresponding mapping value
+     * Algorithm.
      *
-     * @throws IllegalArgumentException - The type is not supported.
+     * @relation HUKS_TAG_ALGORITHM = HuksTagType.HUKS_TAG_TYPE_UINT | 1
      */
-    func getValue(): UInt32 {
-        match (this) {
-            case HuksTagInvalid => HuksTagType.HUKS_TAG_TYPE_INVALID | 0
-            case HuksTagAlgorithm => HuksTagType.HUKS_TAG_TYPE_UINT | 1
-            case HuksTagPurpose => HuksTagType.HUKS_TAG_TYPE_UINT | 2
-            case HuksTagKeySize => HuksTagType.HUKS_TAG_TYPE_UINT | 3
-            case HuksTagDigest => HuksTagType.HUKS_TAG_TYPE_UINT | 4
-            case HuksTagPadding => HuksTagType.HUKS_TAG_TYPE_UINT | 5
-            case HuksTagBlockMode => HuksTagType.HUKS_TAG_TYPE_UINT | 6
-            case HuksTagKeyType => HuksTagType.HUKS_TAG_TYPE_UINT | 7
-            case HuksTagAssociatedData => HuksTagType.HUKS_TAG_TYPE_BYTES | 8
-            case HuksTagNonce => HuksTagType.HUKS_TAG_TYPE_BYTES | 9
-            case HuksTagIv => HuksTagType.HUKS_TAG_TYPE_BYTES | 10
-            case HuksTagInfo => HuksTagType.HUKS_TAG_TYPE_BYTES | 11
-            case HuksTagSalt => HuksTagType.HUKS_TAG_TYPE_BYTES | 12
-            case HuksTagIteration => HuksTagType.HUKS_TAG_TYPE_UINT | 14
-            case HuksTagKeyGenerationType => HuksTagType.HUKS_TAG_TYPE_UINT | 15
-            case HuksTagAlgForAgreement => HuksTagType.HUKS_TAG_TYPE_UINT | 19
-            case HuksTagPublicKeyAliasForAgreement => HuksTagType.HUKS_TAG_TYPE_BOOL | 20
-            case HuksTagPrivateKeyAliasForAgreement => HuksTagType.HUKS_TAG_TYPE_BYTES | 21
-            case HuksTagPublicKeyForAgreement => HuksTagType.HUKS_TAG_TYPE_BYTES | 22
-            case HuksTagKeyAlias => HuksTagType.HUKS_TAG_TYPE_BYTES | 23
-            case HuksTagDeriveKeySize => HuksTagType.HUKS_TAG_TYPE_UINT | 24
-            case HuksTagImportKeyType => HuksTagType.HUKS_TAG_TYPE_UINT | 25
-            case HuksTagUnwrapAlgorithmSuite => HuksTagType.HUKS_TAG_TYPE_UINT | 26
-            case HuksTagDerivedAgreedKeyStorageFlag => HuksTagType.HUKS_TAG_TYPE_UINT | 29
-            case HuksTagRsaPssSaltLenType => HuksTagType.HUKS_TAG_TYPE_UINT | 30
-            case HuksTagAllUsers => HuksTagType.HUKS_TAG_TYPE_BOOL | 301
-            case HuksTagUserId => HuksTagType.HUKS_TAG_TYPE_UINT | 302
-            case HuksTagNoAuthRequired => HuksTagType.HUKS_TAG_TYPE_BOOL | 303
-            case HuksTagUserAuthType => HuksTagType.HUKS_TAG_TYPE_UINT | 304
-            case HuksTagAuthTimeout => HuksTagType.HUKS_TAG_TYPE_UINT | 305
-            case HuksTagAuthToken => HuksTagType.HUKS_TAG_TYPE_BYTES | 306
-            case HuksTagKeyAuthAccessType => HuksTagType.HUKS_TAG_TYPE_UINT | 307
-            case HuksTagKeySecureSignType => HuksTagType.HUKS_TAG_TYPE_UINT | 308
-            case HuksTagChallengeType => HuksTagType.HUKS_TAG_TYPE_UINT | 309
-            case HuksTagChallengePos => HuksTagType.HUKS_TAG_TYPE_UINT | 310
-            case HuksTagKeyAuthPurpose => HuksTagType.HUKS_TAG_TYPE_UINT | 311
-            case HuksTagAuthStorageLevel => HuksTagType.HUKS_TAG_TYPE_UINT | 316
-            case HuksTagAttestationChallenge => HuksTagType.HUKS_TAG_TYPE_BYTES | 501
-            case HuksTagAttestationApplicationId => HuksTagType.HUKS_TAG_TYPE_BYTES | 502
-            case HuksTagAttestationIdSecLevelInfo => HuksTagType.HUKS_TAG_TYPE_BYTES | 514
-            case HuksTagAttestationIdVersionInfo => HuksTagType.HUKS_TAG_TYPE_BYTES | 515
-            case HuksTagAttestationBase64 => HuksTagType.HUKS_TAG_TYPE_BOOL | 516
-            case HuksTagAttestationMode => HuksTagType.HUKS_TAG_TYPE_UINT | 517	
-            case HuksTagAttestationApplicationIdType => HuksTagType.HUKS_TAG_TYPE_UINT | 518
-            case HuksTagIsKeyAlias => HuksTagType.HUKS_TAG_TYPE_BOOL | 1001
-            case HuksTagKeyStorageFlag => HuksTagType.HUKS_TAG_TYPE_UINT | 1002
-            case HuksTagIsWrapAllowed => HuksTagType.HUKS_TAG_TYPE_BOOL | 1003
-            case HuksTagKeyWrapType => HuksTagType.HUKS_TAG_TYPE_UINT | 1004
-            case HuksTagKeyAuthId => HuksTagType.HUKS_TAG_TYPE_BYTES | 1005
-            case HuksTagKeyRole => HuksTagType.HUKS_TAG_TYPE_UINT | 1006
-            case HuksTagKeyFlag => HuksTagType.HUKS_TAG_TYPE_UINT | 1007
-            case HuksTagIsAsync => HuksTagType.HUKS_TAG_TYPE_UINT | 1008
-            case HuksTagKeyDomain => HuksTagType.HUKS_TAG_TYPE_UINT | 1011
-            case HuksTagProcessName => HuksTagType.HUKS_TAG_TYPE_BYTES | 10001
-            case HuksTagKey => HuksTagType.HUKS_TAG_TYPE_BYTES | 10006
-            case HuksTagKeyVersion => HuksTagType.HUKS_TAG_TYPE_UINT | 10007
-            case HuksTagAeTag => HuksTagType.HUKS_TAG_TYPE_BYTES | 10009
-            case HuksTagIsKeyHandle => HuksTagType.HUKS_TAG_TYPE_ULONG | 10010
-            case HuksTagOsVersion => HuksTagType.HUKS_TAG_TYPE_UINT | 10101
-            case HuksTagOsPatchLevel => HuksTagType.HUKS_TAG_TYPE_UINT | 10102
-            case HuksTagSymmetricKeyData => HuksTagType.HUKS_TAG_TYPE_BYTES | 20001
-            case HuksTagAsymmetricPublicKeyData => HuksTagType.HUKS_TAG_TYPE_BYTES | 20002
-            case HuksTagAsymmetricPrivateKeyData => HuksTagType.HUKS_TAG_TYPE_BYTES | 20003
-            case HuksTagScreenState => HuksTagType.HUKS_TAG_TYPE_BOOL | 30024
-            case HuksTagDeriveMainKeyMode => HuksTagType.HUKS_TAG_TYPE_UINT | 10026
-            case _ => throw IllegalArgumentException("The type is not supported.")
-        }
-    }
-
-    static func parse(val: UInt32): HuksTag {
+    @!APILevel[
+        21,	
+        stagemodelonly: true,	
+        syscap: "SystemCapability.Security.Huks.Core"	
+    ]
+    public static const HUKS_TAG_ALGORITHM: UInt32 =  HuksTagType.HUKS_TAG_TYPE_UINT | 1
+    /**
+     * Purpose of the key.
+     *
+     * @relation HUKS_TAG_PURPOSE = HuksTagType.HUKS_TAG_TYPE_UINT | 2
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_PURPOSE: UInt32 =  HuksTagType.HUKS_TAG_TYPE_UINT | 2
+    /**
+     * Key size.
+     *
+     * @relation HUKS_TAG_KEY_SIZE = HuksTagType.HUKS_TAG_TYPE_UINT | 3
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_KEY_SIZE: UInt32 =  HuksTagType.HUKS_TAG_TYPE_UINT | 3
+    /**
+     * Digest algorithm.
+     *
+     * @relation HUKS_TAG_DIGEST = HuksTagType.HUKS_TAG_TYPE_UINT | 4
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_DIGEST: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 4
+    /**
+     * Padding mode.
+     *
+     * @relation HUKS_TAG_PADDING = HuksTagType.HUKS_TAG_TYPE_UINT | 5
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_PADDING: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 5
+    /**
+     * Cipher mode.
+     *
+     * @relation HUKS_TAG_BLOCK_MODE = HuksTagType.HUKS_TAG_TYPE_UINT | 6
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_BLOCK_MODE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 6
+    /**
+     * Key type.
+     *
+     * @relation HUKS_TAG_KEY_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 7
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_KEY_TYPE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 7
+    /**
+     * Associated authentication data.
+     *
+     * @relation HUKS_TAG_ASSOCIATED_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 8
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_ASSOCIATED_DATA: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 8
+    /**
+     * Nonce for key encryption and decryption.
+     *
+     * @relation HUKS_TAG_NONCE = HuksTagType.HUKS_TAG_TYPE_BYTES | 9
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_NONCE: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 9
+    /**
+     * IV.
+     *
+     * @relation HUKS_TAG_IV = HuksTagType.HUKS_TAG_TYPE_BYTES | 10
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_IV: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 10
+    /**
+     * Information generated during key derivation.
+     *
+     * @relation HUKS_TAG_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 11
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_INFO: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 11
+    /**
+     * Salt value used for key derivation.
+     *
+     * @relation HUKS_TAG_SALT = HuksTagType.HUKS_TAG_TYPE_BYTES | 12   
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_SALT: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 12  
+    /**
+     *Number of iterations for key derivation.
+     *
+     * @relation HUKS_TAG_ITERATION = HuksTagType.HUKS_TAG_TYPE_UINT | 14
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_ITERATION: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 14
+    /**
+     * Key generation type.
+     *
+     * @relation HUKS_TAG_KEY_GENERATE_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 15
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_KEY_GENERATE_TYPE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 15
+    /**
+     * Type of the algorithm used for key agreement.
+     *
+     * @relation HUKS_TAG_AGREE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT | 19
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_AGREE_ALG: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 19
+    /**
+     * Public key alias used in key agreement.
+     *
+     * @relation HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 20
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS: UInt32 = HuksTagType.HUKS_TAG_TYPE_BOOL | 20
+    /**
+     * Private key alias used in key agreement.
+     *
+     * @relation HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 21
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 21
+    /**
+     * Public key used in key agreement.
+     *
+     * @relation HUKS_TAG_AGREE_PUBLIC_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 22
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_AGREE_PUBLIC_KEY: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 22
+    /**
+     * Key alias.
+     *
+     * @relation HUKS_TAG_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 23
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_KEY_ALIAS: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 23
+    /**
+     * Size of the derived key.
+     *
+     * @relation HUKS_TAG_DERIVE_KEY_SIZE = HuksTagType.HUKS_TAG_TYPE_UINT | 24
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_DERIVE_KEY_SIZE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 24
+    /**
+     * Type of the imported key.
+     *
+     * @relation HUKS_TAG_IMPORT_KEY_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 25
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_IMPORT_KEY_TYPE: UInt32 =  HuksTagType.HUKS_TAG_TYPE_UINT | 25
+    /**
+     * Algorithm suite required for encrypted imports.
+     *
+     * @relation HUKS_TAG_UNWRAP_ALGORITHM_SUITE = HuksTagType.HUKS_TAG_TYPE_UINT | 26
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_UNWRAP_ALGORITHM_SUITE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 26
+    /**
+     * Storage type of the derived key or agreed key.
+     *
+     * @relation HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 29
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 29
+    /**
+     * Type of the rsa_pss_salt_length.
+     *
+     * @relation HUKS_TAG_RSA_PSS_SALT_LEN_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 30
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_RSA_PSS_SALT_LEN_TYPE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 30
+    /**
+     * ID of the user to which the key belongs.
+     *
+     * @relation HUKS_TAG_USER_ID = HuksTagType.HUKS_TAG_TYPE_UINT | 302
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_USER_ID: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 302
+    /**
+     * Reserved.
+     *
+     * @relation HUKS_TAG_NO_AUTH_REQUIRED = HuksTagType.HUKS_TAG_TYPE_BOOL | 303
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_NO_AUTH_REQUIRED: UInt32 = HuksTagType.HUKS_TAG_TYPE_BOOL | 303
+    /**
+     * User authentication type. For details, see HuksUserAuthType. This parameter must be set together with
+     * HuksAuthAccessType. You can set a maximum of two user authentication types at a time. For example, if
+     * HuksAuthAccessType is HUKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL, you can set the user authentication type to
+     * HUKS_USER_AUTH_TYPE_FACE, HUKS_USER_AUTH_TYPE_FINGERPRINT or
+     * HUKS_USER_AUTH_TYPE_FACE | HUKS_USER_AUTH_TYPE_FINGERPRINT.
+     *
+     * @relation HUKS_TAG_USER_AUTH_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 304
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Extension"
+    ]
+    public static const HUKS_TAG_USER_AUTH_TYPE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 304
+    /**
+     * One-time validity period of the authentication token.
+     *
+     * @relation HUKS_TAG_AUTH_TIMEOUT = HuksTagType.HUKS_TAG_TYPE_UINT | 305
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Extension"
+    ]
+    public static const HUKS_TAG_AUTH_TIMEOUT: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 305
+    /**
+     * Authentication token.
+     *
+     * @relation HUKS_TAG_AUTH_TOKEN = HuksTagType.HUKS_TAG_TYPE_BYTES | 306
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Extension"
+    ]
+    public static const HUKS_TAG_AUTH_TOKEN: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 306
+    /**
+     * Access control type. For details, see HuksAuthAccessType. This parameter must be set together with
+     * HuksUserAuthType.
+     *
+     * @relation HUKS_TAG_KEY_AUTH_ACCESS_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 307
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Extension"
+    ]
+    public static const HUKS_TAG_KEY_AUTH_ACCESS_TYPE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 307
+    /**
+     * Signature type of the key generated or imported.
+     *
+     * @relation HUKS_TAG_KEY_SECURE_SIGN_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 308
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Extension"
+    ]
+    public static const HUKS_TAG_KEY_SECURE_SIGN_TYPE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 308
+    /**
+     * Type of the challenge generated for a key. For details, see HuksChallengeType.
+     *
+     * @relation HUKS_TAG_CHALLENGE_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 309
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Extension"
+    ]
+    public static const HUKS_TAG_CHALLENGE_TYPE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 309
+    /**
+     * Position of the 8-byte valid value in a custom challenge. For details, see HuksChallengePosition.
+     *
+     * @relation HUKS_TAG_CHALLENGE_POS = HuksTagType.HUKS_TAG_TYPE_UINT | 310
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Extension"
+    ]
+    public static const HUKS_TAG_CHALLENGE_POS: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 310
+    /**
+     * Key authentication purpose.
+     *
+     * @relation HUKS_TAG_KEY_AUTH_PURPOSE = HuksTagType.HUKS_TAG_TYPE_UINT | 311
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Extension"
+    ]
+    public static const HUKS_TAG_KEY_AUTH_PURPOSE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 311
+    /**
+     * Key authentication purpose.
+     *   
+     * @relation HUKS_TAG_AUTH_STORAGE_LEVEL = HuksTagType.HUKS_TAG_TYPE_UINT | 316
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Extension"
+    ]
+    public static const HUKS_TAG_AUTH_STORAGE_LEVEL: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 316
+    /**
+     * Challenge value used in the attestation.
+     *
+     * @relation HUKS_TAG_ATTESTATION_CHALLENGE = HuksTagType.HUKS_TAG_TYPE_BYTES | 501
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Extension"
+    ]
+    public static const HUKS_TAG_ATTESTATION_CHALLENGE: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 501
+    /*
+     * Whether to use the alias passed in during key generation.
+     *
+     * @relation HUKS_TAG_IS_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 1001
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_IS_KEY_ALIAS: UInt32 = HuksTagType.HUKS_TAG_TYPE_BOOL | 1001
+    /*
+     * Key storage mode.
+     *
+     * @relation HUKS_TAG_KEY_STORAGE_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 1002
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_KEY_STORAGE_FLAG: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 1002
+    /*
+     * Reserved.
+     *
+     * @relation HUKS_TAG_IS_ALLOWED_WRAP = HuksTagType.HUKS_TAG_TYPE_BOOL | 1003
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_IS_ALLOWED_WRAP: UInt32 = HuksTagType.HUKS_TAG_TYPE_BOOL | 1003
+    /*
+     * Reserved.
+     *
+     * @relation HUKS_TAG_KEY_WRAP_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 1004
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_KEY_WRAP_TYPE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 1004
+    /*
+     * Reserved.
+     *
+     * @relation HUKS_TAG_KEY_AUTH_ID = HuksTagType.HUKS_TAG_TYPE_BYTES | 1005
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Extension"
+    ]
+    public static const HUKS_TAG_KEY_AUTH_ID: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 1005
+    /*
+     * Flag of the key.
+     *
+     * @relation HUKS_TAG_KEY_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 1007
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_KEY_FLAG: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 1007
+    /*
+     * Reserved.
+     *
+     * @relation HUKS_TAG_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 10006
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_KEY: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 10006
+    /*
+     * Used to pass in the AEAD in GCM mode.
+     *
+     * @relation HUKS_TAG_AE_TAG = HuksTagType.HUKS_TAG_TYPE_BYTES | 10009
+     */
+    @!APILevel[
+        21,
+        stagemodelonly: true,
+        syscap: "SystemCapability.Security.Huks.Core"
+    ]
+    public static const HUKS_TAG_AE_TAG: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 10009
+    /*
+     * check value
+     *
+     */
+    static func checkValue(val: UInt32): Bool {
         match (val) {
-            case 0x20000001 => HuksTagAlgorithm
-            case 0x20000002 => HuksTagPurpose
-            case 0x20000003 => HuksTagKeySize
-            case 0x20000004 => HuksTagDigest
-            case 0x20000005 => HuksTagPadding
-            case 0x20000006 => HuksTagBlockMode
-            case 0x20000007 => HuksTagKeyType
-            case 0x50000008 => HuksTagAssociatedData
-            case 0x50000009 => HuksTagNonce
-            case 0x5000000a => HuksTagIv
-            case 0x5000000b => HuksTagInfo
-            case 0x5000000c => HuksTagSalt
-            case 0x2000000e => HuksTagIteration
-            case 0x2000000f => HuksTagKeyGenerationType
-            case 0x20000013 => HuksTagAlgForAgreement
-            case 0x40000014 => HuksTagPublicKeyAliasForAgreement
-            case 0x50000015 => HuksTagPrivateKeyAliasForAgreement
-            case 0x50000016 => HuksTagPublicKeyForAgreement
-            case 0x50000017 => HuksTagKeyAlias
-            case 0x20000018 => HuksTagDeriveKeySize
-            case 0x20000019 => HuksTagImportKeyType
-            case 0x2000001a => HuksTagUnwrapAlgorithmSuite
-            case 0x2000001d => HuksTagDerivedAgreedKeyStorageFlag
-            case 0x2000001e => HuksTagRsaPssSaltLenType
-            case 0x4000012d => HuksTagAllUsers
-            case 0x2000012e => HuksTagUserId
-            case 0x4000012f => HuksTagNoAuthRequired
-            case 0x20000130 => HuksTagUserAuthType
-            case 0x20000131 => HuksTagAuthTimeout
-            case 0x50000132 => HuksTagAuthToken
-            case 0x20000133 => HuksTagKeyAuthAccessType
-            case 0x20000134 => HuksTagKeySecureSignType
-            case 0x20000135 => HuksTagChallengeType
-            case 0x20000136 => HuksTagChallengePos
-            case 0x20000137 => HuksTagKeyAuthPurpose
-            case 0x2000013c => HuksTagAuthStorageLevel
-            case 0x500001f5 => HuksTagAttestationChallenge
-            case 0x500001f6 => HuksTagAttestationApplicationId
-            case 0x50000202 => HuksTagAttestationIdSecLevelInfo
-            case 0x50000203 => HuksTagAttestationIdVersionInfo
-            case 0x40000204 => HuksTagAttestationBase64
-            case 0x20000205 => HuksTagAttestationMode
-            case 0x20000206 => HuksTagAttestationApplicationIdType
-            case 0x400003e9 => HuksTagIsKeyAlias
-            case 0x200003ea => HuksTagKeyStorageFlag
-            case 0x400003eb => HuksTagIsWrapAllowed
-            case 0x200003ec => HuksTagKeyWrapType
-            case 0x500003ed => HuksTagKeyAuthId
-            case 0x200003ee => HuksTagKeyRole
-            case 0x200003ef => HuksTagKeyFlag
-            case 0x200003f0 => HuksTagIsAsync           
-            case 0x200003f3 => HuksTagKeyDomain
-            case 0x50002711 => HuksTagProcessName
-            case 0x50002716 => HuksTagKey
-            case 0x20002717 => HuksTagKeyVersion
-            case 0x50002719 => HuksTagAeTag
-            case 0x3000271a => HuksTagIsKeyHandle
-            case 0x20002775 => HuksTagOsVersion
-            case 0x20002776 => HuksTagOsPatchLevel
-            case 0x50004e21 => HuksTagSymmetricKeyData
-            case 0x50004e22 => HuksTagAsymmetricPublicKeyData
-            case 0x50004e23 => HuksTagAsymmetricPrivateKeyData
-            case 0x40007548 => HuksTagScreenState
-            case 0x2000272a => HuksTagDeriveMainKeyMode
-            case _ => throw IllegalArgumentException("The type is not supported.")
+            case 0x0 => true
+            case 0x4000012d => true
+            case 0x500001f6 => true
+            case 0x50000202 => true
+            case 0x50000203 => true
+            case 0x40000204 => true
+            case 0x20000205 => true
+            case 0x20000206 => true
+            case 0x200003ee => true
+            case 0x200003f0 => true           
+            case 0x200003f3 => true
+            case 0x50002711 => true
+            case 0x20002717 => true
+            case 0x3000271a => true
+            case 0x20002775 => true
+            case 0x20002776 => true
+            case 0x50004e21 => true
+            case 0x50004e22 => true
+            case 0x50004e23 => true
+            case 0x40007548 => true
+            case 0x2000272a => true
+            case _ => false
         }
     }
 }
 
 const HKS_SUCCESS: Int32 = 0
 const HKS_ERROR_NOT_EXIST: Int32 = -13
+const HKS_ATTESTATION_BASE64: UInt32 = HuksTagType.HUKS_TAG_TYPE_BOOL | 516

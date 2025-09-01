@@ -32,14 +32,14 @@ public class HuksParam {
     /**
      * tag.
      *
-     * @relation tag: HuksTag
+     * @relation tag: UInt32
      */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    public var tag: HuksTag
+    public var tag: UInt32
     /**
      * Value of the tag.
      *
@@ -60,7 +60,7 @@ public class HuksParam {
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    public init(tag: HuksTag, value: HuksParamValue) {
+    public init(tag: UInt32, value: HuksParamValue) {
         this.tag = tag
         this.value = value
     }

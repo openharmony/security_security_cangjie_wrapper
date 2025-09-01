@@ -190,7 +190,7 @@ func updateOrFinish(handle: HuksHandleId, options: HuksOptions, token: Bytes, is
         throw e
     }
     if (!token.isEmpty()) {
-        if (!paramSet.write(HuksTag.HuksTagAuthToken.getValue(), token)) {
+        if (!paramSet.write(HuksTag.HUKS_TAG_AUTH_TOKEN, token)) {
             unsafe { outBlob.free() }
             unsafe { inBlob.free() }
             throw BusinessException(

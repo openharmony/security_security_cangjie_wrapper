@@ -128,7 +128,7 @@ class HksParamSet {
         }
         this.paramPtr = unsafe { CPointer<Byte>(this.rawBuffer + Int64(this.paramSetSize)) }
         for (p in properties) {
-            let tag: UInt32 = p.tag.getValue()
+            let tag: UInt32 = p.tag
             let maskVal: UInt32 = tag & HKS_TAG_TYPE_MASK
             match {
                 case maskVal == HKS_TAG_TYPE_INT => handleInt32(tag, p.value.toInt32())
@@ -367,24 +367,27 @@ class ReadOnlyHksParamSet {
 
             for (_ in 0..Int64(paramCnt)) {
                 let tag = CPointer<UInt32>(ptr).read()
-                let dataPtr = CPointer<Byte>(ptr) + 8 // offset = 8
                 let maskVal: UInt32 = tag & HKS_TAG_TYPE_MASK
+                if (HuksTag.checkValue(maskVal)) {
+                    continue
+                }
+                let dataPtr = CPointer<Byte>(ptr) + 8 // offset = 8
                 match {
                     case maskVal == HKS_TAG_TYPE_INT =>
                         let i32 = CPointer<Int32>(dataPtr).read()
-                        ret.add(HuksParam(HuksTag.parse(tag), HuksParamValue.Int32Value(i32)))
+                        ret.add(HuksParam(tag, HuksParamValue.Int32Value(i32)))
                     case maskVal == HKS_TAG_TYPE_UINT =>
                         let u32 = CPointer<UInt32>(dataPtr).read()
-                        ret.add(HuksParam(HuksTag.parse(tag), HuksParamValue.Uint32Value(u32)))
+                        ret.add(HuksParam(tag, HuksParamValue.Uint32Value(u32)))
                     case maskVal == HKS_TAG_TYPE_ULONG =>
                         let u64 = CPointer<UInt64>(dataPtr).read()
-                        ret.add(HuksParam(HuksTag.parse(tag), HuksParamValue.Uint64Value(u64)))
+                        ret.add(HuksParam(tag, HuksParamValue.Uint64Value(u64)))
                     case maskVal == HKS_TAG_TYPE_BOOL =>
                         let bool = CPointer<Bool>(dataPtr).read()
-                        ret.add(HuksParam(HuksTag.parse(tag), HuksParamValue.BooleanValue(bool)))
+                        ret.add(HuksParam(tag, HuksParamValue.BooleanValue(bool)))
                     case maskVal == HKS_TAG_TYPE_BYTES =>
                         let bytes = CPointer<OhosHksBlob>(dataPtr).read().copyToBytes()
-                        ret.add(HuksParam(HuksTag.parse(tag), HuksParamValue.BytesValue(bytes)))
+                        ret.add(HuksParam(tag, HuksParamValue.BytesValue(bytes)))
                     case maskVal == HKS_TAG_TYPE_INVALID => throw BusinessException(
                         HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(),
                         "invalid tag type"
