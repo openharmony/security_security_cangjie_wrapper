@@ -22,205 +22,115 @@ import ohos.labels.*
  *
  */
 enum HuksExceptionErrCode {
-    /**
-     * Permission verification failed.
-     *
-     */
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+   /**
+    * Permission verification failed.
+    *
+    */
    HuksErrCodePermissionFail
    |
-        /**
-         * Invalid parameters are detected. Possible causes:
-         * 1. Mandatory parameters are left unspecified.
-         * 2. Incorrect parameter types.
-         * 3. Parameter verification failed.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Invalid parameters are detected. Possible causes:
+     * 1. Mandatory parameters are left unspecified.
+     * 2. Incorrect parameter types.
+     * 3. Parameter verification failed.
+     *
+     */
     HuksErrCodeIllegalArgument
     |
-        /**
-         * The API is not supported.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The API is not supported.
+     *
+     */
     HuksErrCodeNotSupportedApi
     |
-        /**
-         * The feature is not supported.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The feature is not supported.
+     *
+     */
     HuksErrCodeFeatureNotSupported
     |
-        /**
-         * Key algorithm parameters are missing.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Key algorithm parameters are missing.
+     *
+     */
     HuksErrCodeMissingCryptoAlgArgument
     |
-        /**
-         * Invalid key algorithm parameters are detected.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Invalid key algorithm parameters are detected.
+     *
+     */
     HuksErrCodeInvalidCryptoAlgArgument
     |
-        /**
-         * The file operation failed.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The file operation failed.
+     *
+     */
     HuksErrCodeFileOperationFail
     |
-        /**
-         * The communication failed.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The communication failed.
+     *
+     */
     HuksErrCodeCommunicationFail
     |
-        /**
-         * Failed to operate the algorithm library.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Failed to operate the algorithm library.
+     *
+     */
     HuksErrCodeCryptoFail
     |
-        /**
-         * Failed to access the key because the key has expired.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Failed to access the key because the key has expired.
+     *
+     */
     HuksErrCodeKeyAuthPermanentlyInvalidated
     |
-        /**
-         * Failed to access the key because the authentication has failed.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Failed to access the key because the authentication has failed.
+     *
+     */
     HuksErrCodeKeyAuthVerifyFailed
     |
-        /**
-         * Key access timed out.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Key access timed out.
+     *
+     */
     HuksErrCodeKeyAuthTimeOut
     |
-        /**
-         * The number of key operation sessions has reached the limit.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The number of key operation sessions has reached the limit.
+     *
+     */
     HuksErrCodeSessionLimit
     |
-        /**
-         * The target object does not exist.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The target object does not exist.
+     *
+     */
     HuksErrCodeItemNotExist
     |
-        /**
-         * An external error occurs.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * An external error occurs.
+     *
+     */
     HuksErrCodeExternalError
     |
-        /**
-         * The credential does not exist.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The credential does not exist.
+     *
+     */
     HuksErrCodeCredentialNotExist
     |
-        /**
-         * The memory is insufficient.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The memory is insufficient.
+     *
+     */
     HuksErrCodeInsufficientMemory
     |
-        /**
-         * Failed to call other system services.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Failed to call other system services.
+     *
+     */
     HuksErrCodeCallServiceFailed
     | ...
 
