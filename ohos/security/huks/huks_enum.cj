@@ -2027,7 +2027,7 @@ public class HuksTag {
             case 0x20000205 => true
             case 0x20000206 => true
             case 0x200003ee => true
-            case 0x200003f0 => true     
+            case 0x200003f0 => true
             case 0x200003f3 => true
             case 0x50002711 => true
             case 0x20002717 => true
