@@ -370,8 +370,8 @@ class ReadOnlyHksParamSet {
                 if (!HuksTag.checkValid(tag)) {
                     continue
                 }
-                let maskVal: UInt32 = tag & HKS_TAG_TYPE_MASK
                 let dataPtr = CPointer<Byte>(ptr) + 8 // offset = 8
+                let maskVal: UInt32 = tag & HKS_TAG_TYPE_MASK
                 match {
                     case maskVal == HKS_TAG_TYPE_INT =>
                         let i32 = CPointer<Int32>(dataPtr).read()
