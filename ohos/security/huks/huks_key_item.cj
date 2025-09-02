@@ -172,7 +172,7 @@ public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<Str
             i => if (i < properties.size) {
                 properties[i]
             } else {
-                HuksParam(HKS_ATTESTATION_BASE64, HuksParamValue.BooleanValue(true))
+                HuksParam(HuksTag.HUKS_ATTESTATION_BASE64, HuksParamValue.BooleanValue(true))
             }
         }
     )

@@ -2013,55 +2013,63 @@ public class HuksTag {
     ]
     public static const HUKS_TAG_AE_TAG: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 10009
     /*
+     * Huks Tag Attestation Base64
+     *
+     */
+    static const HUKS_ATTESTATION_BASE64: UInt32 = HuksTagType.HUKS_TAG_TYPE_BOOL | 516 
+
+    /*
      * check value
      *
      */
     static func checkValid(val: UInt32): Bool {
         match (val) {
-            case 536870913 => true
-            case 536870914 => true
-            case 536870915 => true
-            case 536870916 => true
-            case 536870917 => true
-            case 536870918 => true
-            case 536870919 => true
-            case 1342177288 => true
-            case 1342177289 => true
-            case 1342177290 => true
-            case 1342177291 => true
-            case 1342177292 => true
-            case 536870926 => true
-            case 536870927 => true
-            case 536870931 => true
-            case 1073741844 => true
-            case 1342177301 => true
-            case 1342177302 => true
-            case 1342177303 => true
-            case 1073742127 => true
-            case 536870937 => true
-            case 536870938 => true
-            case 536870941 => true
-            case 536870942 => true
-            case 536871214 => true
-            case 1073742127 => true
-            case 536871216 => true
-            case 536871217 => true
-            case 1342177586 => true
-            case 536871219 => true
-            case 536871220 => true
-            case 536871221 => true
-            case 536871222 => true
-            case 536871223 => true
-            case 536871228 => true
-            case 1342177781 => true
-            case 1073742825 => true
-            case 536871914 => true
-            case 1073742827 => true
-            case 536871916 => true
-            case 1342178285 => true
-            case 536871919 => true
-            case 1342187286 => true
-            case 1342187289 => true
+            case 0x20000001 => true	
+            case 0x20000002 => true	
+            case 0x20000003 => true	
+            case 0x20000004 => true	
+            case 0x20000005 => true	
+            case 0x20000006 => true	
+            case 0x20000007 => true	
+            case 0x50000008 => true	
+            case 0x50000009 => true	
+            case 0x5000000a => true	
+            case 0x5000000b => true	
+            case 0x5000000c => true	
+            case 0x2000000e => true	
+            case 0x2000000f => true	
+            case 0x20000013 => true	
+            case 0x40000014 => true	
+            case 0x50000015 => true	
+            case 0x50000016 => true	
+            case 0x50000017 => true	
+            case 0x20000018 => true	
+            case 0x20000019 => true	
+            case 0x2000001a => true	
+            case 0x2000001d => true	
+            case 0x2000001e => true	 // 24
+
+            case 0x2000012e => true	
+            case 0x4000012f => true	
+            case 0x20000130 => true	
+            case 0x20000131 => true	
+            case 0x50000132 => true	
+            case 0x20000133 => true	
+            case 0x20000134 => true	
+            case 0x20000135 => true	
+            case 0x20000136 => true	
+            case 0x20000137 => true	
+            case 0x2000013c => true	
+            case 0x500001f5 => true	
+            case 0x40000204 => true	
+            case 0x400003e9 => true	
+            case 0x200003ea => true	
+            case 0x400003eb => true
+            case 0x200003ec => true
+            case 0x500003ed => true
+            case 0x200003ef => true
+            case 0x50002716 => true
+            case 0x50002719 => true
             case _ => false
         }
     }
@@ -2069,4 +2077,3 @@ public class HuksTag {
 
 const HKS_SUCCESS: Int32 = 0
 const HKS_ERROR_NOT_EXIST: Int32 = -13
-const HKS_ATTESTATION_BASE64: UInt32 = HuksTagType.HUKS_TAG_TYPE_BOOL | 516
