@@ -2016,29 +2016,52 @@ public class HuksTag {
      * check value
      *
      */
-    static func checkValue(val: UInt32): Bool {
+    static func checkValid(val: UInt32): Bool {
         match (val) {
-            case 0x0 => true
-            case 0x4000012d => true
-            case 0x500001f6 => true
-            case 0x50000202 => true
-            case 0x50000203 => true
-            case 0x40000204 => true
-            case 0x20000205 => true
-            case 0x20000206 => true
-            case 0x200003ee => true
-            case 0x200003f0 => true
-            case 0x200003f3 => true
-            case 0x50002711 => true
-            case 0x20002717 => true
-            case 0x3000271a => true
-            case 0x20002775 => true
-            case 0x20002776 => true
-            case 0x50004e21 => true
-            case 0x50004e22 => true
-            case 0x50004e23 => true
-            case 0x40007548 => true
-            case 0x2000272a => true
+            case 536870913 => true
+            case 536870914 => true
+            case 536870915 => true
+            case 536870916 => true
+            case 536870917 => true
+            case 536870918 => true
+            case 536870919 => true
+            case 1342177288 => true
+            case 1342177289 => true
+            case 1342177290 => true
+            case 1342177291 => true
+            case 1342177292 => true
+            case 536870926 => true
+            case 536870927 => true
+            case 536870931 => true
+            case 1073741844 => true
+            case 1342177301 => true
+            case 1342177302 => true
+            case 1342177303 => true
+            case 1073742127 => true
+            case 536870937 => true
+            case 536870938 => true
+            case 536870941 => true
+            case 536870942 => true
+            case 536871214 => true
+            case 1073742127 => true
+            case 536871216 => true
+            case 536871217 => true
+            case 1342177586 => true
+            case 536871219 => true
+            case 536871220 => true
+            case 536871221 => true
+            case 536871222 => true
+            case 536871223 => true
+            case 536871228 => true
+            case 1342177781 => true
+            case 1073742825 => true
+            case 536871914 => true
+            case 1073742827 => true
+            case 536871916 => true
+            case 1342178285 => true
+            case 536871919 => true
+            case 1342187286 => true
+            case 1342187289 => true
             case _ => false
         }
     }

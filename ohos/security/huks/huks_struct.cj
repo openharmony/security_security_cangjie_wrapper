@@ -32,7 +32,7 @@ public class HuksParam {
     /**
      * tag.
      *
-     * @relation tag: UInt32
+     * @relation tag: HuksTag
      */
     @!APILevel[
         21,
