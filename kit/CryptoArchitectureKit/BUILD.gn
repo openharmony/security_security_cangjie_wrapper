@@ -12,7 +12,7 @@
 # limitations under the License.
 
 import("//build/ohos.gni")
-import("//build/cangjie/cjc.gni")
+import("//build/templates/cangjie/cjc.gni")
 
 ohos_cangjie_shared_library("kit.CryptoArchitectureKit") {
   sources = ["index.cj"]
