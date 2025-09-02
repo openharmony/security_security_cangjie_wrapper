@@ -20,213 +20,117 @@ import ohos.labels.*
 /**
  * Enum for huks exception error code.
  *
- * @relation export enum HuksExceptionErrCode
  */
-@!APILevel[
-    21,
-    stagemodelonly: true,
-    syscap: "SystemCapability.Security.Huks.Core"
-]
 enum HuksExceptionErrCode {
-    /**
-     * Permission verification failed.
-     *
-     */
-    @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+   /**
+    * Permission verification failed.
+    *
+    */
    HuksErrCodePermissionFail
    |
-        /**
-         * Invalid parameters are detected. Possible causes:
-         * 1. Mandatory parameters are left unspecified.
-         * 2. Incorrect parameter types.
-         * 3. Parameter verification failed.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Invalid parameters are detected. Possible causes:
+     * 1. Mandatory parameters are left unspecified.
+     * 2. Incorrect parameter types.
+     * 3. Parameter verification failed.
+     *
+     */
     HuksErrCodeIllegalArgument
     |
-        /**
-         * The API is not supported.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The API is not supported.
+     *
+     */
     HuksErrCodeNotSupportedApi
     |
-        /**
-         * The feature is not supported.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The feature is not supported.
+     *
+     */
     HuksErrCodeFeatureNotSupported
     |
-        /**
-         * Key algorithm parameters are missing.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Key algorithm parameters are missing.
+     *
+     */
     HuksErrCodeMissingCryptoAlgArgument
     |
-        /**
-         * Invalid key algorithm parameters are detected.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Invalid key algorithm parameters are detected.
+     *
+     */
     HuksErrCodeInvalidCryptoAlgArgument
     |
-        /**
-         * The file operation failed.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The file operation failed.
+     *
+     */
     HuksErrCodeFileOperationFail
     |
-        /**
-         * The communication failed.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The communication failed.
+     *
+     */
     HuksErrCodeCommunicationFail
     |
-        /**
-         * Failed to operate the algorithm library.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Failed to operate the algorithm library.
+     *
+     */
     HuksErrCodeCryptoFail
     |
-        /**
-         * Failed to access the key because the key has expired.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Failed to access the key because the key has expired.
+     *
+     */
     HuksErrCodeKeyAuthPermanentlyInvalidated
     |
-        /**
-         * Failed to access the key because the authentication has failed.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Failed to access the key because the authentication has failed.
+     *
+     */
     HuksErrCodeKeyAuthVerifyFailed
     |
-        /**
-         * Key access timed out.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Key access timed out.
+     *
+     */
     HuksErrCodeKeyAuthTimeOut
     |
-        /**
-         * The number of key operation sessions has reached the limit.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The number of key operation sessions has reached the limit.
+     *
+     */
     HuksErrCodeSessionLimit
     |
-        /**
-         * The target object does not exist.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The target object does not exist.
+     *
+     */
     HuksErrCodeItemNotExist
     |
-        /**
-         * An external error occurs.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * An external error occurs.
+     *
+     */
     HuksErrCodeExternalError
     |
-        /**
-         * The credential does not exist.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The credential does not exist.
+     *
+     */
     HuksErrCodeCredentialNotExist
     |
-        /**
-         * The memory is insufficient.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * The memory is insufficient.
+     *
+     */
     HuksErrCodeInsufficientMemory
     |
-        /**
-         * Failed to call other system services.
-         *
-         */
-        @!APILevel[
-        21,
-        stagemodelonly: true,
-        syscap: "SystemCapability.Security.Huks.Core"
-    ]
+    /**
+     * Failed to call other system services.
+     *
+     */
     HuksErrCodeCallServiceFailed
     | ...
 
@@ -1844,7 +1748,7 @@ public enum HuksTag {
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    HuksTagKeyGenerateType
+    HuksTagKeyGenerationType
     |
         /**
          * Type of the algorithm used for key agreement.
@@ -1856,7 +1760,7 @@ public enum HuksTag {
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    HuksTagAgreeAlg
+    HuksTagAlgForAgreement
     |
         /**
          * Public key alias used in key agreement.
@@ -1868,7 +1772,7 @@ public enum HuksTag {
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    HuksTagAgreePublicKeyIsKeyAlias
+    HuksTagPublicKeyAliasForAgreement
     |
         /**
          * Private key alias used in key agreement.
@@ -1880,7 +1784,7 @@ public enum HuksTag {
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    HuksTagAgreePrivateKeyAlias
+    HuksTagPrivateKeyAliasForAgreement
     |
         /**
          * Public key used in key agreement.
@@ -1892,7 +1796,7 @@ public enum HuksTag {
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    HuksTagAgreePublicKey
+    HuksTagPublicKeyForAgreement
     | 
         /**
          * Key alias.
@@ -2106,7 +2010,7 @@ public enum HuksTag {
         /**
          * Key authentication purpose.
          *   
-         * @relation HUKS_TAG_KEY_AUTH_Storage_Level = HuksTagType.HUKS_TAG_TYPE_UINT | 316
+         * @relation HUKS_TAG_AUTH_STORAGE_LEVEL = HuksTagType.HUKS_TAG_TYPE_UINT | 316
          */
         @!APILevel[
         21,
@@ -2227,7 +2131,7 @@ public enum HuksTag {
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    HuksTagIsAllowedWrap
+    HuksTagIsWrapAllowed
     |
         /*
          * Reserved.
@@ -2287,7 +2191,7 @@ public enum HuksTag {
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    HuksTagIsAsynchronized
+    HuksTagIsAsync
     |
         /*
          * Reserved.
@@ -2383,7 +2287,7 @@ public enum HuksTag {
         stagemodelonly: true,
         syscap: "SystemCapability.Security.Huks.Core"
     ]
-    HuksTagOsPatchlevel
+    HuksTagOsPatchLevel
     |
         /*
          * Used to pass in the AEAD in GCM mode.
@@ -2465,11 +2369,11 @@ public enum HuksTag {
             case HuksTagInfo => HuksTagType.HUKS_TAG_TYPE_BYTES | 11
             case HuksTagSalt => HuksTagType.HUKS_TAG_TYPE_BYTES | 12
             case HuksTagIteration => HuksTagType.HUKS_TAG_TYPE_UINT | 14
-            case HuksTagKeyGenerateType => HuksTagType.HUKS_TAG_TYPE_UINT | 15
-            case HuksTagAgreeAlg => HuksTagType.HUKS_TAG_TYPE_UINT | 19
-            case HuksTagAgreePublicKeyIsKeyAlias => HuksTagType.HUKS_TAG_TYPE_BOOL | 20
-            case HuksTagAgreePrivateKeyAlias => HuksTagType.HUKS_TAG_TYPE_BYTES | 21
-            case HuksTagAgreePublicKey => HuksTagType.HUKS_TAG_TYPE_BYTES | 22
+            case HuksTagKeyGenerationType => HuksTagType.HUKS_TAG_TYPE_UINT | 15
+            case HuksTagAlgForAgreement => HuksTagType.HUKS_TAG_TYPE_UINT | 19
+            case HuksTagPublicKeyAliasForAgreement => HuksTagType.HUKS_TAG_TYPE_BOOL | 20
+            case HuksTagPrivateKeyAliasForAgreement => HuksTagType.HUKS_TAG_TYPE_BYTES | 21
+            case HuksTagPublicKeyForAgreement => HuksTagType.HUKS_TAG_TYPE_BYTES | 22
             case HuksTagKeyAlias => HuksTagType.HUKS_TAG_TYPE_BYTES | 23
             case HuksTagDeriveKeySize => HuksTagType.HUKS_TAG_TYPE_UINT | 24
             case HuksTagImportKeyType => HuksTagType.HUKS_TAG_TYPE_UINT | 25
@@ -2497,12 +2401,12 @@ public enum HuksTag {
             case HuksTagAttestationApplicationIdType => HuksTagType.HUKS_TAG_TYPE_UINT | 518
             case HuksTagIsKeyAlias => HuksTagType.HUKS_TAG_TYPE_BOOL | 1001
             case HuksTagKeyStorageFlag => HuksTagType.HUKS_TAG_TYPE_UINT | 1002
-            case HuksTagIsAllowedWrap => HuksTagType.HUKS_TAG_TYPE_BOOL | 1003
+            case HuksTagIsWrapAllowed => HuksTagType.HUKS_TAG_TYPE_BOOL | 1003
             case HuksTagKeyWrapType => HuksTagType.HUKS_TAG_TYPE_UINT | 1004
             case HuksTagKeyAuthId => HuksTagType.HUKS_TAG_TYPE_BYTES | 1005
             case HuksTagKeyRole => HuksTagType.HUKS_TAG_TYPE_UINT | 1006
             case HuksTagKeyFlag => HuksTagType.HUKS_TAG_TYPE_UINT | 1007
-            case HuksTagIsAsynchronized => HuksTagType.HUKS_TAG_TYPE_UINT | 1008
+            case HuksTagIsAsync => HuksTagType.HUKS_TAG_TYPE_UINT | 1008
             case HuksTagKeyDomain => HuksTagType.HUKS_TAG_TYPE_UINT | 1011
             case HuksTagProcessName => HuksTagType.HUKS_TAG_TYPE_BYTES | 10001
             case HuksTagKey => HuksTagType.HUKS_TAG_TYPE_BYTES | 10006
@@ -2510,7 +2414,7 @@ public enum HuksTag {
             case HuksTagAeTag => HuksTagType.HUKS_TAG_TYPE_BYTES | 10009
             case HuksTagIsKeyHandle => HuksTagType.HUKS_TAG_TYPE_ULONG | 10010
             case HuksTagOsVersion => HuksTagType.HUKS_TAG_TYPE_UINT | 10101
-            case HuksTagOsPatchlevel => HuksTagType.HUKS_TAG_TYPE_UINT | 10102
+            case HuksTagOsPatchLevel => HuksTagType.HUKS_TAG_TYPE_UINT | 10102
             case HuksTagSymmetricKeyData => HuksTagType.HUKS_TAG_TYPE_BYTES | 20001
             case HuksTagAsymmetricPublicKeyData => HuksTagType.HUKS_TAG_TYPE_BYTES | 20002
             case HuksTagAsymmetricPrivateKeyData => HuksTagType.HUKS_TAG_TYPE_BYTES | 20003
@@ -2535,11 +2439,11 @@ public enum HuksTag {
             case 0x5000000b => HuksTagInfo
             case 0x5000000c => HuksTagSalt
             case 0x2000000e => HuksTagIteration
-            case 0x2000000f => HuksTagKeyGenerateType
-            case 0x20000013 => HuksTagAgreeAlg
-            case 0x40000014 => HuksTagAgreePublicKeyIsKeyAlias
-            case 0x50000015 => HuksTagAgreePrivateKeyAlias
-            case 0x50000016 => HuksTagAgreePublicKey
+            case 0x2000000f => HuksTagKeyGenerationType
+            case 0x20000013 => HuksTagAlgForAgreement
+            case 0x40000014 => HuksTagPublicKeyAliasForAgreement
+            case 0x50000015 => HuksTagPrivateKeyAliasForAgreement
+            case 0x50000016 => HuksTagPublicKeyForAgreement
             case 0x50000017 => HuksTagKeyAlias
             case 0x20000018 => HuksTagDeriveKeySize
             case 0x20000019 => HuksTagImportKeyType
@@ -2567,12 +2471,12 @@ public enum HuksTag {
             case 0x20000206 => HuksTagAttestationApplicationIdType
             case 0x400003e9 => HuksTagIsKeyAlias
             case 0x200003ea => HuksTagKeyStorageFlag
-            case 0x400003eb => HuksTagIsAllowedWrap
+            case 0x400003eb => HuksTagIsWrapAllowed
             case 0x200003ec => HuksTagKeyWrapType
             case 0x500003ed => HuksTagKeyAuthId
             case 0x200003ee => HuksTagKeyRole
             case 0x200003ef => HuksTagKeyFlag
-            case 0x200003f0 => HuksTagIsAsynchronized           
+            case 0x200003f0 => HuksTagIsAsync           
             case 0x200003f3 => HuksTagKeyDomain
             case 0x50002711 => HuksTagProcessName
             case 0x50002716 => HuksTagKey
@@ -2580,7 +2484,7 @@ public enum HuksTag {
             case 0x50002719 => HuksTagAeTag
             case 0x3000271a => HuksTagIsKeyHandle
             case 0x20002775 => HuksTagOsVersion
-            case 0x20002776 => HuksTagOsPatchlevel
+            case 0x20002776 => HuksTagOsPatchLevel
             case 0x50004e21 => HuksTagSymmetricKeyData
             case 0x50004e22 => HuksTagAsymmetricPublicKeyData
             case 0x50004e23 => HuksTagAsymmetricPrivateKeyData
