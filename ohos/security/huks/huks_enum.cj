@@ -1656,7 +1656,7 @@ public class HuksTag {
     ]
     public static const HUKS_TAG_SALT: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 12  
     /**
-     *Number of iterations for key derivation.
+     * Number of iterations for key derivation.
      *
      * @relation HUKS_TAG_ITERATION = HuksTagType.HUKS_TAG_TYPE_UINT | 14
      */
