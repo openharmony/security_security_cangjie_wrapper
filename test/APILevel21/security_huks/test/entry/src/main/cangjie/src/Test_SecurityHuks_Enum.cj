@@ -116,7 +116,6 @@ class Test_SecurityHuks_Enum {
             let a17 = HuksChallengeType()
             let a18 = HuksChallengePosition()
             let a19 = HuksSecureSignType()
-            let a20 = HuksSendType()
             let a21 = HuksTagType()
         } catch (e: Exception) {
             @Expect(false)
