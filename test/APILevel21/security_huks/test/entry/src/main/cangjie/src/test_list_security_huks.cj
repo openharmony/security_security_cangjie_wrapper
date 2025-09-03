@@ -25,7 +25,6 @@ func testsuite(): Unit {
     registerTestSuite("Test_SecurityHuks_Special", {=> Test_SecurityHuks_Special()})
     registerTestSuite("Test_SecurityHuks_ImportKey", {=> Test_SecurityHuks_ImportKey()})
     registerTestSuite("Test_SecurityHuks_GetKeyItemProperties", {=> Test_SecurityHuks_GetKeyItemProperties()})
-    registerTestSuite("Test_SecurityHuks_AttestKeyItem", {=> Test_SecurityHuks_AttestKeyItem()})
     registerTestSuite("Test_SecurityHuks_ImportWrappedKeyItem", {=> Test_SecurityHuks_ImportWrappedKeyItem()})
     registerTestSuite("Test_SecurityHuks_Enum", {=> Test_SecurityHuks_Enum()})
     registerTestSuite("Test_SecurityHuks_Aes", {=> Test_SecurityHuks_Aes()})

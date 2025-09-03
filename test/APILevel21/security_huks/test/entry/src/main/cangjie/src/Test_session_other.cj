@@ -34,11 +34,11 @@ class Test_SecurityHuks_SessionOther {
         try {
             let encOptions = HuksOptions(
                 properties: [
-                    HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-                    HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_128),
-                    HuksParam(HuksTag.HuksTagPurpose, HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT),
-                    HuksParam(HuksTag.HuksTagPadding, HuksKeyPadding.HUKS_PADDING_PKCS7),
-                    HuksParam(HuksTag.HuksTagBlockMode, HuksCipherMode.HUKS_MODE_CBC)
+                    HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_AES),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_AES_KEY_SIZE_128),
+                    HuksParam(HuksTag.HUKS_TAG_PURPOSE, HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT),
+                    HuksParam(HuksTag.HUKS_TAG_PADDING, HuksKeyPadding.HUKS_PADDING_PKCS7),
+                    HuksParam(HuksTag.HUKS_TAG_BLOCK_MODE, HuksCipherMode.HUKS_MODE_CBC)
                 ],
                 inData: Bytes()
             )
@@ -78,10 +78,10 @@ class Test_SecurityHuks_SessionOther {
             let iv = "0011223344556677"
             let options = HuksOptions(
                 properties:  [
-                    HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-                    HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_128),
+                    HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_AES),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_AES_KEY_SIZE_128),
                     HuksParam(
-                        HuksTag.HuksTagPurpose,
+                        HuksTag.HUKS_TAG_PURPOSE,
                         HuksParamValue.Uint32Value(1 | 2)
                     )
                 ],
@@ -89,12 +89,12 @@ class Test_SecurityHuks_SessionOther {
             )
             let encOptions = HuksOptions(
                properties: [
-                    HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-                    HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_128),
-                    HuksParam(HuksTag.HuksTagPurpose, HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT),
-                    HuksParam(HuksTag.HuksTagPadding, HuksKeyPadding.HUKS_PADDING_PKCS7),
-                    HuksParam(HuksTag.HuksTagBlockMode, HuksCipherMode.HUKS_MODE_CBC),
-                    HuksParam(HuksTag.HuksTagIv, HuksParamValue.BytesValue(iv.toArray()))
+                    HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_AES),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_AES_KEY_SIZE_128),
+                    HuksParam(HuksTag.HUKS_TAG_PURPOSE, HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT),
+                    HuksParam(HuksTag.HUKS_TAG_PADDING, HuksKeyPadding.HUKS_PADDING_PKCS7),
+                    HuksParam(HuksTag.HUKS_TAG_BLOCK_MODE, HuksCipherMode.HUKS_MODE_CBC),
+                    HuksParam(HuksTag.HUKS_TAG_IV, HuksParamValue.BytesValue(iv.toArray()))
                 ],
                inData: plainText.toArray()
             )
@@ -122,10 +122,10 @@ class Test_SecurityHuks_SessionOther {
             let iv = "0011223344556677"
             let options = HuksOptions(
                 properties: [
-                    HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-                    HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_128),
+                    HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_AES),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_AES_KEY_SIZE_128),
                     HuksParam(
-                        HuksTag.HuksTagPurpose,
+                        HuksTag.HUKS_TAG_PURPOSE,
                         HuksParamValue.Uint32Value(1 | 2)
                     )
                 ],
@@ -133,12 +133,12 @@ class Test_SecurityHuks_SessionOther {
             )
             let encOptions = HuksOptions(
                  properties: [
-                    HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-                    HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_128),
-                    HuksParam(HuksTag.HuksTagPurpose, HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT),
-                    HuksParam(HuksTag.HuksTagPadding, HuksKeyPadding.HUKS_PADDING_PKCS7),
-                    HuksParam(HuksTag.HuksTagBlockMode, HuksCipherMode.HUKS_MODE_CBC),
-                    HuksParam(HuksTag.HuksTagIv, HuksParamValue.BytesValue(iv.toArray()))
+                    HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_AES),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_AES_KEY_SIZE_128),
+                    HuksParam(HuksTag.HUKS_TAG_PURPOSE, HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT),
+                    HuksParam(HuksTag.HUKS_TAG_PADDING, HuksKeyPadding.HUKS_PADDING_PKCS7),
+                    HuksParam(HuksTag.HUKS_TAG_BLOCK_MODE, HuksCipherMode.HUKS_MODE_CBC),
+                    HuksParam(HuksTag.HUKS_TAG_IV, HuksParamValue.BytesValue(iv.toArray()))
                 ],
                inData: plainText.toArray()
             )
@@ -168,10 +168,10 @@ class Test_SecurityHuks_SessionOther {
             let iv = "0011223344556677"
             let options = HuksOptions(
                 properties: [
-                    HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-                    HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_128),
+                    HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_AES),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_AES_KEY_SIZE_128),
                     HuksParam(
-                        HuksTag.HuksTagPurpose,
+                        HuksTag.HUKS_TAG_PURPOSE,
                        HuksParamValue.Uint32Value(1 | 2)
                     )
                 ],
@@ -179,12 +179,12 @@ class Test_SecurityHuks_SessionOther {
             )
             let encOptions = HuksOptions(
                  properties: [
-                    HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-                    HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_128),
-                    HuksParam(HuksTag.HuksTagPurpose, HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT),
-                    HuksParam(HuksTag.HuksTagPadding, HuksKeyPadding.HUKS_PADDING_PKCS7),
-                    HuksParam(HuksTag.HuksTagBlockMode, HuksCipherMode.HUKS_MODE_CBC),
-                    HuksParam(HuksTag.HuksTagIv, HuksParamValue.BytesValue(iv.toArray()))
+                    HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_AES),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_AES_KEY_SIZE_128),
+                    HuksParam(HuksTag.HUKS_TAG_PURPOSE, HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT),
+                    HuksParam(HuksTag.HUKS_TAG_PADDING, HuksKeyPadding.HUKS_PADDING_PKCS7),
+                    HuksParam(HuksTag.HUKS_TAG_BLOCK_MODE, HuksCipherMode.HUKS_MODE_CBC),
+                    HuksParam(HuksTag.HUKS_TAG_IV, HuksParamValue.BytesValue(iv.toArray()))
                 ],
                 inData: plainText.toArray()
             )

@@ -31,10 +31,10 @@ type Bytes = Array<UInt8>
 func generateSimpleKey(keyAlias: String) {
     let options = HuksOptions(
         properties: [
-            HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-            HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_128),
+            HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_AES),
+            HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_AES_KEY_SIZE_128),
             HuksParam(
-                HuksTag.HuksTagPurpose,
+                HuksTag.HUKS_TAG_PURPOSE,
                // HuksParamValue.|(HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT, HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT)
                 HuksParamValue.Uint32Value(1 | 2)
             )
