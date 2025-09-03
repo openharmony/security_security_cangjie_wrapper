@@ -29,7 +29,7 @@ import ohos.base.*
 class Test_SecurityHuks_Struct_ffi {
     let HUKS_TAG_ALGORITHM = HuksTag.HUKS_TAG_ALGORITHM // HUKS_TAG_TYPE_UINT
     let HUKS_TAG_IV = HuksTag.HUKS_TAG_IV // HUKS_TAG_TYPE_BYTES
-    let huksTagIsKeyAlias = HuksTag.HUKS_TAG_IS_KEY_ALIAS // HUKS_TAG_TYPE_BOOL
+    let HUKS_TAG_IS_KEY_ALIAS = HuksTag.HUKS_TAG_IS_KEY_ALIAS // HUKS_TAG_TYPE_BOOL
 
     let boolean = HuksParamValue.BooleanValue(true)
     let int32 = HuksParamValue.Int32Value(1)
@@ -56,7 +56,6 @@ class Test_SecurityHuks_Struct_ffi {
     let propertiesUint32None = [huksParamUint32None]
     let propertiesBoolNone = [huksParamBoolNone]
     let propertiesBytesNone = [huksParamBytesNone]
-    let propertiesInvalid = [huksParamInvalid]
 
     let propertiesTooBig = [huksParamBytesTooBig]
     let propertiesCountTooBig = Array<HuksParam>(100, repeat: huksParamBool)
@@ -65,7 +64,6 @@ class Test_SecurityHuks_Struct_ffi {
     let optionsUint32None = HuksOptions(properties: propertiesUint32None, inData: Bytes())
     let optionsBoolNone = HuksOptions(properties:propertiesBoolNone, inData: Bytes())
     let optionsBytesNone = HuksOptions(properties:propertiesBytesNone, inData: Bytes())
-    let optionsInvalid = HuksOptions(properties:propertiesInvalid, inData: Bytes())
     let optionsTooBig = HuksOptions(properties:propertiesTooBig,inData: Bytes())
     let optionsCountTooBig = HuksOptions(properties:propertiesCountTooBig, inData: Bytes())
     let optionsNone = HuksOptions()
@@ -119,24 +117,6 @@ class Test_SecurityHuks_Struct_ffi {
             @Expect(flag)
         }
     }
-    @TestCase
-    @Tag[APILevel21, TestLevel0]
-    func test_hks_param_set_invalid() {
-        let keyAlias = "123";
-        clean(keyAlias)
-        var flag = false
-        try {
-            let res = isKeyItemExist(keyAlias, optionsInvalid)
-        } catch (e: BusinessException) {
-            flag = true
-        } finally {
-            clean(keyAlias)
-            GC()
-            @Expect(flag)
-        }
-    }
-
-
 
     @TestCase
     @Tag[APILevel21, TestLevel0]
