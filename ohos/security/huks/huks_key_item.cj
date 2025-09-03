@@ -129,93 +129,6 @@ public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksPa
 }
 
 /**
- * Obtains the certificate used to attest a key. This API uses an asynchronous callback to return the result.
- *
- * @param { String } keyAlias - keyAlias indicates the key's name.
- * @param { HuksOptions } options - options indicates the properties of the key attestation operation.
- * @return { Array<String> } - the certchain of key.
- * @throws { BusinessException } 201 - check permission failed
- * @throws { BusinessException } 401 - argument is invalid
- * @throws { BusinessException } 801 - api is not supported
- * @throws { BusinessException } 12000001 - algorithm mode is not supported
- * @throws { BusinessException } 12000002 - algorithm param is missing
- * @throws { BusinessException } 12000003 - algorithm param is invalid
- * @throws { BusinessException } 12000004 - operating file failed
- * @throws { BusinessException } 12000005 - IPC communication failed
- * @throws { BusinessException } 12000006 - error occured in crypto engine
- * @throws { BusinessException } 12000011 - queried entity does not exist
- * @throws { BusinessException } 12000012 - external error
- * @throws { BusinessException } 12000014 - memory is insufficient
- * @permission ohos.permission.ATTEST_KEY
- * @relation function attestKeyItem(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult>
- */
-@!APILevel[
-    21,
-    permission: "ohos.permission.ATTEST_KEY",
-    stagemodelonly: true,
-    syscap: "SystemCapability.Security.Huks.Extension"
-]
-public func attestKeyItem(keyAlias: String, options: HuksOptions): Array<String> {
-    if (keyAlias.isEmpty()) {
-        throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
-    }
-
-    if (options.properties.isEmpty()) {
-       throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "properties is None")
-    } 
-    let properties = options.properties
-    
-    // write another HksParam { .tag = HKS_TAG_ATTESTATION_BASE64, .boolParam = true };
-    let propertiesPlus = Array<HuksParam>(
-        properties.size + 1,
-        {
-            i => if (i < properties.size) {
-                properties[i]
-            } else {
-                HuksParam(HuksTag.HuksTagAttestationBase64, HuksParamValue.BooleanValue(true))
-            }
-        }
-    )
-
-    let paramSet: HksParamSet = HksParamSet(propertiesPlus)
-
-    let keyAliasCstr = unsafe { LibC.mallocCString(keyAlias) }
-
-    // create OhosHksCertChain
-    const HKS_CERT_COUNT: UInt32 = 4
-    const HKS_CERT_ROOT_SIZE: UInt32 = 2048
-    const HKS_CERT_CA_SIZE: UInt32 = 2048
-    const HKS_CERT_DEVICE_SIZE: UInt32 = 2048
-    const HKS_CERT_APP_SIZE: UInt32 = 4096
-
-    let certBlobArray = unsafe {
-        [
-            OhosHksBlob.malloc(HKS_CERT_APP_SIZE),
-            OhosHksBlob.malloc(HKS_CERT_DEVICE_SIZE),
-            OhosHksBlob.malloc(HKS_CERT_CA_SIZE),
-            OhosHksBlob.malloc(HKS_CERT_ROOT_SIZE)
-        ]
-    }
-    let certBlobPtr = unsafe { acquireArrayRawData(certBlobArray) }
-    var certChain = OhosHksCertChain(certBlobPtr.pointer, HKS_CERT_COUNT)
-    let retCode = unsafe { FfiOHOSHAttestKey(keyAliasCstr, paramSet.toPointer(), inout certChain) }
-    unsafe { releaseArrayRawData(certBlobPtr) }
-
-    try {
-        if (retCode == HKS_SUCCESS) {
-            return certBlobArray |> map({blob: OhosHksBlob => blob.toString()}) |> collectArray
-        } else {
-            throw hksCodeToException(retCode)
-        }
-    } finally {
-        unsafe {
-            LibC.free(keyAliasCstr)
-            certBlobArray |> forEach({blob: OhosHksBlob => blob.free()})
-        }
-    }
-}
-
-/**
  * Obtains the certificate for anonymous attestation. This API uses an asynchronous callback to return
  * the result. This operation requires Internet access and takes time. If error code 12000012 is returned, the network
  * is abnormal. If the device is not connected to the network, display a message, indicating that the network is not
@@ -259,7 +172,7 @@ public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<Str
             i => if (i < properties.size) {
                 properties[i]
             } else {
-                HuksParam(HuksTag.HuksTagAttestationBase64, HuksParamValue.BooleanValue(true))
+                HuksParam(HuksTag.HUKS_ATTESTATION_BASE64, HuksParamValue.BooleanValue(true))
             }
         }
     )
