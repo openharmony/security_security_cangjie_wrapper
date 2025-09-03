@@ -71,7 +71,7 @@ class Test_SecurityHuks_Enum {
                 HuksTag.HUKS_TAG_IS_KEY_ALIAS,
                 HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
                 HuksTag.HUKS_TAG_IS_ALLOWED_WRAP,
-                HUKS_TAG_KEY_WRAP_TYPE,
+                HuksTag.HUKS_TAG_KEY_WRAP_TYPE,
                 HuksTag.HUKS_TAG_KEY_AUTH_ID,
                 HuksTag.HUKS_TAG_KEY_FLAG,
                 HuksTag.HUKS_TAG_KEY,
