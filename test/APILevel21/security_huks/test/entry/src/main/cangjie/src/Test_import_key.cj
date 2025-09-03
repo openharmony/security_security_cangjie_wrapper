@@ -39,10 +39,10 @@ class Test_SecurityHuks_ImportKey {
                 keyAlias,
                 HuksOptions(
                     properties: [
-                        HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-                        HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_256),
+                        HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_AES),
+                        HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_AES_KEY_SIZE_256),
                         HuksParam(
-                            HuksTag.HuksTagPurpose,
+                            HuksTag.HUKS_TAG_PURPOSE,
                             HuksParamValue.Uint32Value(1 | 2)
                         )
                     ],
@@ -68,10 +68,10 @@ class Test_SecurityHuks_ImportKey {
         try {
             let options = HuksOptions(
                 properties:  [
-                    HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_ECC),
-                    HuksParam(HuksTag.HuksTagPurpose, HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE),
-                    HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_ECC_KEY_SIZE_256),
-                    HuksParam(HuksTag.HuksTagDigest, HuksKeyDigest.HUKS_DIGEST_NONE)
+                    HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_ECC),
+                    HuksParam(HuksTag.HUKS_TAG_PURPOSE, HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_ECC_KEY_SIZE_256),
+                    HuksParam(HuksTag.HUKS_TAG_DIGEST, HuksKeyDigest.HUKS_DIGEST_NONE)
                 ],
                 inData: Bytes()
             )
@@ -83,10 +83,10 @@ class Test_SecurityHuks_ImportKey {
                 keyAliasBak,
                 HuksOptions(
                     properties: [
-                        HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_ECC),
-                        HuksParam(HuksTag.HuksTagPurpose, HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE),
-                        HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_ECC_KEY_SIZE_256),
-                        HuksParam(HuksTag.HuksTagDigest, HuksKeyDigest.HUKS_DIGEST_NONE)
+                        HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_ECC),
+                        HuksParam(HuksTag.HUKS_TAG_PURPOSE, HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE),
+                        HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_ECC_KEY_SIZE_256),
+                        HuksParam(HuksTag.HUKS_TAG_DIGEST, HuksKeyDigest.HUKS_DIGEST_NONE)
                     ],
                     inData: pubKey
                 )
@@ -111,10 +111,10 @@ class Test_SecurityHuks_ImportKey {
                 keyAlias,
                 HuksOptions(
                    properties:  [
-                        HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-                        HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_256),
+                        HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_AES),
+                        HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_AES_KEY_SIZE_256),
                         HuksParam(
-                            HuksTag.HuksTagPurpose,
+                            HuksTag.HUKS_TAG_PURPOSE,
                            HuksParamValue.Uint32Value(1 | 2)
                         )
                     ],
@@ -163,10 +163,10 @@ class Test_SecurityHuks_ImportKey {
                 keyAlias,
                 HuksOptions(
                     properties: [
-                        HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-                        HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_256),
+                        HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_AES),
+                        HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_AES_KEY_SIZE_256),
                         HuksParam(
-                            HuksTag.HuksTagPurpose,
+                            HuksTag.HUKS_TAG_PURPOSE,
                             HuksParamValue.Uint32Value(1 | 2)
                         )
                     ],

@@ -41,12 +41,12 @@ class Test_SecurityHuks_AnonAttest {
                 keyAlias,
                 HuksOptions(
                    properties: [
-                        HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_RSA),
-                        HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_RSA_KEY_SIZE_2048),
-                        HuksParam(HuksTag.HuksTagPurpose, HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY),
-                        HuksParam(HuksTag.HuksTagDigest, HuksKeyDigest.HUKS_DIGEST_SHA256),
-                        HuksParam(HuksTag.HuksTagPadding, HuksKeyPadding.HUKS_PADDING_PSS),
-                        HuksParam(HuksTag.HuksTagBlockMode, HuksCipherMode.HUKS_MODE_ECB)
+                        HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksKeyAlg.HUKS_ALG_RSA),
+                        HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksKeySize.HUKS_RSA_KEY_SIZE_2048),
+                        HuksParam(HuksTag.HUKS_TAG_PURPOSE, HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY),
+                        HuksParam(HuksTag.HUKS_TAG_DIGEST, HuksKeyDigest.HUKS_DIGEST_SHA256),
+                        HuksParam(HuksTag.HUKS_TAG_PADDING, HuksKeyPadding.HUKS_PADDING_PSS),
+                        HuksParam(HuksTag.HUKS_TAG_BLOCK_MODE, HuksCipherMode.HUKS_MODE_ECB)
                     ],
                    inData: Bytes()
                 )
@@ -57,7 +57,7 @@ class Test_SecurityHuks_AnonAttest {
                 keyAlias,
                 HuksOptions(
                    properties: [
-                        HuksParam(HuksTag.HuksTagAttestationChallenge, HuksParamValue.BytesValue(challenge.toArray()))
+                        HuksParam(HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE, HuksParamValue.BytesValue(challenge.toArray()))
                        ],
                     inData: Bytes()
                 )

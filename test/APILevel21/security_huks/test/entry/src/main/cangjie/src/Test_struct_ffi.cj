@@ -27,10 +27,9 @@ import ohos.base.*
 
 @Test
 class Test_SecurityHuks_Struct_ffi {
-    let huksTagAlgorithm = HuksTag.HuksTagAlgorithm // HUKS_TAG_TYPE_UINT
-    let huksTagIv = HuksTag.HuksTagIv // HUKS_TAG_TYPE_BYTES
-    let huksTagIsKeyAlias = HuksTag.HuksTagIsKeyAlias // HUKS_TAG_TYPE_BOOL
-    let huksTagInvalid = HuksTag.HuksTagInvalid // HUKS_TAG_TYPE_INVALID
+    let HUKS_TAG_ALGORITHM = HuksTag.HUKS_TAG_ALGORITHM // HUKS_TAG_TYPE_UINT
+    let HUKS_TAG_IV = HuksTag.HUKS_TAG_IV // HUKS_TAG_TYPE_BYTES
+    let huksTagIsKeyAlias = HuksTag.HUKS_TAG_IS_KEY_ALIAS // HUKS_TAG_TYPE_BOOL
 
     let boolean = HuksParamValue.BooleanValue(true)
     let int32 = HuksParamValue.Int32Value(1)
@@ -45,14 +44,13 @@ class Test_SecurityHuks_Struct_ffi {
     let bytesTooBig = HuksParamValue.BytesValue(Array<Byte>(HKS_PARAM_SET_MAX_SIZE, repeat: 0))
     let bytesNone = boolean
 
-    let huksParamUint32 = HuksParam(huksTagAlgorithm, uint32)
-    let huksParamBool = HuksParam(huksTagIsKeyAlias, boolean)
-    let huksParamBytes = HuksParam(huksTagIv, bytes)
-    let huksParamBytesTooBig = HuksParam(huksTagIv, bytesTooBig)
-    let huksParamInvalid = HuksParam(huksTagInvalid, boolean)
-    let huksParamUint32None = HuksParam(huksTagAlgorithm, boolean)
-    let huksParamBoolNone = HuksParam(huksTagIsKeyAlias, booleanNone)
-    let huksParamBytesNone = HuksParam(huksTagIv, boolean)
+    let huksParamUint32 = HuksParam(HUKS_TAG_ALGORITHM, uint32)
+    let huksParamBool = HuksParam(HUKS_TAG_IS_KEY_ALIAS, boolean)
+    let huksParamBytes = HuksParam(HUKS_TAG_IV, bytes)
+    let huksParamBytesTooBig = HuksParam(HUKS_TAG_IV, bytesTooBig)
+    let huksParamUint32None = HuksParam(HUKS_TAG_ALGORITHM, boolean)
+    let huksParamBoolNone = HuksParam(HUKS_TAG_IS_KEY_ALIAS, booleanNone)
+    let huksParamBytesNone = HuksParam(HUKS_TAG_IV, boolean)
 
     let properties: Array<HuksParam> = [huksParamUint32, huksParamBool, huksParamBytes]
     let propertiesUint32None = [huksParamUint32None]
@@ -172,13 +170,13 @@ class Test_SecurityHuks_Struct_ffi {
         let keyAlias = "123"
         try {
             isKeyItemExist(keyAlias,
-                HuksOptions(properties: [HuksParam(HuksTag.HuksTagAlgorithm, HuksParamValue.Uint32Value(0))], inData: Bytes()))
+                HuksOptions(properties: [HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksParamValue.Uint32Value(0))], inData: Bytes()))
         } catch (e: Exception) {
             // ignore
         }
         try {
             isKeyItemExist(keyAlias,
-                HuksOptions(properties: [HuksParam(HuksTag.HuksTagAlgorithm, HuksParamValue.BytesValue("123".toArray()))], inData: Bytes())
+                HuksOptions(properties: [HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksParamValue.BytesValue("123".toArray()))], inData: Bytes())
             )
         } catch (e: Exception) {
             // ignore
