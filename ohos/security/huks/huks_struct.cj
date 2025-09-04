@@ -178,19 +178,6 @@ public enum HuksParamValue {
             case _ => None
         }
     }
-    /**
-     * The returned type is HuksParamValue.
-     * @throws { BusinessException } 401 - operator '|' only support uint32
-     */
-    operator func |(other: HuksParamValue): HuksParamValue {
-        match ((this.toUInt32(), other.toUInt32())) {
-            case (Some(left), Some(right)) => HuksParamValue.Uint32Value(left | right)
-            case _ => throw BusinessException(
-                HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(),
-                "operator '|' only support uint32"
-            )
-        }
-    }
 }
 
 /**
