@@ -27,7 +27,7 @@ import ohos.base.*
 
 @Test
 class Test_SecurityHuks_Struct_ffi {
-    let HUKS_TAG_ALGORITHM = HuksTag.HUKS_TAG_ALGORITHM // HUKS_TAG_TYPE_UINT
+    let HUKS_TAG_ALGORITHM = HuksTag.HUKS_TAG_ALGORITHM// HUKS_TAG_TYPE_UINT
     let HUKS_TAG_IV = HuksTag.HUKS_TAG_IV // HUKS_TAG_TYPE_BYTES
     let HUKS_TAG_IS_KEY_ALIAS = HuksTag.HUKS_TAG_IS_KEY_ALIAS // HUKS_TAG_TYPE_BOOL
 
