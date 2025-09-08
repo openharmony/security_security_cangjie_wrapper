@@ -19,15 +19,15 @@ As shown in the architecture diagram:
 
 - Huks Management Functionality: The huks management functionality is designed to offer a complete, unified, and secure key lifecycle management interface for upper-layer applications, shielding them from the implementation differences of underlying hardware security modules (HSMs) and key management services. Its core operations include key generation and derivation, key storage, key import, key destruction, and other critical processes. By utilizing this functionality, developers can bypass the complexities and security policy variations of different key storage mediums, ensuring the confidentiality, integrity, and availability of key materials. This facilitates secure, reliable, and efficient business development.
 
-Huks Session Functionality: The huks session functionality is one of the core security capabilities provided by the HUKS system. Built upon a unified key management foundation, its primary goal is to offer upper-layer applications a secure and efficient mechanism for key negotiation and encrypted data communication. HUKS leverages the key session functionality to perform data operations and provides the following APIs for developers:
+- Huks Session Functionality: The huks session functionality is one of the core security capabilities provided by the HUKS system. Built upon a unified key management foundation, its primary goal is to offer upper-layer applications a secure and efficient mechanism for key negotiation and encrypted data communication. HUKS leverages the key session functionality to perform data operations and provides the following APIs for developers:
 
-initSession: Initialize a huks session.
+  initSession: Initialize a huks session.
 
-updateSession: Update the session for processing large data in segments.
+  updateSession: Update the session for processing large data in segments.
 
-finishSession: Finalize the current key operation.
+  finishSession: Finalize the current key operation.
 
-abortSession: Cancel the ongoing session.
+  abortSession: Cancel the ongoing session.
 
 ## Directory Structure
 
