@@ -24,8 +24,7 @@ import ohos.labels.*
  * @relation interface Key
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.Key"
 ]
 public interface Key {
@@ -35,8 +34,7 @@ public interface Key {
      * @relation readonly format: string
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Key"
     ]
     prop format: String
@@ -47,8 +45,7 @@ public interface Key {
      * @relation readonly algName: string
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Key"
     ]
     prop algName: String
@@ -65,8 +62,7 @@ public interface Key {
      * @relation getEncoded(): DataBlob
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Key"
     ]
     func getEncoded(): DataBlob
@@ -79,8 +75,7 @@ public interface Key {
  * @relation interface ParamsSpec
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public open class ParamsSpec {
@@ -90,8 +85,7 @@ public open class ParamsSpec {
      * @relation algName: string
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var algName: String

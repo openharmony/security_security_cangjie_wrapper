@@ -39,8 +39,7 @@ foreign {
  * @relation function createMac(algName: string): Mac
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.Mac"
 ]
 public func createMac(algName: String): Mac {
@@ -61,8 +60,7 @@ public func createMac(algName: String): Mac {
  * @relation interface Mac
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.Mac"
 ]
 public class Mac <: RemoteDataLite {
@@ -83,8 +81,7 @@ public class Mac <: RemoteDataLite {
      * @relation readonly algName: string
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
     public prop algName: String {
@@ -105,8 +102,7 @@ public class Mac <: RemoteDataLite {
      * @relation initSync(key: SymKey): void
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
     public func initialize(key: SymKey): Unit {
@@ -126,8 +122,7 @@ public class Mac <: RemoteDataLite {
      * @relation updateSync(input: DataBlob): void
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
     public func update(input: DataBlob): Unit {
@@ -159,8 +154,7 @@ public class Mac <: RemoteDataLite {
      * @relation doFinalSync(): DataBlob
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
     public func doFinal(): DataBlob {
@@ -181,8 +175,7 @@ public class Mac <: RemoteDataLite {
      * @relation getMacLength(): number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
     public func getMacLength(): UInt32 {

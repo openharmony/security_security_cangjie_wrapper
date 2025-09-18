@@ -35,8 +35,7 @@ import ohos.business_exception.BusinessException
  * @relation function initSession(keyAlias: string, options: HuksOptions): Promise<HuksSessionHandle>
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func initSession(keyAlias: String, options: HuksOptions): HuksSessionHandle {
@@ -121,8 +120,7 @@ func getHuksHandle(handle: OhosHksBlob): HuksHandleId {
    * @relation function updateSession(handle: long, options: HuksOptions, token?: Uint8Array): Promise<HuksReturnResult>
    */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func updateSession(handle: HuksHandleId, options: HuksOptions, token!: Bytes = Bytes()): Option<Bytes> {
@@ -152,8 +150,7 @@ public func updateSession(handle: HuksHandleId, options: HuksOptions, token!: By
    * @relation function finishSession(handle: long, options: HuksOptions, token?: Uint8Array): Promise<HuksReturnResult>
    */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func finishSession(handle: HuksHandleId, options: HuksOptions, token!: Bytes = Bytes()): Option<Bytes> {
@@ -255,8 +252,7 @@ func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, i
  * @relation function abortSession(handle: long, options: HuksOptions): Promise<void>
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func abortSession(handle: HuksHandleId, options: HuksOptions): Unit {

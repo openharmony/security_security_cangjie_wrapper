@@ -37,8 +37,7 @@ import ohos.business_exception.BusinessException
  * @relation function isKeyItemExist(keyAlias: string, options: HuksOptions): Promise<boolean>
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func isKeyItemExist(keyAlias: String, options: HuksOptions): Bool {
@@ -96,8 +95,7 @@ public func isKeyItemExist(keyAlias: String, options: HuksOptions): Bool {
  * @relation function getKeyItemProperties(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult>
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksParam> {
@@ -152,8 +150,7 @@ public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksPa
  * @relation function anonAttestKeyItem(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult>
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<String> {
@@ -232,8 +229,7 @@ public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<Str
  * @relation function exportKeyItem(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult>
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
@@ -292,8 +288,7 @@ public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
  * @relation function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, options: HuksOptions): Unit {
@@ -358,8 +353,7 @@ public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, opt
  * @relation function generateKeyItem(keyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit {
@@ -404,8 +398,7 @@ public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit {
  * @relation function deleteKeyItem(keyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func deleteKeyItem(keyAlias: String, options: HuksOptions): Unit {
@@ -458,8 +451,7 @@ public func deleteKeyItem(keyAlias: String, options: HuksOptions): Unit {
  * @relation function importKeyItem(keyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func importKeyItem(keyAlias: String, options: HuksOptions): Unit {

@@ -26,8 +26,7 @@ import std.deriving.Derive
  * @relation enum Result
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework"
 ]
 public enum Result <: ToString {
@@ -37,8 +36,7 @@ public enum Result <: ToString {
      * @relation INVALID_PARAMS = 401
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     InvalidParams
@@ -49,8 +47,7 @@ public enum Result <: ToString {
      * @relation NOT_SUPPORT = 801
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     NotSupport
@@ -61,8 +58,7 @@ public enum Result <: ToString {
      * @relation ERR_OUT_OF_MEMORY = 17620001
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     ErrOutOfMemory
@@ -73,8 +69,7 @@ public enum Result <: ToString {
      * @relation ERR_RUNTIME_ERROR = 17620002
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     ErrRuntimeError
@@ -85,8 +80,7 @@ public enum Result <: ToString {
      * @relation ERR_CRYPTO_OPERATION = 17630001
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     ErrCryptoOperation
@@ -97,8 +91,7 @@ public enum Result <: ToString {
      *
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     public func getValue(): Int32 {
@@ -118,8 +111,7 @@ public enum Result <: ToString {
      * @throws IllegalArgumentException - The type is not supported.
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     public func toString(): String {
@@ -163,8 +155,7 @@ func checkAndThrow(errCode: Int32) {
  */
 @Derive[ToString, Equatable]
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public enum CryptoMode {
@@ -174,8 +165,7 @@ public enum CryptoMode {
      * @relation ENCRYPT_MODE = 0
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     EncryptMode
@@ -186,8 +176,7 @@ public enum CryptoMode {
      * @relation DECRYPT_MODE = 1
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     DecryptMode
@@ -209,8 +198,7 @@ public enum CryptoMode {
  */
 @Derive[ToString, Equatable]
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public enum CipherSpecItem {
@@ -220,8 +208,7 @@ public enum CipherSpecItem {
      * @relation OAEP_MD_NAME_STR = 100
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     OaepMdNameStr
@@ -232,8 +219,7 @@ public enum CipherSpecItem {
      * @relation OAEP_MGF_NAME_STR = 101
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     OaepMgfNameStr
@@ -244,8 +230,7 @@ public enum CipherSpecItem {
      * @relation OAEP_MGF1_MD_STR = 102
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     OaepMgf1MdStr
@@ -256,8 +241,7 @@ public enum CipherSpecItem {
      * @relation OAEP_MGF1_PSRC_UINT8ARR = 103
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     OaepMgf1PsrcUint8Arr

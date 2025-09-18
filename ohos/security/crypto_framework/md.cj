@@ -39,8 +39,7 @@ foreign {
  * @relation function createMd(algName: string): Md
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
 ]
 public func createMd(algName: String): Md {
@@ -61,8 +60,7 @@ public func createMd(algName: String): Md {
  * @relation interface Md
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
 ]
 public class Md <: RemoteDataLite {
@@ -83,8 +81,7 @@ public class Md <: RemoteDataLite {
      * @relation readonly algName: string
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
     public prop algName: String {
@@ -104,8 +101,7 @@ public class Md <: RemoteDataLite {
      * @relation updateSync(input: DataBlob): void
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
     public func update(input: DataBlob): Unit {
@@ -137,8 +133,7 @@ public class Md <: RemoteDataLite {
      * @relation digestSync(): DataBlob
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
     public func digest(): DataBlob {
@@ -160,8 +155,7 @@ public class Md <: RemoteDataLite {
      * @relation getMdLength(): number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
     public func getMdLength(): UInt32 {
