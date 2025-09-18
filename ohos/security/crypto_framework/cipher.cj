@@ -57,8 +57,7 @@ foreign {
  * @relation function createCipher(transformation: string): Cipher
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public func createCipher(transformation: String): Cipher {
@@ -78,8 +77,7 @@ public func createCipher(transformation: String): Cipher {
  * @relation interface Cipher
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public class Cipher <: RemoteDataLite {
@@ -101,8 +99,7 @@ public class Cipher <: RemoteDataLite {
      * @relation readonly algName: string
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public prop algName: String {
@@ -146,8 +143,7 @@ public class Cipher <: RemoteDataLite {
      * @relation initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public func initialize(opMode: CryptoMode, key: Key, params: ?ParamsSpec): Unit {
@@ -201,8 +197,7 @@ public class Cipher <: RemoteDataLite {
      * @relation updateSync(data: DataBlob): DataBlob
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public func update(data: DataBlob): DataBlob {
@@ -236,8 +231,7 @@ public class Cipher <: RemoteDataLite {
      * @relation doFinalSync(data: DataBlob | null): DataBlob
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public func doFinal(data: ?DataBlob): DataBlob {

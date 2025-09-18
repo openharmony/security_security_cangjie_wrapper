@@ -36,8 +36,7 @@ foreign {
  * @relation function createRandom(): Random
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.Rand"
 ]
 public func createRandom(): Random {
@@ -55,8 +54,7 @@ public func createRandom(): Random {
  * @relation interface Random
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Security.CryptoFramework.Rand"
 ]
 public class Random <: RemoteDataLite {
@@ -74,8 +72,7 @@ public class Random <: RemoteDataLite {
      * @relation readonly algName: string
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Rand"
     ]
     public prop algName: String {
@@ -102,8 +99,7 @@ public class Random <: RemoteDataLite {
      * @relation generateRandomSync(len: number): DataBlob
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Rand"
     ]
     public func generateRandom(len: Int32): DataBlob {
@@ -125,8 +121,7 @@ public class Random <: RemoteDataLite {
      * @relation setSeed(seed: DataBlob): void
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Security.CryptoFramework.Rand"
     ]
     public func setSeed(seed: DataBlob): Unit {
