@@ -40,7 +40,9 @@ base/security/security_cangjie_wrapper
 ├── ohos                            # Cangjie Security Code
 |    ├── crypto_framework           # Encryption And Decryption Algorithms Interface
 |    └── huks                       # Huks Management And Huks Seesion Interface
-└── test                            # Cangjie test code    
+|       ├── huks_key_item.cj        # Huks Management Interface
+|       └── huks_session.cj         # Huks Seesion Interface
+└── test                            # Cangjie test code
 ```
 
 ## Usage
@@ -68,6 +70,10 @@ Developers are welcome to contribute code, documentation, etc. For specific cont
 
 ## Repositories Involved
 
-[security_huks](https://gitee.com/openharmony/security_huks/blob/master/README.md)
+[ark_compiler_cangjie_ark_interop](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop)
 
-[security_crypto_framework](https://gitee.com/openharmony/security_crypto_framework)
+[hiviewdfx_hiviewdfx_cangjie_wrapper](https://gitcode.com/openharmony-sig/hiviewdfx_hiviewdfx_cangjie_wrapper)
+
+[security_crypto_framework](https://gitcode.com/openharmony/security_crypto_framework)
+
+[security_huks](https://gitcode.com/openharmony/security_huks)
