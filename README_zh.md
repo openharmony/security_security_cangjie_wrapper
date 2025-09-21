@@ -29,8 +29,10 @@ base/security/security_cangjie_wrapper
 |   ├── UniversalKeystoreKit        # 设备密钥管理Kit
 ├── ohos                            # 仓颉安全基础能力接口实现
 |   ├── crypto_framework            # 密码算法库加解密相关接口
-|   └── huks                        # 密钥管理相关接口
-└── test                            # 仓颉测试代码  
+|   └── huks                        # 密钥相关接口
+|       ├── huks_key_item.cj        # 密钥管理相关接口
+|       └── huks_session.cj         # 秘钥会话
+└── test                            # 仓颉测试代码
 ```
 
 ## 使用说明
@@ -55,6 +57,10 @@ base/security/security_cangjie_wrapper
 
 ## 相关仓
 
-[security_huks](https://gitee.com/openharmony/security_huks/blob/master/README_zh.md)
+[ark_compiler_cangjie_ark_interop](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop)
 
-[security_crypto_framework](https://gitee.com/openharmony/security_crypto_framework/blob/master/README_zh.md)
+[hiviewdfx_hiviewdfx_cangjie_wrapper](https://gitcode.com/openharmony-sig/hiviewdfx_hiviewdfx_cangjie_wrapper)
+
+[security_crypto_framework](https://gitcode.com/openharmony/security_crypto_framework)
+
+[security_huks](https://gitcode.com/openharmony/security_huks)
