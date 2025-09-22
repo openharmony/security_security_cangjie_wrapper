@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 
-package kit.UniversalKeystoreKit
+package UniversalKeystoreKit
 
 public import ohos.security.huks.*

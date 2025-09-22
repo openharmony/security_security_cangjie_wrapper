@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 
-package kit.CryptoArchitectureKit
+package CryptoArchitectureKit
 
 public import ohos.security.crypto_framework.*
