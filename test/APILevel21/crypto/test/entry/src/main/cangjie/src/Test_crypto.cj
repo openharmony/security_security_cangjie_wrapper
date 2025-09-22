@@ -15,7 +15,7 @@
 
 package ohos_app_cangjie_entry
 
-import kit.CryptoArchitectureKit.*
+import CryptoArchitectureKit.*
 import ohos.base.*
 import std.unittest.testmacro.*
 import std.math.numeric.*

@@ -17,7 +17,7 @@ package ohos_app_cangjie_entry
 
 
 import ohos.window.WindowStage
-import kit.AbilityKit.*
+import AbilityKit.*
 
 class MainAbility <: UIAbility {
 
