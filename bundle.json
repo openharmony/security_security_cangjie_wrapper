@@ -53,8 +53,8 @@
             "//base/security/security_cangjie_wrapper/ohos/security/crypto_framework:ohos.security.crypto_framework",
             "//base/security/security_cangjie_wrapper/ohos/security/huks:ohos.security.huks",
             "//base/security/security_cangjie_wrapper/ohos/security:ohos.security",
-            "//base/security/security_cangjie_wrapper/kit/CryptoArchitectureKit:kit.CryptoArchitectureKit",
-            "//base/security/security_cangjie_wrapper/kit/UniversalKeystoreKit:kit.UniversalKeystoreKit"
+            "//base/security/security_cangjie_wrapper/kit/CryptoArchitectureKit:CryptoArchitectureKit",
+            "//base/security/security_cangjie_wrapper/kit/UniversalKeystoreKit:UniversalKeystoreKit"
 
         ],
         "inner_api": [

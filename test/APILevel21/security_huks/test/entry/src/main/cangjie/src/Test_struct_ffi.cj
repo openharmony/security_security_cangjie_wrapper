@@ -17,7 +17,7 @@ package ohos_app_cangjie_entry
 
 internal import std.unittest.*
 import std.unittest.testmacro.*
-internal import kit.UniversalKeystoreKit.*
+internal import UniversalKeystoreKit.*
 import std.unittest.testmacro.*
 import std.runtime.GC
 import std.unittest.*
