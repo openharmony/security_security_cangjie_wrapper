@@ -39,7 +39,7 @@ foreign {
  * @relation function createSymKeyGenerator(algName: string): SymKeyGenerator
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
 ]
 public func createSymKeyGenerator(algName: String): SymKeyGenerator {
@@ -59,7 +59,7 @@ public func createSymKeyGenerator(algName: String): SymKeyGenerator {
  * @relation interface SymKeyGenerator
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
 ]
 public class SymKeyGenerator <: RemoteDataLite {
@@ -80,7 +80,7 @@ public class SymKeyGenerator <: RemoteDataLite {
      * @relation readonly algName: string
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public prop algName: String {
@@ -97,7 +97,7 @@ public class SymKeyGenerator <: RemoteDataLite {
      * @relation generateSymKeySync(): SymKey
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public func generateSymKey(): SymKey {
@@ -120,7 +120,7 @@ public class SymKeyGenerator <: RemoteDataLite {
      * @relation convertKeySync(key: DataBlob): SymKey
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public func convertKey(key: DataBlob): SymKey {

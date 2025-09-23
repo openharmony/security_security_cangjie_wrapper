@@ -25,7 +25,7 @@ foreign func memcpy_s(dest: CPointer<UInt8>, destMax: UIntNative, src: CPointer<
  * @relation interface DataBlob
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework"
 ]
 public class DataBlob {
@@ -35,7 +35,7 @@ public class DataBlob {
      * @relation data: Uint8Array
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     public var data: Array<UInt8>
@@ -45,7 +45,7 @@ public class DataBlob {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     public init(data: Array<UInt8>) {
@@ -60,7 +60,7 @@ public class DataBlob {
  * @relation interface IvParamsSpec extends ParamsSpec
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public class IvParamsSpec <: ParamsSpec {
@@ -74,7 +74,7 @@ public class IvParamsSpec <: ParamsSpec {
      * @relation iv: DataBlob
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var iv: DataBlob
@@ -84,7 +84,7 @@ public class IvParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public init(algName: String, iv: DataBlob) {
@@ -99,7 +99,7 @@ public class IvParamsSpec <: ParamsSpec {
  * @relation interface GcmParamsSpec extends ParamsSpec
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public class GcmParamsSpec <: ParamsSpec {
@@ -109,7 +109,7 @@ public class GcmParamsSpec <: ParamsSpec {
      * @relation aad: DataBlob
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var aad: DataBlob
@@ -120,7 +120,7 @@ public class GcmParamsSpec <: ParamsSpec {
      * @relation iv: DataBlob
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var iv: DataBlob
@@ -131,7 +131,7 @@ public class GcmParamsSpec <: ParamsSpec {
      * @relation authTag: DataBlob
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var authTag: DataBlob
@@ -141,7 +141,7 @@ public class GcmParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public init(algName: String, iv: DataBlob, aad: DataBlob, authTag: DataBlob) {
@@ -158,7 +158,7 @@ public class GcmParamsSpec <: ParamsSpec {
  * @relation interface CcmParamsSpec extends ParamsSpec
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public class CcmParamsSpec <: ParamsSpec {
@@ -168,7 +168,7 @@ public class CcmParamsSpec <: ParamsSpec {
      * @relation authTag: DataBlob
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var authTag: DataBlob
@@ -179,7 +179,7 @@ public class CcmParamsSpec <: ParamsSpec {
      * @relation aad: DataBlob
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var aad: DataBlob
@@ -190,7 +190,7 @@ public class CcmParamsSpec <: ParamsSpec {
      * @relation iv: DataBlob
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var iv: DataBlob
@@ -200,7 +200,7 @@ public class CcmParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public init(algName: String, iv: DataBlob, aad: DataBlob, authTag: DataBlob) {

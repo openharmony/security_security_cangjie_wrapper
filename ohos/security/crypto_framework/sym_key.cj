@@ -37,7 +37,7 @@ foreign {
  * @relation interface SymKey extends Key
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
 ]
 public class SymKey <: RemoteDataLite & Key {
@@ -57,7 +57,7 @@ public class SymKey <: RemoteDataLite & Key {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public prop algName: String {
@@ -71,7 +71,7 @@ public class SymKey <: RemoteDataLite & Key {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public prop format: String {
@@ -98,7 +98,7 @@ public class SymKey <: RemoteDataLite & Key {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public func getEncoded(): DataBlob {
@@ -123,7 +123,7 @@ public class SymKey <: RemoteDataLite & Key {
      * @relation clearMem(): void
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public func clearMem(): Unit {
