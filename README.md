@@ -29,6 +29,10 @@ As shown in the architecture diagram:
 
   abortSession: Cancel the ongoing session.
 
+- cangjie_ark_interop: Responsible for providing Cangjie APILevel class definitions, which are used to annotate APIs, as well as providing the definition of BusinessException class that is thrown to users.
+
+- hiviewdfx_cangjie_wrapper: Responsible for providing logging interfaces, which are used to print logs at key points in the execution path.
+
 ## Directory Structure
 
 ```
@@ -38,14 +42,13 @@ base/security/security_cangjie_wrapper
 |   ├── CryptoArchitectureKit       # Encryption and Decryption Algorithms Kit
 |   ├── UniversalKeystoreKit        # Huks Management And Huks Session Kit
 ├── ohos                            # Cangjie Security Code
-|    ├── crypto_framework           # Encryption And Decryption Algorithms Interface
-|    └── huks                       # Huks Management And Huks Seesion Interface
+|   ├── crypto_framework           # Encryption And Decryption Algorithms Interface
+|   └── huks                       # Huks Management And Huks Seesion Interface
 |       ├── huks_key_item.cj        # Huks Management Interface
 |       └── huks_session.cj         # Huks Seesion Interface
 └── test                            # Cangjie test code
-    └── APILevel22
-        └── crypto                  # crypto test code
-        └── security_huks           # security_huks test code
+    ├── crypto                      # crypto test code
+    └── security_huks               # security_huks test code
 ```
 
 ## Usage
