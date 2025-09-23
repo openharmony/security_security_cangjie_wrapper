@@ -10,7 +10,7 @@
 
 ## 系统架构
 
-**图 1**  安全基础能力仓颉架构图
+**图 1** 安全基础能力仓颉架构图
 
 ![安全基础能力仓颉架构图](figures/security_cangjie_wrapper_architecture.png "安全基础能力仓颉架构图")
 
@@ -33,27 +33,29 @@ base/security/security_cangjie_wrapper
 |       ├── huks_key_item.cj        # 密钥管理相关接口
 |       └── huks_session.cj         # 秘钥会话
 └── test                            # 仓颉测试代码
+    └── APILevel22
+        └── crypto                  # crypto测试用例
+        └── security_huks           # security_huks测试用例
 ```
 
 ## 使用说明
 
 当前安全基础能力仓颉接口提供了以下功能：
--  加解密算法基础功能
--  密钥管理功能
--  密钥会话功能
+- 加解密算法基础功能
+- 密钥管理功能
+- 密钥会话功能
 
-与ArkTS相比，暂不支持以下功能：
--   程序访问控制功能
--   证书模块
--   用户认证
--   密码插件功能
+与ArkTS提供的API能力相比，暂不支持以下功能：
+- 程序访问控制功能
+- 证书模块
+- 用户认证
+- 密码插件功能
 
-安全基础能力相关API请参见[ohos.security.huks](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/UniversalKeystoreKit/cj-apis-security_huks.md)，[ohos.security.crypto_framework](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/CryptoArchitectureKit/cj-apis-crypto.md)，相关指导请参见[安全基础能力开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_zh_cn/security)。
+安全基础能力相关API请参见[密钥库能力](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/UniversalKeystoreKit/cj-apis-security_huks.md)，[加解密算法库框架](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/CryptoArchitectureKit/cj-apis-crypto.md)，相关指导请参见[安全基础能力开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_zh_cn/security)。
 
 ## 参与贡献
 
 欢迎广大开发者贡献代码、文档等，具体的贡献流程和方式请参见[参与贡献](https://gitcode.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)。
-
 
 ## 相关仓
 

@@ -43,26 +43,28 @@ base/security/security_cangjie_wrapper
 |       ├── huks_key_item.cj        # Huks Management Interface
 |       └── huks_session.cj         # Huks Seesion Interface
 └── test                            # Cangjie test code
+    └── APILevel22
+        └── crypto                  # crypto test code
+        └── security_huks           # security_huks test code
 ```
 
 ## Usage
 
 The security_cangjie_wrapper provides the following capabilities:
 
--   Basic Encryption and Decryption Capabilities.
--   Huks Management.
--   Huks Session.
+- Basic Encryption and Decryption Capabilities.
+- Huks Management.
+- Huks Session.
 
 Compared to ArkTS, the following features are currently not supporte:
 
--   Program Access Control.
--   Certificate Module.
--   User Authentication.
--   Crypto Plugin Functionality.
+- Program Access Control.
+- Certificate Module.
+- User Authentication.
+- Crypto Plugin Functionality.
 
-
-For security APIs, please refer to[ohos.security.huks](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/UniversalKeystoreKit/cj-apis-security_huks.md).[ohos.security.crypto_framework](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/CryptoArchitectureKit/cj-apis-crypto.md).
-For relevation guidance, please refer to [security Development Guide](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_zh_cn/security).
+For security APIs, please refer to[Keystore Capability](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_en/apis/UniversalKeystoreKit/cj-apis-security_huks.md). [Cryptographic Algorithm Library Framework](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_en/apis/CryptoArchitectureKit/cj-apis-crypto.md).
+For relevation guidance, please refer to [security Development Guide](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_en/security).
 
 ## Code Contribution
 
