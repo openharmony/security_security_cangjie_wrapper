@@ -19,11 +19,9 @@
     "name": "security_cangjie_wrapper",
     "subsystem": "security",
     "syscap": [
-      "SystemCapability.Security.AccessToken",
       "SystemCapability.Security.CryptoFramework",
       "SystemCapability.Security.CryptoFramework.Key",
       "SystemCapability.Security.CryptoFramework.Key.SymKey",
-      "SystemCapability.Security.CryptoFramework.Signature",
       "SystemCapability.Security.CryptoFramework.Cipher",
       "SystemCapability.Security.CryptoFramework.MessageDigest",
       "SystemCapability.Security.CryptoFramework.Mac",
