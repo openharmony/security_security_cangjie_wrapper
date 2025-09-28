@@ -2,7 +2,7 @@
 
 ## 简介
 
-安全基础能力仓颉封装包括系统安全、数据安全、应用安全等功能，为OpenHarmony提供有效保护应用和用户数据的能力。当前支持的功能包括加解密算法基础功能、密钥管理功能且仅支持standard设备。
+安全基础能力仓颉封装为实现系统安全、数据安全、应用安全领域提供核心支撑，提供有效保护OpenHarmony应用和用户数据的能力。当前支持的功能包括加解密算法库框架功能和密钥管理功能，相关功能仅支持standard设备。
 
 ## 系统架构
 
@@ -12,12 +12,17 @@
 
 接口层：
 
-- 加解密算法基础功能：加解密算法基础功能主要是为了屏蔽底层硬件和算法库，向上提供统一的密码算法库加解密相关接口。它的主要功能提供密码操作、秘钥材料和生成器、密码加解密、签名验签、安全随机数等相关功能。开发者可以通过使用该功能，忽略底层不同三方算法库的差异，实现迅捷开发。
-- 密钥管理功能：密钥管理功能主要是为了向上层应用提供一套完整、统一、安全的密钥生命周期管理接口，屏蔽不同硬件安全模块和底层密钥管理服务的实现差异。它的主要功能包括：密钥生成与派生、密钥存储、密钥导入、销毁等一系列关键操作。开发者通过调用该功能，可以忽略底层不同密钥存储介质的复杂细节和安全策略差异，确保密钥材料的机密性、完整性和可用性，从而实现安全、可靠、高效的业务开发。
+- 加解密算法库框架接口：加解密算法库框架接口主要是为了屏蔽底层硬件和算法库，向上提供统一的密码算法库加解密相关接口。它的主要功能提供密码操作、密钥材料和生成器、密码加解密、安全随机数等相关功能。开发者可以通过使用该功能，忽略底层不同三方算法库的差异，实现迅捷开发。
+- 密钥管理功能：密钥管理功能主要是为了向上层应用提供一套完整、统一、安全的密钥生命周期管理接口。
+  - 完整性：包括密钥生成与派生、密钥存储、密钥导入、销毁等一系列关键操作，支持密钥管理的主要功能。
+  - 统一性：密码学操作均使用统一的接口进行管理，屏蔽不同硬件安全模块和底层密钥管理服务的实现差异。
+  - 安全性：底层使用TEE提供的可信环境，用户态无法获得密钥数据，即便内核受到威胁，也能确保密钥不被泄露。
+
+  开发者通过调用该功能，可以忽略底层不同密钥存储介质的复杂细节和安全策略差异，确保密钥材料的机密性、完整性和可用性，从而实现安全、可靠、高效的业务开发。
 
 框架层：
 
-- 加解密算法基础功能封装：仓颉加解密算法基础功能的实现封装，提供加解密算法基础功能。
+- 加解密算法库框架封装：仓颉加解密算法基础功能的实现封装，提供加解密算法基础功能。
 - 密钥管理功能封装：仓颉密钥管理功能的实现封装，提供密钥管理功能。
 
 架构图中的依赖部件引入说明：
@@ -49,20 +54,28 @@ base/security/security_cangjie_wrapper
 
 当前安全基础能力仓颉封装提供了以下功能：
 
-- 加解密算法基础功能
+- 加解密算法库框架功能
 - 密钥管理功能
 
-安全基础能力相关API请参见[密钥管理能力](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/UniversalKeystoreKit/cj-apis-security_huks.md)，[加解密算法库框架](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/CryptoArchitectureKit/cj-apis-crypto.md)，相关指导请参见[加解密算法库开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-architecture-kit-intro.md)以及[密钥管理能力](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/UniversalKeystoreKit/cj-huks-overview.md)。
+安全基础能力相关API请参见[加解密算法库框架](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/CryptoArchitectureKit/cj-apis-crypto.md)，[密钥管理功能](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/UniversalKeystoreKit/cj-apis-security_huks.md)，相关指导请参见[加解密算法库开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-architecture-kit-intro.md)以及[密钥管理功能](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/UniversalKeystoreKit/cj-huks-overview.md)。
 
 ## 约束
 
 与ArkTS提供的API能力相比：
 
-- 密钥管理暂不支持以下功能：
-  - 程序访问控制功能
-  - 用户认证
+- 加解密算法库框架暂不支持以下功能：
+  - 非对称加密算法相关功能。
+  - 签名验签。
+  - 密钥协商。
+  - 密钥派生。
 
-- 暂不支持证书算法框架、证书管理功能。
+- 密钥管理功能暂不支持以下功能：
+  - 获取密钥证书。
+  - 加密导入/导出密钥。
+  - 判断密钥是否存在。
+  - 查询密钥别名集。
+
+- 暂不支持关键资产存储服务、数据保护服务、设备安全服务、企业数据保护服务、在线认证服务、设备证书服务、用户认证服务功能。
 
 ## 参与贡献
 
