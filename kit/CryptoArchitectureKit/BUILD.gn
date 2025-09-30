@@ -14,7 +14,7 @@
 import("//build/ohos.gni")
 import("//build/templates/cangjie/cjc.gni")
 
-ohos_cangjie_shared_library("CryptoArchitectureKit") {
+ohos_cangjie_shared_library("kit.CryptoArchitectureKit") {
   sources = ["index.cj"]
 
   cj_deps = ["../../ohos/security/crypto_framework:ohos.security.crypto_framework",]

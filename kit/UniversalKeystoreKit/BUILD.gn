@@ -14,7 +14,7 @@
 import("//build/ohos.gni")
 import("//build/templates/cangjie/cjc.gni")
 
-ohos_cangjie_shared_library("UniversalKeystoreKit") {
+ohos_cangjie_shared_library("kit.UniversalKeystoreKit") {
   sources = ["index.cj"]
 
   cj_deps = ["../../ohos/security/huks:ohos.security.huks",]
