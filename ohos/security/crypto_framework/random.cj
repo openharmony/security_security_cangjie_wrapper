@@ -35,7 +35,6 @@ foreign {
  *
  * @returns { Random } returns the created rand instance.
  * @throws { BusinessException } 17620001 - memory operation failed.
- * @relation function createRandom(): Random
  */
 @!APILevel[
     22,
@@ -52,8 +51,6 @@ public func createRandom(): Random {
 
 /**
  * Provides APIs for computing random numbers and setting seeds.
- *
- * @relation interface Random
  */
 @!APILevel[
     22,
@@ -70,8 +67,6 @@ public class Random <: RemoteDataLite {
 
     /**
      * Indicates the random generation algorithm name. Currently, only CTR_DRBG is supported.
-     *
-     * @relation readonly algName: string
      */
     @!APILevel[
         22,
@@ -98,7 +93,6 @@ public class Random <: RemoteDataLite {
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation generateRandomSync(len: number): DataBlob
      */
     @!APILevel[
         22,
@@ -120,7 +114,6 @@ public class Random <: RemoteDataLite {
      *
      * @param { DataBlob } seed - indicates the seed DataBlob.
      * @throws { BusinessException } 17620001 - memory operation failed.
-     * @relation setSeed(seed: DataBlob): void
      */
     @!APILevel[
         22,

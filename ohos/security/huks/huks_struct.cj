@@ -22,8 +22,6 @@ import ohos.business_exception.BusinessException
 
 /**
  * Defines the param field in the properties array of options used in the APIs.
- *
- * @relation export interface HuksParam
  */
 @!APILevel[
     22,
@@ -32,8 +30,6 @@ import ohos.business_exception.BusinessException
 public class HuksParam {
     /**
      * tag.
-     *
-     * @relation tag: HuksTag
      */
     @!APILevel[
         22,
@@ -42,8 +38,6 @@ public class HuksParam {
     public var tag: UInt32
     /**
      * Value of the tag.
-     *
-     * @relation value: boolean | int | bigint | Uint8Array
      */
     @!APILevel[
         22,
@@ -174,8 +168,6 @@ public enum HuksParamValue {
 
 /**
  * Defines options used in the APIs.
- *
- * @relation export interface HuksOptions 
  */
 @!APILevel[
     22,
@@ -184,8 +176,6 @@ public enum HuksParamValue {
 public class HuksOptions {
     /**
      * Properties used to hold the HuksParam array.
-     *
-     * @relation properties?: Array<HuksParam>
      */
     @!APILevel[
         22,
@@ -194,8 +184,6 @@ public class HuksOptions {
     public var properties: Array<HuksParam>
     /**
      * Input data.
-     *
-     * @relation inData?: Uint8Array
      */
     @!APILevel[
         22,
@@ -218,9 +206,6 @@ public class HuksOptions {
 
 /**
  * Defines the struct for a HUKS handle.
- *
- * @relation export interface HuksSessionHandle 
-
  */
 @!APILevel[
     22,
@@ -229,8 +214,6 @@ public class HuksOptions {
 public class HuksSessionHandle {
     /**
      * Value of the handle.
-     *
-     * @relation handle: long
      */
      @!APILevel[
         22,
@@ -239,8 +222,6 @@ public class HuksSessionHandle {
     public var handle: HuksHandleId
     /**
      * Challenge obtained after the initSession operation.
-     *
-     * @relation challenge?: Uint8Array
      */
     @!APILevel[
         22,

@@ -38,7 +38,6 @@ foreign {
  * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
  * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 17620001 - memory operation failed.
- * @relation function createMd(algName: string): Md
  */
 @!APILevel[
     22,
@@ -58,8 +57,6 @@ public func createMd(algName: String): Md {
 /**
  * Provides the Md type, which is used for Md generation.
  * Before using any API of the Md class, you must create an Md instance by using createMd.
- *
- * @relation interface Md
  */
 @!APILevel[
     22,
@@ -79,8 +76,6 @@ public class Md <: RemoteDataLite {
 
     /**
      * Indicates the algorithm name.
-     *
-     * @relation readonly algName: string
      */
     @!APILevel[
         22,
@@ -100,7 +95,6 @@ public class Md <: RemoteDataLite {
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation updateSync(input: DataBlob): void
      */
     @!APILevel[
         22,
@@ -132,7 +126,6 @@ public class Md <: RemoteDataLite {
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation digestSync(): DataBlob
      */
     @!APILevel[
         22,
@@ -154,7 +147,6 @@ public class Md <: RemoteDataLite {
      *
      * @returns { UInt32 } returns the length of the md result.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation getMdLength(): number
      */
     @!APILevel[
         22,
