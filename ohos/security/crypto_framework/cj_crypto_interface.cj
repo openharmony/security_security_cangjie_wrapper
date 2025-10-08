@@ -22,8 +22,6 @@ import ohos.labels.*
 /**
  * Provides the Key type, which is the common parent class of keys.
  * Before performing cryptographic operations, you need to construct a child class object of Key and pass it to init of the Cipher instance.
- *
- * @relation interface Key
  */
 @!APILevel[
     22,
@@ -32,8 +30,6 @@ import ohos.labels.*
 public interface Key {
     /**
      * Indicates the format of the key object.
-     *
-     * @relation readonly format: string
      */
     @!APILevel[
         22,
@@ -43,8 +39,6 @@ public interface Key {
 
     /**
      * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric key.
-     *
-     * @relation readonly algName: string
      */
     @!APILevel[
         22,
@@ -61,7 +55,6 @@ public interface Key {
      * @throws { BusinessException } 801 - this operation is not supported.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation getEncoded(): DataBlob
      */
     @!APILevel[
         22,
@@ -73,8 +66,6 @@ public interface Key {
 /**
  * Encapsulates the parameters used for encryption or decryption.You need to construct its child class object and
  * pass it to init for symmetric encryption or decryption.
- *
- * @relation interface ParamsSpec
  */
 @!APILevel[
     22,
@@ -83,8 +74,6 @@ public interface Key {
 public open class ParamsSpec {
     /**
      * Indicates the algorithm name. Should be set before initialization of a cipher object.
-     *
-     * @relation algName: string
      */
     @!APILevel[
         22,

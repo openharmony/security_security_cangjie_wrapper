@@ -24,8 +24,6 @@ import std.deriving.Derive
 
 /**
  * Enum for result code.
- *
- * @relation enum Result
  */
 @!APILevel[
     22,
@@ -34,8 +32,6 @@ import std.deriving.Derive
 public enum Result <: ToString {
     /**
      * Indicates that input parameters is invalid.
-     *
-     * @relation INVALID_PARAMS = 401
      */
     @!APILevel[
         22,
@@ -45,8 +41,6 @@ public enum Result <: ToString {
     |
     /**
      * Indicates that function or algorithm is not supported.
-     *
-     * @relation NOT_SUPPORT = 801
      */
     @!APILevel[
         22,
@@ -56,8 +50,6 @@ public enum Result <: ToString {
     |
     /**
      * Indicates the memory operation failed.
-     *
-     * @relation ERR_OUT_OF_MEMORY = 17620001
      */
     @!APILevel[
         22,
@@ -67,8 +59,6 @@ public enum Result <: ToString {
     |
     /**
      * Indicates that failed to convert parameters between cj and c.
-     *
-     * @relation ERR_RUNTIME_ERROR = 17620002
      */
     @!APILevel[
         22,
@@ -78,8 +68,6 @@ public enum Result <: ToString {
     |
     /**
      * Indicates that crypto operation error.
-     *
-     * @relation ERR_CRYPTO_OPERATION = 17630001
      */
     @!APILevel[
         22,
@@ -152,8 +140,6 @@ func checkAndThrow(errCode: Int32) {
 
 /**
  * Enum for obtain the crypto operation.
- *
- * @relation enum CryptoMode
  */
 @Derive[ToString, Equatable]
 @!APILevel[
@@ -163,8 +149,6 @@ func checkAndThrow(errCode: Int32) {
 public enum CryptoMode {
     /**
      * The value of encryption operation for AES, 3DES and RSA.
-     *
-     * @relation ENCRYPT_MODE = 0
      */
     @!APILevel[
         22,
@@ -174,8 +158,6 @@ public enum CryptoMode {
     |
     /**
      * The value of decryption operation for AES, 3DES and RSA.
-     *
-     * @relation DECRYPT_MODE = 1
      */
     @!APILevel[
         22,
@@ -195,8 +177,6 @@ public enum CryptoMode {
 
 /**
  * Enum for encryption specified parameters.
- *
- * @relation enum CipherSpecItem
  */
 @Derive[ToString, Equatable]
 @!APILevel[
@@ -206,8 +186,6 @@ public enum CryptoMode {
 public enum CipherSpecItem {
     /**
      * Indicates the algorithm name of the message digest function. It is used during RSA encryption.
-     *
-     * @relation OAEP_MD_NAME_STR = 100
      */
     @!APILevel[
         22,
@@ -217,8 +195,6 @@ public enum CipherSpecItem {
     |
     /**
      * Indicates the algorithm name for the mask generation function. It is used during RSA encryption.
-     *
-     * @relation OAEP_MGF_NAME_STR = 101
      */
     @!APILevel[
         22,
@@ -228,8 +204,6 @@ public enum CipherSpecItem {
     |
     /**
      * Indicates the message digest parameter for the MGF1 mask generation function. It is used during RSA encryption.
-     *
-     * @relation OAEP_MGF1_MD_STR = 102
      */
     @!APILevel[
         22,
@@ -239,8 +213,6 @@ public enum CipherSpecItem {
     |
     /**
      * Indicates the source of the encoding input P. It is used during RSA encryption.
-     *
-     * @relation OAEP_MGF1_PSRC_UINT8ARR = 103
      */
     @!APILevel[
         22,
