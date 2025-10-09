@@ -1,7 +1,7 @@
 {
   "name": "@ohos/security_cangjie_wrapper",
   "description": "The provider of crypto algorithm and huks manangement capbility, which belongs to security subsystem",
-  "version": "6.0",
+  "version": "6.1",
   "license": "Apache License 2.0",
   "publishAs": "code-segment",
   "segment": {
