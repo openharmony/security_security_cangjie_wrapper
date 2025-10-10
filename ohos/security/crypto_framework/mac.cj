@@ -92,7 +92,8 @@ public class Mac <: RemoteDataLite {
      * This API uses an asynchronous callback to return the result. init, update, and doFinal must be used together.
      * init and doFinal are mandatory, and update is optional.
      *
-     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left
+     * unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
@@ -111,7 +112,8 @@ public class Mac <: RemoteDataLite {
     /**
      * Update mac with DataBlob.
      *
-     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left
+     * unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
@@ -141,7 +143,8 @@ public class Mac <: RemoteDataLite {
     /**
      * Output the result of mac calculation.
      *
-     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left
+     * unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.

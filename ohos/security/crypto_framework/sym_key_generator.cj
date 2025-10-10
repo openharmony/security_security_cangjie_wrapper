@@ -110,7 +110,8 @@ public class SymKeyGenerator <: RemoteDataLite {
      *
      * @param { DataBlob } key - the key data blob.
      * @returns { SymKey } the SymKey  returned by the function.
-     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left
+     * unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      */

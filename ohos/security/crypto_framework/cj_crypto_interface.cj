@@ -21,7 +21,8 @@ import ohos.labels.*
 
 /**
  * Provides the Key type, which is the common parent class of keys.
- * Before performing cryptographic operations, you need to construct a child class object of Key and pass it to init of the Cipher instance.
+ * Before performing cryptographic operations, you need to construct a child class object of Key and pass it to init of
+ * the Cipher instance.
  */
 @!APILevel[
     22,
@@ -38,7 +39,8 @@ public interface Key {
     prop format: String
 
     /**
-     * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric key.
+     * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric
+     * key.
      */
     @!APILevel[
         22,

@@ -53,7 +53,8 @@ public class SymKey <: RemoteDataLite & Key {
     }
 
     /**
-     * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric key.
+     * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric
+     * key.
      *
      */
     @!APILevel[
