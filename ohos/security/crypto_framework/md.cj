@@ -91,7 +91,8 @@ public class Md <: RemoteDataLite {
      * Update md with DataBlob.
      *
      * @param { DataBlob } input - indicates the DataBlob.
-     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left
+     * unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
@@ -121,7 +122,8 @@ public class Md <: RemoteDataLite {
     /**
      * Output the result of md calculation.
      *
-     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left
+     * unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
