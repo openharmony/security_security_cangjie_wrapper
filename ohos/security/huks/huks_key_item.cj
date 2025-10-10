@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
+
 package ohos.security.huks
 
 import ohos.labels.*
@@ -34,7 +36,6 @@ import ohos.business_exception.BusinessException
  * @throws { BusinessException } 12000006 - error occured in crypto engine
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @relation function isKeyItemExist(keyAlias: string, options: HuksOptions): Promise<boolean>
  */
 @!APILevel[
     since: "22",
@@ -92,7 +93,6 @@ public func isKeyItemExist(keyAlias: String, options: HuksOptions): Bool {
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @relation function getKeyItemProperties(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult>
  */
 @!APILevel[
     since: "22",
@@ -147,7 +147,6 @@ public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksPa
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @relation function anonAttestKeyItem(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult>
  */
 @!APILevel[
     since: "22",
@@ -226,7 +225,6 @@ public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<Str
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @relation function exportKeyItem(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult>
  */
 @!APILevel[
     since: "22",
@@ -285,7 +283,6 @@ public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
  * @throws { BusinessException } 12000013 - queried credential does not exist
  * @throws { BusinessException } 12000014 - memory is insufficient
  * @throws { BusinessException } 12000015 - call service failed
- * @relation function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
     since: "22",
@@ -350,7 +347,6 @@ public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, opt
  * @throws { BusinessException } 12000013 - queried credential does not exist
  * @throws { BusinessException } 12000014 - memory is insufficient
  * @throws { BusinessException } 12000015 - call service failed
- * @relation function generateKeyItem(keyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
     since: "22",
@@ -395,7 +391,6 @@ public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit {
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @relation function deleteKeyItem(keyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
     since: "22",
@@ -448,7 +443,6 @@ public func deleteKeyItem(keyAlias: String, options: HuksOptions): Unit {
  * @throws { BusinessException } 12000013 - queried credential does not exist
  * @throws { BusinessException } 12000014 - memory is insufficient
  * @throws { BusinessException } 12000015 - call service failed
- * @relation function importKeyItem(keyAlias: string, options: HuksOptions): Promise<void>
  */
 @!APILevel[
     since: "22",

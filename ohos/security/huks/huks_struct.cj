@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
+
 package ohos.security.huks
 
 import ohos.labels.*
@@ -20,8 +22,6 @@ import ohos.business_exception.BusinessException
 
 /**
  * Defines the param field in the properties array of options used in the APIs.
- *
- * @relation export interface HuksParam
  */
 @!APILevel[
     since: "22",
@@ -30,8 +30,6 @@ import ohos.business_exception.BusinessException
 public class HuksParam {
     /**
      * tag.
-     *
-     * @relation tag: HuksTag
      */
     @!APILevel[
         since: "22",
@@ -40,8 +38,6 @@ public class HuksParam {
     public var tag: UInt32
     /**
      * Value of the tag.
-     *
-     * @relation value: boolean | int | bigint | Uint8Array
      */
     @!APILevel[
         since: "22",
@@ -172,8 +168,6 @@ public enum HuksParamValue {
 
 /**
  * Defines options used in the APIs.
- *
- * @relation export interface HuksOptions 
  */
 @!APILevel[
     since: "22",
@@ -182,8 +176,6 @@ public enum HuksParamValue {
 public class HuksOptions {
     /**
      * Properties used to hold the HuksParam array.
-     *
-     * @relation properties?: Array<HuksParam>
      */
     @!APILevel[
         since: "22",
@@ -192,8 +184,6 @@ public class HuksOptions {
     public var properties: Array<HuksParam>
     /**
      * Input data.
-     *
-     * @relation inData?: Uint8Array
      */
     @!APILevel[
         since: "22",
@@ -216,9 +206,6 @@ public class HuksOptions {
 
 /**
  * Defines the struct for a HUKS handle.
- *
- * @relation export interface HuksSessionHandle 
-
  */
 @!APILevel[
     since: "22",
@@ -227,8 +214,6 @@ public class HuksOptions {
 public class HuksSessionHandle {
     /**
      * Value of the handle.
-     *
-     * @relation handle: long
      */
      @!APILevel[
         since: "22",
@@ -237,8 +222,6 @@ public class HuksSessionHandle {
     public var handle: HuksHandleId
     /**
      * Challenge obtained after the initSession operation.
-     *
-     * @relation challenge?: Uint8Array
      */
     @!APILevel[
         since: "22",

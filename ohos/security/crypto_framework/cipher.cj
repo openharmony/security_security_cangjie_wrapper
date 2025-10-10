@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
+
 package ohos.security.crypto_framework
 
 import ohos.ffi.*
@@ -54,7 +56,6 @@ foreign {
  * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 801 - this operation is not supported.
  * @throws { BusinessException } 17620001 - memory operation failed.
- * @relation function createCipher(transformation: string): Cipher
  */
 @!APILevel[
     since: "22",
@@ -73,8 +74,6 @@ public func createCipher(transformation: String): Cipher {
 
 /**
  * Provides the Cipher type, which is used for encryption and decryption operations.
- *
- * @relation interface Cipher
  */
 @!APILevel[
     since: "22",
@@ -96,7 +95,6 @@ public class Cipher <: RemoteDataLite {
      * Indicates the algorithm name of the cipher object.
      *
      * @type { String }
-     * @relation readonly algName: string
      */
     @!APILevel[
         since: "22",
@@ -140,7 +138,6 @@ public class Cipher <: RemoteDataLite {
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
      */
     @!APILevel[
         since: "22",
@@ -194,7 +191,6 @@ public class Cipher <: RemoteDataLite {
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation updateSync(data: DataBlob): DataBlob
      */
     @!APILevel[
         since: "22",
@@ -228,7 +224,6 @@ public class Cipher <: RemoteDataLite {
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation doFinalSync(data: DataBlob | null): DataBlob
      */
     @!APILevel[
         since: "22",

@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
+
 package ohos.security.crypto_framework
 
 import ohos.labels.*
@@ -21,8 +23,6 @@ foreign func memcpy_s(dest: CPointer<UInt8>, destMax: UIntNative, src: CPointer<
 
 /**
  * Defines a buffer array of the Binary Large Object (BLOB) type.
- *
- * @relation interface DataBlob
  */
 @!APILevel[
     since: "22",
@@ -31,8 +31,6 @@ foreign func memcpy_s(dest: CPointer<UInt8>, destMax: UIntNative, src: CPointer<
 public class DataBlob {
     /**
      * Indicates the content of data blob.
-     *
-     * @relation data: Uint8Array
      */
     @!APILevel[
         since: "22",
@@ -56,8 +54,6 @@ public class DataBlob {
 /**
  * Defines the child class of ParamsSpec. It is a parameter of init for symmetric encryption or decryption.
  * IvParamsSpec applies to the cipher modes such as CBC, CTR, OFB, and CFB, which use only the IV.
- *
- * @relation interface IvParamsSpec extends ParamsSpec
  */
 @!APILevel[
     since: "22",
@@ -70,8 +66,6 @@ public class IvParamsSpec <: ParamsSpec {
      * - AES CBC, CTR, OFB, or CFB mode: 16-byte IV
      * - 3DES CBC, OFB, or CFB mode: 8-byte IV
      * - SM4 CBC, CTR, OFB, or CFB mode: 16-byte IV
-     *
-     * @relation iv: DataBlob
      */
     @!APILevel[
         since: "22",
@@ -95,8 +89,6 @@ public class IvParamsSpec <: ParamsSpec {
 
 /**
  * Provides the GcmParamsSpec type, including the parameter iv, aad and authTag.
- *
- * @relation interface GcmParamsSpec extends ParamsSpec
  */
 @!APILevel[
     since: "22",
@@ -105,8 +97,6 @@ public class IvParamsSpec <: ParamsSpec {
 public class GcmParamsSpec <: ParamsSpec {
     /**
      * Indicates the additional Authenticated Data in GCM mode.
-     *
-     * @relation aad: DataBlob
      */
     @!APILevel[
         since: "22",
@@ -116,8 +106,6 @@ public class GcmParamsSpec <: ParamsSpec {
 
     /**
      * Indicates the GCM algorithm parameters such as iv.
-     *
-     * @relation iv: DataBlob
      */
     @!APILevel[
         since: "22",
@@ -127,8 +115,6 @@ public class GcmParamsSpec <: ParamsSpec {
 
     /**
      * Indicates the output tag from the encryption operation. The tag is used for integrity check.
-     *
-     * @relation authTag: DataBlob
      */
     @!APILevel[
         since: "22",
@@ -154,8 +140,6 @@ public class GcmParamsSpec <: ParamsSpec {
 
 /**
  * Provides the CcmParamsSpec type, including the parameter iv, aad and authTag.
- *
- * @relation interface CcmParamsSpec extends ParamsSpec
  */
 @!APILevel[
     since: "22",
@@ -164,8 +148,6 @@ public class GcmParamsSpec <: ParamsSpec {
 public class CcmParamsSpec <: ParamsSpec {
     /**
      * Indicates the output tag from the encryption operation. The tag is used for integrity check.
-     *
-     * @relation authTag: DataBlob
      */
     @!APILevel[
         since: "22",
@@ -175,8 +157,6 @@ public class CcmParamsSpec <: ParamsSpec {
 
     /**
      * Indicates the Additional Authenticated Data in CCM mode.
-     *
-     * @relation aad: DataBlob
      */
     @!APILevel[
         since: "22",
@@ -186,8 +166,6 @@ public class CcmParamsSpec <: ParamsSpec {
 
     /**
      * Indicates the GCM algorithm parameters such as IV.
-     *
-     * @relation iv: DataBlob
      */
     @!APILevel[
         since: "22",

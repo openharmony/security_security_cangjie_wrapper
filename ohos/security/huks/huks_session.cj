@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
+
 package ohos.security.huks
 
 import ohos.labels.*
@@ -32,7 +34,6 @@ import ohos.business_exception.BusinessException
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @relation function initSession(keyAlias: string, options: HuksOptions): Promise<HuksSessionHandle>
  */
 @!APILevel[
     since: "22",
@@ -117,7 +118,6 @@ func getHuksHandle(handle: OhosHksBlob): HuksHandleId {
    * @throws { BusinessException } 12000011 - queried entity does not exist
    * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
    * @throws { BusinessException } 12000014 - memory is insufficient
-   * @relation function updateSession(handle: long, options: HuksOptions, token?: Uint8Array): Promise<HuksReturnResult>
    */
 @!APILevel[
     since: "22",
@@ -147,7 +147,6 @@ public func updateSession(handle: HuksHandleId, options: HuksOptions, token!: By
    * @throws { BusinessException } 12000011 - queried entity does not exist
    * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
    * @throws { BusinessException } 12000014 - memory is insufficient
-   * @relation function finishSession(handle: long, options: HuksOptions, token?: Uint8Array): Promise<HuksReturnResult>
    */
 @!APILevel[
     since: "22",
@@ -249,7 +248,6 @@ func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, i
  * @throws { BusinessException } 12000006 - error occured in crypto engine
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @relation function abortSession(handle: long, options: HuksOptions): Promise<void>
  */
 @!APILevel[
     since: "22",

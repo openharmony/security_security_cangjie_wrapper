@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
+
 package ohos.security.crypto_framework
 
 import ohos.ffi.*
@@ -36,7 +38,6 @@ foreign {
  * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
  * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 17620001 - memory operation failed.
- * @relation function createMac(algName: string): Mac
  */
 @!APILevel[
     since: "22",
@@ -56,8 +57,6 @@ public func createMac(algName: String): Mac {
 /**
  * Provides the Mac type, which is used for Mac generation.
  * Before using any API of the Mac class, you must create a Mac instance by using createMac.
- *
- * @relation interface Mac
  */
 @!APILevel[
     since: "22",
@@ -77,8 +76,6 @@ public class Mac <: RemoteDataLite {
 
     /**
      * Indicates the algorithm name.
-     *
-     * @relation readonly algName: string
      */
     @!APILevel[
         since: "22",
@@ -99,7 +96,6 @@ public class Mac <: RemoteDataLite {
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation initSync(key: SymKey): void
      */
     @!APILevel[
         since: "22",
@@ -119,7 +115,6 @@ public class Mac <: RemoteDataLite {
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation updateSync(input: DataBlob): void
      */
     @!APILevel[
         since: "22",
@@ -151,7 +146,6 @@ public class Mac <: RemoteDataLite {
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation doFinalSync(): DataBlob
      */
     @!APILevel[
         since: "22",
@@ -172,7 +166,6 @@ public class Mac <: RemoteDataLite {
      * Output the length of hmac result.
      *
      * @throws { BusinessException } 17630001 - crypto operation error.
-     * @relation getMacLength(): number
      */
     @!APILevel[
         since: "22",

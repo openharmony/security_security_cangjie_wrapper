@@ -17,13 +17,13 @@ package ohos_app_cangjie_entry
 
 internal import std.unittest.*
 import std.unittest.testmacro.*
-internal import UniversalKeystoreKit.*
+internal import kit.UniversalKeystoreKit.*
 import std.unittest.testmacro.*
 import std.unittest.*
 import std.unittest.common.*
 import std.unittest.testmacro.*
 import ohos.base.*
-import PerformanceAnalysisKit.Hilog
+import kit.PerformanceAnalysisKit.Hilog
 
 @Test
 class Test_SecurityHuks_Enum {

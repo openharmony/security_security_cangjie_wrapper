@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
+
 package ohos.security.crypto_framework
 
 import ohos.ffi.*
@@ -33,8 +35,6 @@ foreign {
 /**
  * Provides APIs for symmetric key operations.
  * Its objects need to be passed to init of the Cipher instance in symmetric encryption and decryption.
- *
- * @relation interface SymKey extends Key
  */
 @!APILevel[
     since: "22",
@@ -119,8 +119,6 @@ public class SymKey <: RemoteDataLite & Key {
     /**
      * Clears the keys in the memory. This API returns the result synchronously.
      * You are advised to use this API when symmetric key instances are no longer used.
-     *
-     * @relation clearMem(): void
      */
     @!APILevel[
         since: "22",

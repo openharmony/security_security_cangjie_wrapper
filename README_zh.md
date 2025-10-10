@@ -1,8 +1,8 @@
-# 安全基础能力仓颉封装
+# 安全基础能力仓颉封装（beta特性）
 
 ## 简介
 
-安全基础能力仓颉封装为实现系统安全、数据安全、应用安全领域提供支撑，提供有效保护OpenHarmony应用和用户数据的能力。当前支持的功能包括加解密算法库框架功能和密钥管理功能，相关功能仅支持standard设备。
+安全基础能力仓颉封装为实现系统安全、数据安全、应用安全领域提供支撑，通过提供加解密算法框架、密钥管理、数据保护、设备证书、设备安全等级管理、鉴权认证等能力，有效保护OpenHarmony应用和用户数据的能力。当前支持的功能包括加解密算法库框架功能和密钥管理功能，相关功能仅支持standard设备。
 
 ## 系统架构
 
@@ -54,7 +54,7 @@ base/security/security_cangjie_wrapper
 
 - 加解密算法库框架接口：仅提供密钥的密码学操作，不提供密钥管理功能。因此，使用算法库时，需要应用自己来保管密钥，适用于临时会话密钥等仅在内存中使用的场景，或者应用自己实现密钥安全存储的场景，主要包含以下功能：
 
-  - 密钥生成和转换：根据指定算法生成算法库密钥对象，当前支持AES、3DES、SM4、HMAC算法，具体规格参考[对称密钥生成和转换规格](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-sym-key-generation-conversion-spec.md)。相关指导参考[随机生成对称密钥](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-generate-sym-key-randomly.md)。
+  - 密钥生成：当前支持两种方式生成密钥：（1）根据指定算法生成随机密钥（2）支持指定二进制数据生成密钥，当前支持AES、3DES、SM4、HMAC算法，具体规格参考[对称密钥生成规格](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-sym-key-generation-conversion-spec.md)。相关指导参考[随机生成对称密钥](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-generate-sym-key-randomly.md)，[指定二进制数据生成密钥](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-convert-binary-data-to-sym-key.md)。
 
   - 加解密：提供加解密算法库加解密接口，具体规格参考[对称密钥加解密算法规格](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-sym-encrypt-decrypt-spec.md)。相关指导参考[使用AES对称密钥加解密](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-aes-sym-encrypt-decrypt-gcm.md)。
 

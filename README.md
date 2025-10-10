@@ -1,4 +1,4 @@
-# security_security_cangjie_wrapper
+# security_security_cangjie_wrapper(beta feature)
 
 ## Introduction
 
@@ -55,14 +55,25 @@ base/security/security_cangjie_wrapper
 
 ## Usage
 
-The security_cangjie_wrapper provides the following capabilities:
+The current security basic capability Cangjie wrapper provides the following functions:
 
-- Basic Encryption and Decryption Capabilities.
-- Huks Management.
-- Huks Session.
+- Cryptographic algorithm library framework interface: Only provides cryptographic operations for keys, without key management functions. Therefore, when using the algorithm library, the application needs to manage the keys itself, which is suitable for scenarios where temporary session keys are only used in memory, or scenarios where the application implements secure key storage itself. It mainly includes the following functions:
 
-For security APIs, please refer to[Keystore Capability](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_en/apis/UniversalKeystoreKit/cj-apis-security_huks.md). [Cryptographic Algorithm Library Framework](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_en/apis/CryptoArchitectureKit/cj-apis-crypto.md).
-For relevation guidance, please refer to [security Development Guide](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_en/security).
+  - Key generation: Currently supports two ways to generate keys: (1) Generate random keys according to the specified algorithm (2) Support generating keys by specifying binary data. Currently supports AES, 3DES, SM4, and HMAC algorithms. For specific specifications, refer to [Symmetric Key Generation Specifications](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-sym-key-generation-conversion-spec.md). Related guidance refers to [Randomly Generate Symmetric Keys](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-generate-sym-key-randomly.md) and [Generate Keys by Specifying Binary Data](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-convert-binary-data-to-sym-key.md).
+
+  - Encryption and decryption: Provides encryption and decryption interfaces for the algorithm library. For specific specifications, refer to [Symmetric Key Encryption and Decryption Algorithm Specifications](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-sym-encrypt-decrypt-spec.md). For related guidance, refer to [Using AES Symmetric Key Encryption and Decryption](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-aes-sym-encrypt-decrypt-gcm.md).
+
+  - Message digest calculation: Message digest algorithm is an algorithm that can generate a fixed-length digest from an input message of any length through specific operations. Message digest algorithms are also called hash algorithms or one-way hash algorithms. For specific algorithm specifications, refer to [Message Digest Calculation Specifications](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-generate-message-digest-overview.md). For related guidance, refer to [Using SHA256 Message Digest Calculation](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-generate-message-digest.md).
+
+  - Secure random number generation: Secure random number generation algorithm to generate secure random numbers. For related guidance, refer to [Secure Random Number Generation](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/CryptoArchitectureKit/cj-crypto-generate-random-number.md).
+
+- Key management function interface: Provides unified secure operation capabilities for various keys to businesses/applications, mainly including the following functions:
+  - Key generation and import: Provides key generation and import functions. For specific specifications, refer to [Key Generation and Import Specifications](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/UniversalKeystoreKit/cj-huks-key-generation-overview.md). For specific key generation, refer to [Key Generation](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/UniversalKeystoreKit/cj-huks-key-generation.md).
+  - Key usage: To achieve protection of data confidentiality, integrity, etc., the generated/imported keys can be used to perform key operations on data, such as: encryption and decryption, signature verification, key agreement, key derivation. For related guidance, refer to [Key Usage Introduction and General Process](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/UniversalKeystoreKit/cj-huks-key-use-overview.md).
+  - Key deletion: To ensure data security, the key should be deleted when it is no longer needed. For related guidance, refer to [Key Deletion](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/UniversalKeystoreKit/cj-huks-delete-key.md).
+  - Key attestation: HUKS provides legitimacy proof capability for keys, mainly applied to the proof of public keys of asymmetric keys. For related guidance, refer to [Non-anonymous Key Attestation](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/Dev_Guide/source_zh_cn/security/UniversalKeystoreKit/cj-huks-key-attestation-arkts.md).
+
+For related APIs of security basic capabilities, please refer to [Cangjie Cryptographic Algorithm Library Framework](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/CryptoArchitectureKit/cj-apis-crypto.md) and [Cangjie Key Management Function](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/doc/API_Reference/source_zh_cn/apis/UniversalKeystoreKit/cj-apis-security_huks.md).
 
 ## Constraints
 

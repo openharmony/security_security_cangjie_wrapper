@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
+
 package ohos.security.crypto_framework
 
 import ohos.ffi.*
@@ -36,7 +38,6 @@ foreign {
  * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
  * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 801 - this operation is not supported.
- * @relation function createSymKeyGenerator(algName: string): SymKeyGenerator
  */
 @!APILevel[
     since: "22",
@@ -55,8 +56,6 @@ public func createSymKeyGenerator(algName: String): SymKeyGenerator {
 
 /**
  * Provides the SymKeyGenerator type, which is used for generating symmetric key.
- *
- * @relation interface SymKeyGenerator
  */
 @!APILevel[
     since: "22",
@@ -76,8 +75,6 @@ public class SymKeyGenerator <: RemoteDataLite {
 
     /**
      * Indicates the algorithm name of the SymKeyGenerator object.
-     *
-     * @relation readonly algName: string
      */
     @!APILevel[
         since: "22",
@@ -94,7 +91,6 @@ public class SymKeyGenerator <: RemoteDataLite {
      *
      * @returns { SymKey } the SymKey returned by the function.
      * @throws { BusinessException } 17620001 - memory operation failed.
-     * @relation generateSymKeySync(): SymKey
      */
     @!APILevel[
         since: "22",
@@ -117,7 +113,6 @@ public class SymKeyGenerator <: RemoteDataLite {
      * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
-     * @relation convertKeySync(key: DataBlob): SymKey
      */
     @!APILevel[
         since: "22",

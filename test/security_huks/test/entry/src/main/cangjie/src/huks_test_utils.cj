@@ -16,7 +16,7 @@
 package ohos_app_cangjie_entry
 
 internal import ohos.business_exception.BusinessException
-internal import UniversalKeystoreKit.*
+internal import kit.UniversalKeystoreKit.*
 
 func clean(keyAlias: String) {
     try {
