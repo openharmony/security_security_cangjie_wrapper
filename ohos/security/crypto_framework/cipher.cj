@@ -134,7 +134,7 @@ public class Cipher <: RemoteDataLite {
      * @param { CryptoMode } opMode - indicates the crypto mode is encryption or decryption.
      * @param { Key } key - indicates the symmetric key or the asymmetric key.
      * @param { ParamsSpec } params - indicates the algorithm parameters such as IV.
-     * @throws { BusinessException } 401 - - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.

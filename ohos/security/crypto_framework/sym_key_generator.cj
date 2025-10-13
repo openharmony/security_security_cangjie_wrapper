@@ -35,7 +35,7 @@ foreign {
  *
  * @param { String } algName - indicates the algorithm name.
  * @returns { SymKeyGenerator } the symmetric key generator instance.
- * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;	
+ * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
  * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 801 - this operation is not supported.
  */

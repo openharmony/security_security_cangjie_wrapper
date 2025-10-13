@@ -94,7 +94,7 @@ public class Md <: RemoteDataLite {
      *
      * @param { DataBlob } input - indicates the DataBlob.
      * @returns { Unit } the promise returned by the function.
-     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left	unspecified;
+     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
@@ -125,7 +125,7 @@ public class Md <: RemoteDataLite {
      * Output the result of md calculation.
      *
      * @returns { DataBlob } the promise returned by the function.
-     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left	unspecified;
+     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
