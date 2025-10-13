@@ -161,7 +161,7 @@ enum HuksExceptionErrCode {
             case HuksErrCodeCredentialNotExist => 12000013
             case HuksErrCodeInsufficientMemory => 12000014
             case HuksErrCodeCallServiceFailed => 12000015
-            case _ => throw BusinessException(401, "Parameter error.")
+            case _ => throw BusinessException(12000018, "The input parameter is valid.")
         }
     }
 }

@@ -254,7 +254,6 @@ func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, i
  *
  * @param { HuksHandleId } handle - Handle for the abortSession operation.
  * @param { HuksOptions } options - Parameter set used for the abortSession operation.
- * @returns { Unit } Promise used to return the abortSession operation result.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000004 - operating file failed

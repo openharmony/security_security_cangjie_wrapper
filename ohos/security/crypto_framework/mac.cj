@@ -97,7 +97,6 @@ public class Mac <: RemoteDataLite {
      * init and doFinal are mandatory, and update is optional.
      *
      * @param { SymKey } key - indicates the SymKey.
-     * @returns { Unit } the promise returned by the function.
      * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;	
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
@@ -118,7 +117,6 @@ public class Mac <: RemoteDataLite {
      * Update mac with DataBlob.
      *
      * @param { DataBlob } input - indicates the DataBlob.
-     * @returns { Unit } the promise returned by the function.
      * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;	
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
@@ -149,7 +147,6 @@ public class Mac <: RemoteDataLite {
     /**
      * Output the result of mac calculation.
      *
-     * @returns { DataBlob } the promise returned by the function.
      * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
