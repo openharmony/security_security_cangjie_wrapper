@@ -35,8 +35,7 @@ foreign {
  *
  * @param { String } algName - indicates the algorithm name.
  * @returns { SymKeyGenerator } the symmetric key generator instance.
- * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
- * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+ * @throws { BusinessException } 401 - Parameter error.
  * @throws { BusinessException } 801 - this operation is not supported.
  */
 @!APILevel[
@@ -56,6 +55,7 @@ public func createSymKeyGenerator(algName: String): SymKeyGenerator {
 
 /**
  * Provides the SymKeyGenerator type, which is used for generating symmetric key.
+ *
  */
 @!APILevel[
     22,
@@ -75,6 +75,7 @@ public class SymKeyGenerator <: RemoteDataLite {
 
     /**
      * Indicates the algorithm name of the SymKeyGenerator object.
+     *
      */
     @!APILevel[
         22,
@@ -110,9 +111,6 @@ public class SymKeyGenerator <: RemoteDataLite {
      *
      * @param { DataBlob } key - the key data blob.
      * @returns { SymKey } the SymKey  returned by the function.
-     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left
-     * unspecified;
-     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      */
     @!APILevel[

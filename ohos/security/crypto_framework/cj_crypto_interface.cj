@@ -23,6 +23,7 @@ import ohos.labels.*
  * Provides the Key type, which is the common parent class of keys.
  * Before performing cryptographic operations, you need to construct a child class object of Key and pass it to init of
  * the Cipher instance.
+ *
  */
 @!APILevel[
     22,
@@ -31,6 +32,7 @@ import ohos.labels.*
 public interface Key {
     /**
      * Indicates the format of the key object.
+     *
      */
     @!APILevel[
         22,
@@ -41,6 +43,7 @@ public interface Key {
     /**
      * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric
      * key.
+     *
      */
     @!APILevel[
         22,
@@ -54,6 +57,7 @@ public interface Key {
      * The public key must be in DER encoding format and comply with the ASN.1 syntax and X.509 specifications.
      * The private key must be in DER encoding format and comply with the ASN.1 syntax and PKCS#8 specifications.
      *
+     * @returns { DataBlob } the binary data of the key object.
      * @throws { BusinessException } 801 - this operation is not supported.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
@@ -68,6 +72,7 @@ public interface Key {
 /**
  * Encapsulates the parameters used for encryption or decryption.You need to construct its child class object and
  * pass it to init for symmetric encryption or decryption.
+ *
  */
 @!APILevel[
     22,
@@ -76,6 +81,7 @@ public interface Key {
 public open class ParamsSpec {
     /**
      * Indicates the algorithm name. Should be set before initialization of a cipher object.
+     *
      */
     @!APILevel[
         22,

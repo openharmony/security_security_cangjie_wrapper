@@ -35,8 +35,7 @@ foreign {
  *
  * @param { String } algName - indicates the md algorithm name.
  * @returns { Md } returns the created md instance.
- * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
- * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+ * @throws { BusinessException } 401 - Parameter error.
  * @throws { BusinessException } 17620001 - memory operation failed.
  */
 @!APILevel[
@@ -57,6 +56,7 @@ public func createMd(algName: String): Md {
 /**
  * Provides the Md type, which is used for Md generation.
  * Before using any API of the Md class, you must create an Md instance by using createMd.
+ *
  */
 @!APILevel[
     22,
@@ -76,6 +76,7 @@ public class Md <: RemoteDataLite {
 
     /**
      * Indicates the algorithm name.
+     *
      */
     @!APILevel[
         22,
@@ -91,9 +92,7 @@ public class Md <: RemoteDataLite {
      * Update md with DataBlob.
      *
      * @param { DataBlob } input - indicates the DataBlob.
-     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left
-     * unspecified;
-     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @returns { Unit } the promise returned by the function.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
@@ -122,9 +121,7 @@ public class Md <: RemoteDataLite {
     /**
      * Output the result of md calculation.
      *
-     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left
-     * unspecified;
-     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @returns { DataBlob } the promise returned by the function.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.

@@ -22,6 +22,7 @@ import ohos.business_exception.BusinessException
 
 /**
  * Defines the param field in the properties array of options used in the APIs.
+ *
  */
 @!APILevel[
     22,
@@ -30,6 +31,7 @@ import ohos.business_exception.BusinessException
 public class HuksParam {
     /**
      * tag.
+     *
      */
     @!APILevel[
         22,
@@ -38,6 +40,7 @@ public class HuksParam {
     public var tag: UInt32
     /**
      * Value of the tag.
+     *
      */
     @!APILevel[
         22,
@@ -47,6 +50,7 @@ public class HuksParam {
 
     /**
      *HuksParam constructor
+     *
      */
     @!APILevel[
         22,
@@ -168,6 +172,7 @@ public enum HuksParamValue {
 
 /**
  * Defines options used in the APIs.
+ *
  */
 @!APILevel[
     22,
@@ -176,6 +181,7 @@ public enum HuksParamValue {
 public class HuksOptions {
     /**
      * Properties used to hold the HuksParam array.
+     *
      */
     @!APILevel[
         22,
@@ -184,6 +190,7 @@ public class HuksOptions {
     public var properties: Array<HuksParam>
     /**
      * Input data.
+     *
      */
     @!APILevel[
         22,
@@ -206,6 +213,7 @@ public class HuksOptions {
 
 /**
  * Defines the struct for a HUKS handle.
+ *
  */
 @!APILevel[
     22,
@@ -214,6 +222,7 @@ public class HuksOptions {
 public class HuksSessionHandle {
     /**
      * Value of the handle.
+     *
      */
      @!APILevel[
         22,
@@ -222,6 +231,7 @@ public class HuksSessionHandle {
     public var handle: HuksHandleId
     /**
      * Challenge obtained after the initSession operation.
+     *
      */
     @!APILevel[
         22,

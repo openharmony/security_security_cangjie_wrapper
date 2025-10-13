@@ -24,6 +24,7 @@ import std.deriving.Derive
 
 /**
  * Enum for result code.
+ *
  */
 @!APILevel[
     22,
@@ -32,6 +33,7 @@ import std.deriving.Derive
 public enum Result <: ToString {
     /**
      * Indicates that input parameters is invalid.
+     *
      */
     @!APILevel[
         22,
@@ -41,6 +43,7 @@ public enum Result <: ToString {
     |
     /**
      * Indicates that function or algorithm is not supported.
+     *
      */
     @!APILevel[
         22,
@@ -50,6 +53,7 @@ public enum Result <: ToString {
     |
     /**
      * Indicates the memory operation failed.
+     *
      */
     @!APILevel[
         22,
@@ -59,6 +63,7 @@ public enum Result <: ToString {
     |
     /**
      * Indicates that failed to convert parameters between cj and c.
+     *
      */
     @!APILevel[
         22,
@@ -68,6 +73,7 @@ public enum Result <: ToString {
     |
     /**
      * Indicates that crypto operation error.
+     *
      */
     @!APILevel[
         22,
@@ -91,14 +97,13 @@ public enum Result <: ToString {
             case ErrOutOfMemory => 17620001
             case ErrRuntimeError => 17620002
             case ErrCryptoOperation => 17630001
-            case _ => throw IllegalArgumentException("The type is not supported.")
+            case _ => throw BusinessException(401, "Parameter error.")
         }
     }
 
     /**
      * Return the string of the enumeration value.
      *
-     * @throws IllegalArgumentException - The type is not supported.
      */
     @!APILevel[
         22,
@@ -111,7 +116,7 @@ public enum Result <: ToString {
             case ErrOutOfMemory => "Memory error."
             case ErrRuntimeError => "Runtime error."
             case ErrCryptoOperation => "Crypto operation error."
-            case _ => throw IllegalArgumentException("The type is not supported.")
+            case _ => throw BusinessException(401, "Parameter error.")
         }
     }
 }
@@ -123,14 +128,14 @@ func getError(errCode: Int32): Result {
         case errCode == -20001 => return ErrOutOfMemory
         case errCode == -20002 => return ErrRuntimeError
         case errCode == -30001 => return ErrCryptoOperation
-        case _ => throw Exception("Unrecognized error code: ${errCode}!")
+        case _ => throw BusinessException(401, "Parameter error.")
     }
 }
 
 func checkAndThrow(errCode: Int32) {
     if (errCode == -10001) {
         let msg = getError(errCode).toString()
-        throw IllegalArgumentException(msg)
+        throw BusinessException(401, "Parameter error.")
     }
     if (errCode != 0) {
         let msg = getError(errCode).toString()
@@ -140,6 +145,7 @@ func checkAndThrow(errCode: Int32) {
 
 /**
  * Enum for obtain the crypto operation.
+ *
  */
 @Derive[ToString, Equatable]
 @!APILevel[
@@ -149,6 +155,7 @@ func checkAndThrow(errCode: Int32) {
 public enum CryptoMode {
     /**
      * The value of encryption operation for AES, 3DES and RSA.
+     *
      */
     @!APILevel[
         22,
@@ -158,6 +165,7 @@ public enum CryptoMode {
     |
     /**
      * The value of decryption operation for AES, 3DES and RSA.
+     *
      */
     @!APILevel[
         22,
@@ -170,13 +178,14 @@ public enum CryptoMode {
         return match (this) {
             case EncryptMode => 0
             case DecryptMode => 1
-            case _ => throw IllegalArgumentException("The type is not supported.")
+            case _ => throw BusinessException(401, "Parameter error.")
         }
     }
 }
 
 /**
  * Enum for encryption specified parameters.
+ *
  */
 @Derive[ToString, Equatable]
 @!APILevel[
@@ -186,6 +195,7 @@ public enum CryptoMode {
 public enum CipherSpecItem {
     /**
      * Indicates the algorithm name of the message digest function. It is used during RSA encryption.
+     *
      */
     @!APILevel[
         22,
@@ -195,6 +205,7 @@ public enum CipherSpecItem {
     |
     /**
      * Indicates the algorithm name for the mask generation function. It is used during RSA encryption.
+     *
      */
     @!APILevel[
         22,
@@ -204,6 +215,7 @@ public enum CipherSpecItem {
     |
     /**
      * Indicates the message digest parameter for the MGF1 mask generation function. It is used during RSA encryption.
+     *
      */
     @!APILevel[
         22,
@@ -213,6 +225,7 @@ public enum CipherSpecItem {
     |
     /**
      * Indicates the source of the encoding input P. It is used during RSA encryption.
+     *
      */
     @!APILevel[
         22,
@@ -228,7 +241,7 @@ public enum CipherSpecItem {
                 case OaepMgfNameStr => 101
                 case OaepMgf1MdStr => 102
                 case OaepMgf1PsrcUint8Arr => 103
-                case _ => throw IllegalArgumentException("The type is not supported.")
+                case _ => throw BusinessException(401, "Parameter error.")
             }
         }
     }

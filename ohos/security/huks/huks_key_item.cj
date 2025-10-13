@@ -270,6 +270,7 @@ public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
  * @param { String } keyAlias - keyAlias indicates the name of key to be imported.
  * @param { String } wrappingKeyAlias - wrappingKeyAlias indicates the name of key for wrapping the key to be imported.
  * @param { HuksOptions } options - options indicates the properties of the key.
+ * @returns { Unit } the promise returned by the function.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
@@ -332,9 +333,10 @@ public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, opt
  * Generates a key. This API uses a promise to return the result. Because the key is always
  * protected in a trusted environment (such as a TEE), the promise does not return the key content.
  * It returns only the information indicating whether the API is successfully called.
- * @returns { Promise<void> } the promise returned by the function.
+ *
  * @param { String } keyAlias - keyAlias indicates the key's name.
  * @param { HuksOptions } options - options indicates the properties of the key.
+ * @returns { Promise<void> } the promise returned by the function.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
@@ -384,6 +386,9 @@ public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit {
 /**
  * Deletes a key. This API uses a promise to return the result.
  *
+ * @param { string } keyAlias - keyAlias indicates the key's name.
+ * @param { HuksOptions } options - options indicates the properties of the key.
+ * @returns { Unit } the promise returned by the function.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000004 - operating file failed
@@ -430,6 +435,10 @@ public func deleteKeyItem(keyAlias: String, options: HuksOptions): Unit {
 /**
  * Imports a key in plaintext. This API uses a promise to return the result.
  *
+ * @param { string } keyAlias - keyAlias indicates the key's name.
+ * @param { HuksOptions } options - Tags required for the import and key to import. The algorithm, key purpose, and
+ * key length are mandatory.
+ * @returns { Unit } the promise returned by the function.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
