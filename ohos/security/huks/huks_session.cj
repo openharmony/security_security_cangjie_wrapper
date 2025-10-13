@@ -108,7 +108,7 @@ func getHuksHandle(handle: OhosHksBlob): HuksHandleId {
    *
    * @param { long } handle - Handle for the updateSession operation.
    * @param { HuksOptions } options - Parameter set used for the updateSession operation.
-   * @param { Array<UInt8> } token - Authentication token for refined key access control. If this parameter is left blank,
+   * @param { Array<UInt8> }[Option] token - Authentication token for refined key access control. If this parameter is left blank,
    * refined key access control is not performed.
    * @returns { Option<Bytes> } Promise used to return the updateSession operation result.
    * @throws { BusinessException } 401 - Parameter error. Possible causes:

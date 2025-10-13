@@ -52,7 +52,8 @@ foreign {
  *
  * @param { String } transformation - indicates the description to be transformed to cipher specifications.
  * @returns { Cipher } the cipher object returned by the function.
- * @throws { BusinessException } 401 - Parameter error.
+ * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+ * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 801 - this operation is not supported.
  * @throws { BusinessException } 17620001 - memory operation failed.
  */
@@ -133,7 +134,8 @@ public class Cipher <: RemoteDataLite {
      * @param { CryptoMode } opMode - indicates the crypto mode is encryption or decryption.
      * @param { Key } key - indicates the symmetric key or the asymmetric key.
      * @param { ParamsSpec } params - indicates the algorithm parameters such as IV.
-     * @throws { BusinessException } 401 - Parameter error.
+     * @throws { BusinessException } 401 - - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
@@ -186,7 +188,7 @@ public class Cipher <: RemoteDataLite {
      *
      * @param { DataBlob } data - indicates the data to be encrypted or decrypted.
      * @returns { DataBlob } the data returned by the function.
-     * @throws { BusinessException } 401 - Parameter error.
+     * @throws { BusinessException } 401 - invalid parameters.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
@@ -218,7 +220,8 @@ public class Cipher <: RemoteDataLite {
      *
      * @param { DataBlob } data - indicates the data to be finally encrypted or decrypted.
      * @returns { DataBlob } the data returned by the function.
-     * @throws { BusinessException } 401 - Parameter error.
+     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.

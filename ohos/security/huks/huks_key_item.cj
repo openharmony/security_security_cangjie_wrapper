@@ -336,7 +336,7 @@ public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, opt
  *
  * @param { String } keyAlias - keyAlias indicates the key's name.
  * @param { HuksOptions } options - options indicates the properties of the key.
- * @returns { Promise<void> } the promise returned by the function.
+ * @returns { Unit } the promise returned by the function.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported

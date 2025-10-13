@@ -35,7 +35,8 @@ foreign {
  *
  * @param { String } algName - indicates the algorithm name.
  * @returns { SymKeyGenerator } the symmetric key generator instance.
- * @throws { BusinessException } 401 - Parameter error.
+ * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;	
+ * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 801 - this operation is not supported.
  */
 @!APILevel[
@@ -111,6 +112,8 @@ public class SymKeyGenerator <: RemoteDataLite {
      *
      * @param { DataBlob } key - the key data blob.
      * @returns { SymKey } the SymKey  returned by the function.
+     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
+     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      */
     @!APILevel[
