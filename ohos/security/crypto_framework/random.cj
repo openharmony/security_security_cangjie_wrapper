@@ -51,6 +51,7 @@ public func createRandom(): Random {
 
 /**
  * Provides APIs for computing random numbers and setting seeds.
+ *
  */
 @!APILevel[
     22,
@@ -67,6 +68,7 @@ public class Random <: RemoteDataLite {
 
     /**
      * Indicates the random generation algorithm name. Currently, only CTR_DRBG is supported.
+     *
      */
     @!APILevel[
         22,
@@ -89,8 +91,7 @@ public class Random <: RemoteDataLite {
      *
      * @param { Int32 } len - indicates the length of random DataBlob.
      * @returns { DataBlob } return the generated random blob.
-     * @throws IllegalArgumentException - invalid parameters. Possible causes: 1. Mandatory parameters are left
-     * unspecified;
+     * @throws { BusinessException } 401 - nvalid parameters. Possible causes: 1. Mandatory parameters are left	unspecified;
      * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.

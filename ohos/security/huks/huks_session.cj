@@ -22,6 +22,10 @@ import ohos.business_exception.BusinessException
 
 /**
  * Init Operation.
+ *
+ * @param { string } keyAlias - Alias of the key involved in the initSession operation.
+ * @param { HuksOptions } options - Parameter set used for the initSession operation.
+ * @returns { HuksSessionHandle } Promise used to return a session handle for subsequent operations.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
@@ -101,6 +105,12 @@ func getHuksHandle(handle: OhosHksBlob): HuksHandleId {
  /**
    * Updates the key operation by segment. This API uses an asynchronous callback to return the result.
    * huks.initSession, huks.updateSession, and huks.finishSession must be used together.
+   *
+   * @param { long } handle - Handle for the updateSession operation.
+   * @param { HuksOptions } options - Parameter set used for the updateSession operation.
+   * @param { Array<UInt8> }[Option] token - Authentication token for refined key access control. If this parameter is left blank,
+   * refined key access control is not performed.
+   * @returns { Option<Bytes> } Promise used to return the updateSession operation result.
    * @throws { BusinessException } 401 - Parameter error. Possible causes:
    *                                 1. Mandatory parameters are left unspecified.
    *                                 2. Incorrect parameter types.
@@ -241,6 +251,9 @@ func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, i
 
 /**
  * Aborts a key operation. This API uses an asynchronous callback to return the result.
+ *
+ * @param { HuksHandleId } handle - Handle for the abortSession operation.
+ * @param { HuksOptions } options - Parameter set used for the abortSession operation.
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000004 - operating file failed
