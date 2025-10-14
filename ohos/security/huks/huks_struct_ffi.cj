@@ -30,7 +30,7 @@ struct OhosHksBlob {
     unsafe static func malloc(size: UInt32): OhosHksBlob {
         let data = CPointer<UInt8>(calloc(UIntNative(size), 1))
         if (data.isNull()) {
-            throw IllegalMemoryException("Out of Memory!")
+            throw BusinessException(17620001, "Memory error.")
         }
         return OhosHksBlob(size, data)
     }
@@ -38,7 +38,7 @@ struct OhosHksBlob {
     unsafe static func mallocFromBytes(data: Bytes) {
         let tmpData = LibC.malloc<UInt8>(count: data.size)
         if (tmpData.isNull()) {
-            throw IllegalMemoryException("Out of Memory!")
+            throw BusinessException(17620001, "Memory error.")
         }
         let blob = OhosHksBlob(UInt32(data.size), tmpData)
         let ptr = acquireArrayRawData(data)
@@ -126,7 +126,7 @@ class HksParamSet {
             )
         }
         if (this.rawBuffer.isNull()) {
-            throw IllegalMemoryException("Out of Memory!")
+            throw BusinessException(17620001, "Memory error.")
         }
         this.paramPtr = unsafe { CPointer<Byte>(this.rawBuffer + Int64(this.paramSetSize)) }
         for (p in properties) {
@@ -284,7 +284,7 @@ class HksParamSet {
         } else {
             let blobData = LibC.malloc<UInt8>(count: data.size)
             if (blobData.isNull()) {
-                throw IllegalMemoryException("Out of Memory!")
+                throw BusinessException(17620001, "Memory error.")
             }
             let _blob = OhosHksBlob(UInt32(data.size), blobData)
             unsafe {
@@ -354,7 +354,7 @@ class ReadOnlyHksParamSet {
     init(paramSetSize: UInt32) {
         this.rawBuffer = LibC.malloc<Byte>(count: Int64(paramSetSize))
         if (rawBuffer.isNull()) {
-            throw IllegalMemoryException("Out of Memory!")
+            throw BusinessException(17620001, "Memory error.")
         }
         unsafe { CPointer<UInt32>(this.rawBuffer).write(paramSetSize) }
     }

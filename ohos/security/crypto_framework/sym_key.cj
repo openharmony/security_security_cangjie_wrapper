@@ -35,6 +35,7 @@ foreign {
 /**
  * Provides APIs for symmetric key operations.
  * Its objects need to be passed to init of the Cipher instance in symmetric encryption and decryption.
+ *
  */
 @!APILevel[
     since: "22",
@@ -53,7 +54,8 @@ public class SymKey <: RemoteDataLite & Key {
     }
 
     /**
-     * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric key.
+     * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric
+     * key.
      *
      */
     @!APILevel[
@@ -119,6 +121,7 @@ public class SymKey <: RemoteDataLite & Key {
     /**
      * Clears the keys in the memory. This API returns the result synchronously.
      * You are advised to use this API when symmetric key instances are no longer used.
+     *
      */
     @!APILevel[
         since: "22",
