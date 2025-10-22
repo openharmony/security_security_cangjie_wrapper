@@ -45,9 +45,9 @@ class EntryView {
                 Text(this.message)
                     .fontSize(50)
                     .fontWeight(FontWeight.Bold)
-                    .onClick {
+                    .onClick ({
                         evt => this.message = "Hello Cangjie"
-                    }
+                    })
             }.width(100.percent)
         }.height(100.percent)
     }
