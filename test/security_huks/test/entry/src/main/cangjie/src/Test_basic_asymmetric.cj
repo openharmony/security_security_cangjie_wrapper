@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_BasicAsymmetric {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_rsa() {
         //ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-signing-signature-verification-ndk.md
         let keyAlias = "test_rsa"
@@ -170,7 +170,7 @@ class Test_SecurityHuks_BasicAsymmetric {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_ecc() {
         //ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-signing-signature-verification-arkts.md
         let keyAlias = "test_ecc"
@@ -306,7 +306,7 @@ class Test_SecurityHuks_BasicAsymmetric {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_export_key() {
         let keyAlias = "test_export_key"
         clean(keyAlias)

@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_Struct {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_param_value() {
         let boolean = HuksParamValue.BooleanValue(true)
         let int32 = HuksParamValue.Int32Value(1)
@@ -40,7 +40,7 @@ class Test_SecurityHuks_Struct {
 
     }
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_illegal_argument() {
         // 对应exception未覆盖
         try {

@@ -28,7 +28,7 @@ import kit.PerformanceAnalysisKit.Hilog
 @Test
 class Test_SecurityHuks_Enum {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_EnumHuksTag() {
         try {
             let tagsArr: Array<UInt32> = [
@@ -94,7 +94,7 @@ class Test_SecurityHuks_Enum {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_huks_constructor() {
         try {
             let a1 = HuksTagType()
