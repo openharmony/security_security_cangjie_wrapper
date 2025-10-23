@@ -28,7 +28,7 @@ import ohos.base.*
 class Test_SecurityHuks_Aes {
     // aes cbc + pkcs7
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_encrypt_decrypt_cbc_pkcs7() {
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-ndk.md
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-arkts.md
@@ -98,7 +98,7 @@ class Test_SecurityHuks_Aes {
 
      // aes cbc + nopadding
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_encrypt_decrypt_cbc_nopadding() {
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-ndk.md
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-arkts.md
@@ -168,7 +168,7 @@ class Test_SecurityHuks_Aes {
 
     // aes ctr + nopadding
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_encrypt_decrypt_ctr_nopadding() {
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-ndk.md
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-arkts.md
@@ -238,7 +238,7 @@ class Test_SecurityHuks_Aes {
 
      // aes ecb + pkcs7
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_encrypt_decrypt_ecb_pkcs7() {
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-ndk.md
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-arkts.md
@@ -308,7 +308,7 @@ class Test_SecurityHuks_Aes {
 
     // aes ecb + nopadding
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_encrypt_decrypt_ecb_nopadding() {
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-ndk.md
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-arkts.md
@@ -378,7 +378,7 @@ class Test_SecurityHuks_Aes {
 
     // aes gcm + nopadding
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_encrypt_decrypt_gcm_nopadding() {
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-ndk.md
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-encryption-decryption-arkts.md

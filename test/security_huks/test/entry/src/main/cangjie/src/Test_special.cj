@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_Special {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hks_param_set_none_param() {
         let keyAlias = "123";
         clean(keyAlias)

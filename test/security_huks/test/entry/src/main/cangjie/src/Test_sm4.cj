@@ -28,7 +28,7 @@ import ohos.base.*
 class Test_SecurityHuks_SM4 {
     // sm4 cbc + pkcs7
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_sm4_encrypt_decrypt_cbc_pkcs7() {
         let keyAlias = "test_sm4_encrypt_decrypt_cbc_pkcs7"
         try {
@@ -115,7 +115,7 @@ class Test_SecurityHuks_SM4 {
     }
     // sm4 ecb + pkcs7
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_sm4_encrypt_decrypt_ecb_pkcs7() {
         let keyAlias = "test_sm4_encrypt_decrypt_ecb_pkcs7"
         try {
@@ -205,7 +205,7 @@ class Test_SecurityHuks_SM4 {
     }
     // sm4 ecb + nopadding
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_sm4_encrypt_decrypt_ecb_nopadding() {
         let keyAlias = "test_sm4_encrypt_decrypt_ecb_nopadding"
         try {
@@ -295,7 +295,7 @@ class Test_SecurityHuks_SM4 {
     }
     // sm4 cbc + nopadding
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_sm4_encrypt_decrypt_cbc_nopadding() {
         let keyAlias = "test_sm4_encrypt_decrypt_cbc_nopadding"
         try {
@@ -382,7 +382,7 @@ class Test_SecurityHuks_SM4 {
     }
     // sm4 ctr + nopadding
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_sm4_encrypt_decrypt_ctr_nopadding() {
         let keyAlias = "test_sm4_encrypt_decrypt_ctr_nopadding"
         try {

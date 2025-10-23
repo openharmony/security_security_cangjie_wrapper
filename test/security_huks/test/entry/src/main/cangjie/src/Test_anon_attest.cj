@@ -28,7 +28,7 @@ import ohos.base.*
 class Test_SecurityHuks_AnonAttest {
     // 本用例需要全程联网！否则会抛出异常！
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_rsa_anno() {
         //ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-key-anon-attestation-arkts.md
         //ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-key-anon-attestation-ndk.md
@@ -72,7 +72,7 @@ class Test_SecurityHuks_AnonAttest {
         }
     }
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_anno_attest_empty_alias() {
         let keyAlias = ""
         var flag = false
@@ -87,7 +87,7 @@ class Test_SecurityHuks_AnonAttest {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_anno_attest_none_properties() {
         let keyAlias = "test_rsa_anno"
         var flag = false

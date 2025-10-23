@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_SessionOther {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_init_session_empty_alias() {
         let keyAlias = ""
         var flag = false
@@ -53,7 +53,7 @@ class Test_SecurityHuks_SessionOther {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_init_session_none_properties() {
         let keyAlias = "init_session"
         clean(keyAlias)
@@ -69,7 +69,7 @@ class Test_SecurityHuks_SessionOther {
         }
     }
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_update_session_overload() {
         let keyAlias = "update_session"
         clean(keyAlias)
@@ -113,7 +113,7 @@ class Test_SecurityHuks_SessionOther {
         }
     }
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_finish_session_overload() {
         let keyAlias = "finish_session"
         clean(keyAlias)
@@ -158,7 +158,7 @@ class Test_SecurityHuks_SessionOther {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_abort_session_exception() {
         let keyAlias = "test_abort_session"
         clean(keyAlias)

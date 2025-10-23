@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_IsKeyItemExist {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_is_key_item_exist() {
         let keyAlias = "test_is_key_item_exist"
         clean(keyAlias)
@@ -42,7 +42,7 @@ class Test_SecurityHuks_IsKeyItemExist {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_is_key_item_exist_with_empty_alias() {
         let keyAlias = ""
         try {

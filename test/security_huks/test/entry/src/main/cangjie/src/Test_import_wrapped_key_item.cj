@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_ImportWrappedKeyItem {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_import_wrapped_wrong() {
         //这个用例是错的，只有覆盖率的作用，最后会抛出异常
         let keyAlias = "test_import_wrapped_wrong"
@@ -77,7 +77,7 @@ class Test_SecurityHuks_ImportWrappedKeyItem {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_import_wrapped_empty_alias() {
         let keyAlias = ""
         let wrappingKeyAlias = "test_import_wrapped_wrong_wrapping_key"
@@ -108,7 +108,7 @@ class Test_SecurityHuks_ImportWrappedKeyItem {
         }
     }
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_import_wrapped_none_properties() {
         let keyAlias = "test_import_wrapped"
         let wrappingKeyAlias = "test_import_wrapped_wrong_wrapping_key"
@@ -134,7 +134,7 @@ class Test_SecurityHuks_ImportWrappedKeyItem {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_import_wrapped_none_indata() {
         let keyAlias = "test_import_wrapped"
         let wrappingKeyAlias = "test_import_wrapped_wrong_wrapping_key"
