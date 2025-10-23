@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_DeleteKey {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_delete_key() {
         let keyAlias = "test_delete_key"
         clean(keyAlias)
@@ -43,7 +43,7 @@ class Test_SecurityHuks_DeleteKey {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_delete_key_not_exist() {
         let keyAlias = "test_delete_key"
         clean(keyAlias)
@@ -60,7 +60,7 @@ class Test_SecurityHuks_DeleteKey {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_delete_key_empty_alias() {
         let keyAlias = ""
         var flag = false

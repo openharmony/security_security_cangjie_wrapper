@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_GetKeyItemProperties {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_get_key_item_properties() {
         let keyAlias = "test_get_key_item_properties"
         //clean(keyAlias)
@@ -43,7 +43,7 @@ class Test_SecurityHuks_GetKeyItemProperties {
         }
     }
    @TestCase
-   @Tag[APILevel21, TestLevel0]
+   @Tag[APILevel22, TestLevel0]
    func test_get_key_item_properties_empty_alias() {
        let keyAlias = ""
        var flag = false

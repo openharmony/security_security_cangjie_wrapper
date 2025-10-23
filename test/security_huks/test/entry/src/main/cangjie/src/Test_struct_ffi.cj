@@ -69,7 +69,7 @@ class Test_SecurityHuks_Struct_ffi {
     let optionsNone = HuksOptions()
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hks_param_set_uint32_none() {
         let keyAlias = "123"
         clean(keyAlias)
@@ -86,7 +86,7 @@ class Test_SecurityHuks_Struct_ffi {
         }
     }
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hks_param_set_bool_none() {
         let keyAlias = "123"
         clean(keyAlias)
@@ -102,7 +102,7 @@ class Test_SecurityHuks_Struct_ffi {
         }
     }
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hks_param_set_bytes_none() {
         let keyAlias = "123"
         clean(keyAlias)
@@ -119,7 +119,7 @@ class Test_SecurityHuks_Struct_ffi {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hks_param_set_too_big() {
         let keyAlias = "123";
         var flag = false
@@ -132,7 +132,7 @@ class Test_SecurityHuks_Struct_ffi {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hks_param_set_count_too_big() {
         let keyAlias = "123";
         var flag = false
@@ -145,7 +145,7 @@ class Test_SecurityHuks_Struct_ffi {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_hks_param_set_matches() {
         let keyAlias = "123"
         try {

@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_ImportKey {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_import_aes() {
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-import-key-in-plaintext-arkts.md
         let keyAlias = "test_import_aes"
@@ -56,7 +56,7 @@ class Test_SecurityHuks_ImportKey {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_import_ecc() {
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-import-key-in-plaintext-ndk.md
         let keyAlias = "test_import_ecc"
@@ -100,7 +100,7 @@ class Test_SecurityHuks_ImportKey {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_import_empty_alias() {
         let keyAlias = ""
         var flag = false
@@ -130,7 +130,7 @@ class Test_SecurityHuks_ImportKey {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_import_none_properties() {
         let keyAlias = "test_import"
         var flag = false
@@ -152,7 +152,7 @@ class Test_SecurityHuks_ImportKey {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_import_none_indata() {
         let keyAlias = "test_import"
           let key = Array<UInt8>(Int64(256 / 8),

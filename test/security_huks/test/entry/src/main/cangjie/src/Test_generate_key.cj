@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_GenerateKey {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_generate_key() {
         let keyAlias = "test_generate_key"
         clean(keyAlias)
@@ -52,7 +52,7 @@ class Test_SecurityHuks_GenerateKey {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_generate_key_empty_alias() {
         let keyAlias = ""
         var flag = false
@@ -67,7 +67,7 @@ class Test_SecurityHuks_GenerateKey {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_generate_key_none_properties() {
         let keyAlias = "test_generate_key"
         var flag = false

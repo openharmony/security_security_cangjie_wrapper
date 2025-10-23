@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_SM2 {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_sm2_import_export() {
         // ref: https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-import-key-in-plaintext-ndk.md
         let keyAlias = "test_sm2_import_export"
@@ -76,7 +76,7 @@ class Test_SecurityHuks_SM2 {
         }
     }
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_sm2_sign_verify() {
         let keyAlias = "test_sm2_sign_verify"
         let inData1 = "Hks_SM2_Test_0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000_string"
@@ -207,7 +207,7 @@ class Test_SecurityHuks_SM2 {
         }
     }
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_sm2_encrypt_decrypt() {
         let keyAlias = "test_sm2_sign_verify"
         let inData1 = "Hks_SM2_Test_0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000_string"

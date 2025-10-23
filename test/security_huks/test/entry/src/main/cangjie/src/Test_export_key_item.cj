@@ -27,7 +27,7 @@ import ohos.base.*
 @Test
 class Test_SecurityHuks_ExportKeyItem {
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_export_empty_alias() {
         let keyAlias = ""
         var flag = false
