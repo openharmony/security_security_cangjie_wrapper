@@ -17,7 +17,7 @@
 
 package ohos.security.huks
 
-import ohos.labels.*
+import ohos.labels.APILevel
 import ohos.business_exception.BusinessException
 
 /**

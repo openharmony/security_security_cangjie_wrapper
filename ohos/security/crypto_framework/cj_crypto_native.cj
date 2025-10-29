@@ -17,8 +17,8 @@
 
 package ohos.security.crypto_framework
 
-import ohos.ffi.*
-import std.math.numeric.*
+import ohos.ffi.safeMalloc
+import std.math.numeric.BigInt
 
 @C
 struct HcfBlob {

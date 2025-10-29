@@ -17,7 +17,7 @@
 
 package ohos.security.huks
 
-import ohos.labels.*
+import ohos.labels.APILevel
 import std.collection.{ collectArray, forEach, map}
 import ohos.business_exception.BusinessException
 

@@ -17,7 +17,7 @@
 
 package ohos.security.crypto_framework
 
-import ohos.labels.*
+import ohos.labels.APILevel
 
 /**
  * Provides the Key type, which is the common parent class of keys.
