@@ -17,8 +17,8 @@
 
 package ohos.security.crypto_framework
 
-import ohos.ffi.*
-import ohos.labels.*
+import ohos.ffi.{RemoteDataLite, releaseFFIData, safeMalloc}
+import ohos.labels.APILevel
 
 foreign {
     func FfiOHOSSymKeyGetAlgName(id: Int64, errCode: CPointer<Int32>): CString

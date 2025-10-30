@@ -17,6 +17,6 @@
 
 package ohos.security.crypto_framework
 
-import ohos.hilog.*
+import ohos.hilog.HilogChannel
 
 let CRYPTO_LIB_LOG = HilogChannel(0, 0xD002F0A, "CJ-CryptoLibrary")

@@ -18,7 +18,7 @@
 package ohos.security.crypto_framework
 
 import ohos.business_exception.BusinessException
-import ohos.labels.*
+import ohos.labels.APILevel
 
 import std.deriving.Derive
 
