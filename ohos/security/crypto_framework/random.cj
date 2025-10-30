@@ -37,7 +37,7 @@ foreign {
  * @throws { BusinessException } 17620001 - memory operation failed.
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Rand"
 ]
 public func createRandom(): Random {
@@ -54,7 +54,7 @@ public func createRandom(): Random {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Rand"
 ]
 public class Random <: RemoteDataLite {
@@ -71,7 +71,7 @@ public class Random <: RemoteDataLite {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Rand"
     ]
     public prop algName: String {
@@ -97,7 +97,7 @@ public class Random <: RemoteDataLite {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Rand"
     ]
     public func generateRandom(len: Int32): DataBlob {
@@ -118,7 +118,7 @@ public class Random <: RemoteDataLite {
      * @throws { BusinessException } 17620001 - memory operation failed.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Rand"
     ]
     public func setSeed(seed: DataBlob): Unit {

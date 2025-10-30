@@ -38,7 +38,7 @@ import ohos.business_exception.BusinessException
  * @throws { BusinessException } 12000014 - memory is insufficient
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func isKeyItemExist(keyAlias: String, options: HuksOptions): Bool {
@@ -95,7 +95,7 @@ public func isKeyItemExist(keyAlias: String, options: HuksOptions): Bool {
  * @throws { BusinessException } 12000014 - memory is insufficient
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksParam> {
@@ -149,7 +149,7 @@ public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksPa
  * @throws { BusinessException } 12000014 - memory is insufficient
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<String> {
@@ -227,7 +227,7 @@ public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<Str
  * @throws { BusinessException } 12000014 - memory is insufficient
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
@@ -287,7 +287,7 @@ public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
  * @throws { BusinessException } 12000017 - The key with same alias is already exist
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, options: HuksOptions): Unit {
@@ -352,7 +352,7 @@ public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, opt
  * @throws { BusinessException } 12000017 - The key with same alias is already exist
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit {
@@ -398,7 +398,7 @@ public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit {
  * @throws { BusinessException } 12000014 - memory is insufficient
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func deleteKeyItem(keyAlias: String, options: HuksOptions): Unit {
@@ -453,7 +453,7 @@ public func deleteKeyItem(keyAlias: String, options: HuksOptions): Unit {
  * @throws { BusinessException } 12000015 - call service failed
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func importKeyItem(keyAlias: String, options: HuksOptions): Unit {

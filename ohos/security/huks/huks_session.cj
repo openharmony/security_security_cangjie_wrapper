@@ -41,7 +41,7 @@ import ohos.business_exception.BusinessException
  * @throws { BusinessException } 12000018 - the input parameter is invalid
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func initSession(keyAlias: String, options: HuksOptions): HuksSessionHandle {
@@ -131,7 +131,7 @@ func getHuksHandle(handle: OhosHksBlob): HuksHandleId {
    * @throws { BusinessException } 12000014 - memory is insufficient
    */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func updateSession(handle: HuksHandleId, options: HuksOptions, token!: Bytes = Bytes()): Option<Bytes> {
@@ -160,7 +160,7 @@ public func updateSession(handle: HuksHandleId, options: HuksOptions, token!: By
    * @throws { BusinessException } 12000014 - memory is insufficient
    */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func finishSession(handle: HuksHandleId, options: HuksOptions, token!: Bytes = Bytes()): Option<Bytes> {
@@ -264,7 +264,7 @@ func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, i
  * @throws { BusinessException } 12000014 - memory is insufficient
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public func abortSession(handle: HuksHandleId, options: HuksOptions): Unit {

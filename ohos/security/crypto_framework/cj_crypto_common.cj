@@ -26,7 +26,7 @@ foreign func memcpy_s(dest: CPointer<UInt8>, destMax: UIntNative, src: CPointer<
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework"
 ]
 public class DataBlob {
@@ -35,7 +35,7 @@ public class DataBlob {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     public var data: Array<UInt8>
@@ -45,7 +45,7 @@ public class DataBlob {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     public init(data: Array<UInt8>) {
@@ -59,7 +59,7 @@ public class DataBlob {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public class IvParamsSpec <: ParamsSpec {
@@ -72,7 +72,7 @@ public class IvParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var iv: DataBlob
@@ -82,7 +82,7 @@ public class IvParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public init(algName: String, iv: DataBlob) {
@@ -96,7 +96,7 @@ public class IvParamsSpec <: ParamsSpec {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public class GcmParamsSpec <: ParamsSpec {
@@ -105,7 +105,7 @@ public class GcmParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var aad: DataBlob
@@ -115,7 +115,7 @@ public class GcmParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var iv: DataBlob
@@ -125,7 +125,7 @@ public class GcmParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var authTag: DataBlob
@@ -135,7 +135,7 @@ public class GcmParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public init(algName: String, iv: DataBlob, aad: DataBlob, authTag: DataBlob) {
@@ -151,7 +151,7 @@ public class GcmParamsSpec <: ParamsSpec {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public class CcmParamsSpec <: ParamsSpec {
@@ -160,7 +160,7 @@ public class CcmParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var authTag: DataBlob
@@ -170,7 +170,7 @@ public class CcmParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var aad: DataBlob
@@ -180,7 +180,7 @@ public class CcmParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var iv: DataBlob
@@ -190,7 +190,7 @@ public class CcmParamsSpec <: ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public init(algName: String, iv: DataBlob, aad: DataBlob, authTag: DataBlob) {

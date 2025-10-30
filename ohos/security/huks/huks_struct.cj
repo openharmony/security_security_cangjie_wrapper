@@ -25,7 +25,7 @@ import ohos.business_exception.BusinessException
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Core"
 ]
 public class HuksParam {
@@ -34,7 +34,7 @@ public class HuksParam {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     public var tag: UInt32
@@ -43,7 +43,7 @@ public class HuksParam {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     public var value: HuksParamValue
@@ -53,7 +53,7 @@ public class HuksParam {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     public init(tag: UInt32, value: HuksParamValue) {
@@ -73,7 +73,7 @@ public type Bytes = Array<UInt8>
   *
   */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Core"
 ]
 public enum HuksParamValue {
@@ -81,7 +81,7 @@ public enum HuksParamValue {
      * The returned type is Bool.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     BooleanValue(Bool)
@@ -90,7 +90,7 @@ public enum HuksParamValue {
          * The returned type is Int32.
          */
         @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     Int32Value(Int32)
@@ -99,7 +99,7 @@ public enum HuksParamValue {
          * The returned type is UInt32.
          */
         @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     Uint32Value(UInt32)
@@ -108,7 +108,7 @@ public enum HuksParamValue {
          * The returned type is UInt64.
          */
         @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     Uint64Value(UInt64)
@@ -117,7 +117,7 @@ public enum HuksParamValue {
          * The returned type is Bytes.
          */
         @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     BytesValue(Bytes)
@@ -175,7 +175,7 @@ public enum HuksParamValue {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Core"
 ]
 public class HuksOptions {
@@ -184,7 +184,7 @@ public class HuksOptions {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     public var properties: Array<HuksParam>
@@ -193,7 +193,7 @@ public class HuksOptions {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     public var inData: Bytes
@@ -202,7 +202,7 @@ public class HuksOptions {
      *HuksOptions constructor
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     public init(properties!: Array<HuksParam> = Array<HuksParam>(), inData!: Bytes = Bytes()) {
@@ -216,7 +216,7 @@ public class HuksOptions {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Core"
 ]
 public class HuksSessionHandle {
@@ -225,7 +225,7 @@ public class HuksSessionHandle {
      *
      */
      @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     public var handle: HuksHandleId
@@ -234,7 +234,7 @@ public class HuksSessionHandle {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     public var challenge: Bytes
@@ -253,7 +253,7 @@ public class HuksSessionHandle {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.Huks.Extension"
 ]
 public class HuksHandleId {

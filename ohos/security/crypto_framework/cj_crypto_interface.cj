@@ -26,7 +26,7 @@ import ohos.labels.APILevel
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Key"
 ]
 public interface Key {
@@ -35,7 +35,7 @@ public interface Key {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key"
     ]
     prop format: String
@@ -46,7 +46,7 @@ public interface Key {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key"
     ]
     prop algName: String
@@ -63,7 +63,7 @@ public interface Key {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key"
     ]
     func getEncoded(): DataBlob
@@ -75,7 +75,7 @@ public interface Key {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public open class ParamsSpec {
@@ -84,7 +84,7 @@ public open class ParamsSpec {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var algName: String

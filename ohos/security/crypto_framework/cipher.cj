@@ -58,7 +58,7 @@ foreign {
  * @throws { BusinessException } 17620001 - memory operation failed.
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public func createCipher(transformation: String): Cipher {
@@ -77,7 +77,7 @@ public func createCipher(transformation: String): Cipher {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
 ]
 public class Cipher <: RemoteDataLite {
@@ -98,7 +98,7 @@ public class Cipher <: RemoteDataLite {
      * @type { String }
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public prop algName: String {
@@ -141,7 +141,7 @@ public class Cipher <: RemoteDataLite {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public func initialize(opMode: CryptoMode, key: Key, params: ?ParamsSpec): Unit {
@@ -194,7 +194,7 @@ public class Cipher <: RemoteDataLite {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public func update(data: DataBlob): DataBlob {
@@ -227,7 +227,7 @@ public class Cipher <: RemoteDataLite {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public func doFinal(data: ?DataBlob): DataBlob {

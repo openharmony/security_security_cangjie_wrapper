@@ -40,7 +40,7 @@ foreign {
  * @throws { BusinessException } 801 - this operation is not supported.
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
 ]
 public func createSymKeyGenerator(algName: String): SymKeyGenerator {
@@ -59,7 +59,7 @@ public func createSymKeyGenerator(algName: String): SymKeyGenerator {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
 ]
 public class SymKeyGenerator <: RemoteDataLite {
@@ -79,7 +79,7 @@ public class SymKeyGenerator <: RemoteDataLite {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public prop algName: String {
@@ -95,7 +95,7 @@ public class SymKeyGenerator <: RemoteDataLite {
      * @throws { BusinessException } 17620001 - memory operation failed.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public func generateSymKey(): SymKey {
@@ -117,7 +117,7 @@ public class SymKeyGenerator <: RemoteDataLite {
      * @throws { BusinessException } 17620001 - memory operation failed.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
     ]
     public func convertKey(key: DataBlob): SymKey {

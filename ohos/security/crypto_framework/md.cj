@@ -40,7 +40,7 @@ foreign {
  * @throws { BusinessException } 17620001 - memory operation failed.
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
 ]
 public func createMd(algName: String): Md {
@@ -60,7 +60,7 @@ public func createMd(algName: String): Md {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
 ]
 public class Md <: RemoteDataLite {
@@ -80,7 +80,7 @@ public class Md <: RemoteDataLite {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
     public prop algName: String {
@@ -100,7 +100,7 @@ public class Md <: RemoteDataLite {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
     public func update(input: DataBlob): Unit {
@@ -132,7 +132,7 @@ public class Md <: RemoteDataLite {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
     public func digest(): DataBlob {
@@ -153,7 +153,7 @@ public class Md <: RemoteDataLite {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
     ]
     public func getMdLength(): UInt32 {

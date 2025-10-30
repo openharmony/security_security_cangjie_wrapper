@@ -42,7 +42,7 @@ foreign {
  * @throws { BusinessException } 17620001 - memory operation failed.
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Mac"
 ]
 public func createMac(algName: String): Mac {
@@ -62,7 +62,7 @@ public func createMac(algName: String): Mac {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Mac"
 ]
 public class Mac <: RemoteDataLite {
@@ -82,7 +82,7 @@ public class Mac <: RemoteDataLite {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
     public prop algName: String {
@@ -103,7 +103,7 @@ public class Mac <: RemoteDataLite {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
     public func initialize(key: SymKey): Unit {
@@ -123,7 +123,7 @@ public class Mac <: RemoteDataLite {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
     public func update(input: DataBlob): Unit {
@@ -154,7 +154,7 @@ public class Mac <: RemoteDataLite {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
     public func doFinal(): DataBlob {
@@ -175,7 +175,7 @@ public class Mac <: RemoteDataLite {
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Mac"
     ]
     public func getMacLength(): UInt32 {
