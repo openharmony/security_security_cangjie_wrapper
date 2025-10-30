@@ -17,9 +17,9 @@
 
 package ohos.security.crypto_framework
 
-import ohos.ffi.*
-import ohos.labels.*
-import ohos.business_exception.*
+import ohos.ffi.{RemoteDataLite, releaseFFIData}
+import ohos.labels.APILevel
+import ohos.business_exception.{BusinessException, ERR_PARAMETER_ERROR}
 
 foreign {
     func FfiOHOSCreateCipher(transformation: CString, errCode: CPointer<Int32>): Int64

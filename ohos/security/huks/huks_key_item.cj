@@ -17,7 +17,7 @@
 
 package ohos.security.huks
 
-import ohos.labels.*
+import ohos.labels.APILevel
 import std.collection.{ collectArray, forEach, map}
 import ohos.business_exception.BusinessException
 
@@ -270,6 +270,7 @@ public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
  * @param { String } keyAlias - keyAlias indicates the name of key to be imported.
  * @param { String } wrappingKeyAlias - wrappingKeyAlias indicates the name of key for wrapping the key to be imported.
  * @param { HuksOptions } options - options indicates the properties of the key.
+ * @throws { BusinessException } 201 - check permission failed
  * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
@@ -283,6 +284,7 @@ public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
  * @throws { BusinessException } 12000013 - queried credential does not exist
  * @throws { BusinessException } 12000014 - memory is insufficient
  * @throws { BusinessException } 12000015 - call service failed
+ * @throws { BusinessException } 12000017 - The key with same alias is already exist
  */
 @!APILevel[
     since: "22",
@@ -347,6 +349,7 @@ public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, opt
  * @throws { BusinessException } 12000013 - queried credential does not exist
  * @throws { BusinessException } 12000014 - memory is insufficient
  * @throws { BusinessException } 12000015 - call service failed
+ * @throws { BusinessException } 12000017 - The key with same alias is already exist
  */
 @!APILevel[
     since: "22",

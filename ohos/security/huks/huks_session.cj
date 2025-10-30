@@ -17,7 +17,7 @@
 
 package ohos.security.huks
 
-import ohos.labels.*
+import ohos.labels.APILevel
 import ohos.business_exception.BusinessException
 
 /**
@@ -38,6 +38,7 @@ import ohos.business_exception.BusinessException
  * @throws { BusinessException } 12000011 - queried entity does not exist
  * @throws { BusinessException } 12000012 - external error
  * @throws { BusinessException } 12000014 - memory is insufficient
+ * @throws { BusinessException } 12000018 - the input parameter is invalid
  */
 @!APILevel[
     since: "22",

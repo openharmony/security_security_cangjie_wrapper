@@ -17,7 +17,7 @@
 
 package ohos.security.crypto_framework
 
-import ohos.labels.*
+import ohos.labels.APILevel
 
 foreign func memcpy_s(dest: CPointer<UInt8>, destMax: UIntNative, src: CPointer<UInt8>, count: UIntNative): Int32
 
