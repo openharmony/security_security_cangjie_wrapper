@@ -78,20 +78,6 @@ public class Mac <: RemoteDataLite {
     }
 
     /**
-     * Indicates the algorithm name.
-     *
-     */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Mac"
-    ]
-    public prop algName: String {
-        get() {
-            return _algName
-        }
-    }
-
-    /**
      * Init mac with given SymKey.
      * This API uses an asynchronous callback to return the result. init, update, and doFinal must be used together.
      * init and doFinal are mandatory, and update is optional.
@@ -181,6 +167,20 @@ public class Mac <: RemoteDataLite {
     public func getMacLength(): UInt32 {
         unsafe {
             return FfiOHOSCryptoGetMacLength(getID())
+        }
+    }
+
+    /**
+     * Indicates the algorithm name.
+     *
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Security.CryptoFramework.Mac"
+    ]
+    public prop algName: String {
+        get() {
+            return _algName
         }
     }
 }

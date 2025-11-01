@@ -67,26 +67,6 @@ public class Random <: RemoteDataLite {
     }
 
     /**
-     * Indicates the random generation algorithm name. Currently, only CTR_DRBG is supported.
-     *
-     */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Rand"
-    ]
-    public prop algName: String {
-        get() {
-            unsafe {
-                var errCode: Int32 = 0
-                let cstr = FfiOHOSRandomGetAlgName(getID(), inout errCode)
-                checkAndThrow(errCode)
-                // if free cstr, maybe double free. Please modify after testing.
-                return cstr.toString()
-            }
-        }
-    }
-
-    /**
      * Generate random DataBlob by given length synchronously.
      *
      * @param { Int32 } len - indicates the length of random DataBlob.
@@ -137,6 +117,26 @@ public class Random <: RemoteDataLite {
             chb.free()
             LibC.free(cp)
             checkAndThrow(errCode)
+        }
+    }
+
+    /**
+     * Indicates the random generation algorithm name. Currently, only CTR_DRBG is supported.
+     *
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Security.CryptoFramework.Rand"
+    ]
+    public prop algName: String {
+        get() {
+            unsafe {
+                var errCode: Int32 = 0
+                let cstr = FfiOHOSRandomGetAlgName(getID(), inout errCode)
+                checkAndThrow(errCode)
+                // if free cstr, maybe double free. Please modify after testing.
+                return cstr.toString()
+            }
         }
     }
 }

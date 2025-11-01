@@ -92,21 +92,6 @@ public class Cipher <: RemoteDataLite {
         releaseFFIData(myDataId)
     }
 
-    /**
-     * Indicates the algorithm name of the cipher object.
-     *
-     * @type { String }
-     */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Cipher"
-    ]
-    public prop algName: String {
-        get() {
-            return _algName
-        }
-    }
-
     func getCHcfBlobList(ivData: DataBlob, aadData: DataBlob, tagData: DataBlob): Array<HcfBlob> {
         let iv = HcfBlob(ivData)
         let aad: HcfBlob
@@ -248,6 +233,19 @@ public class Cipher <: RemoteDataLite {
                 output.free()
             }
             return dataBlob
+        }
+    }
+
+    /**
+     * Indicates the algorithm name of the cipher object.
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Security.CryptoFramework.Cipher"
+    ]
+    public prop algName: String {
+        get() {
+            return _algName
         }
     }
 }

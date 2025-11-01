@@ -18,7 +18,7 @@
 package ohos.security.crypto_framework
 
 import ohos.business_exception.BusinessException
-import ohos.labels.APILevel
+import ohos.labels.{APILevel, Hide}
 
 import std.deriving.Derive
 
@@ -70,6 +70,9 @@ public enum Result <: ToString {
         syscap: "SystemCapability.Security.CryptoFramework"
     ]
     ErrRuntimeError
+    |
+    @!Hide
+    ErrParameterCheckFailed
     |
     /**
      * Indicates that crypto operation error.
@@ -235,6 +238,9 @@ public enum CipherSpecItem {
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     OaepMgf1PsrcUint8Arr
+    |
+    @!Hide
+    Sm2MdNameStr
     | ...
 
     prop value: Int32 {
