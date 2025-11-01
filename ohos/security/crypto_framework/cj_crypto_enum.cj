@@ -121,6 +121,9 @@ public enum Result <: ToString {
     }
 }
 
+/**
+ * @throws { BusinessException } 176200003 - Parameter check failed.
+ */
 func getError(errCode: Int32): Result {
     match {
         case errCode == -10001 => return InvalidParams

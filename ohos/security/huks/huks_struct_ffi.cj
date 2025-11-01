@@ -27,6 +27,9 @@ struct OhosHksBlob {
         let data: CPointer<UInt8>
     ) {}
 
+    /**
+     * @throws { BusinessException } 17620001 - Memory error.
+     */
     unsafe static func malloc(size: UInt32): OhosHksBlob {
         let data = CPointer<UInt8>(calloc(UIntNative(size), 1))
         if (data.isNull()) {
@@ -35,6 +38,9 @@ struct OhosHksBlob {
         return OhosHksBlob(size, data)
     }
 
+    /**
+     * @throws { BusinessException } 17620001 - Memory error.
+     */
     unsafe static func mallocFromBytes(data: Bytes) {
         let tmpData = LibC.malloc<UInt8>(count: data.size)
         if (tmpData.isNull()) {
@@ -52,13 +58,13 @@ struct OhosHksBlob {
     }
 
     func copyToBytes(): Bytes {
-        let data = Array<Byte>(Int64(this.size), repeat: 0)
+        let newData = Array<Byte>(Int64(this.size), repeat: 0)
         unsafe {
-            let ptr = acquireArrayRawData(data)
+            let ptr = acquireArrayRawData(newData)
             memcpy_s(ptr.pointer, UIntNative(this.size), this.data, UIntNative(this.size))
             releaseArrayRawData(ptr)
         }
-        data
+        newData
     }
 
     func toString(): String {
@@ -114,6 +120,9 @@ class HksParamSet {
     var rawBuffer: CPointer<Byte>
     var paramPtr: CPointer<Byte>
 
+    /**
+     * @throws { BusinessException } 17620001 - Memory error.
+     */
     init(properties: Array<HuksParam>) {
         this.paramCnt = 0
         this.paramSetSize = UInt32(sizeOf<UInt32>() * 2)
@@ -266,6 +275,9 @@ class HksParamSet {
         true
     }
 
+    /**
+     * @throws { BusinessException } 17620001 - Memory error.
+     */
     func write(tag: UInt32, data: Bytes): Bool {
         let prepareSize = if (data.isEmpty()) {
             1
@@ -351,6 +363,9 @@ class HksParamSet {
 class ReadOnlyHksParamSet {
     let rawBuffer: CPointer<Byte>
 
+    /**
+     * @throws { BusinessException } 17620001 - Memory error.
+     */
     init(paramSetSize: UInt32) {
         this.rawBuffer = LibC.malloc<Byte>(count: Int64(paramSetSize))
         if (rawBuffer.isNull()) {

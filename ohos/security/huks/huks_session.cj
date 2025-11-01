@@ -180,9 +180,9 @@ func updateOrFinish(handle: HuksHandleId, options: HuksOptions, token: Bytes, is
     }
 
     var inBlob: OhosHksBlob = unsafe { OhosHksBlob.mallocFromBytes(inData) }
-    let outBlobSize = getOutBlogSize(inData)
     var outBlob: OhosHksBlob
     try {
+        let outBlobSize = getOutBlogSize(inData)
         outBlob = unsafe { OhosHksBlob.malloc(outBlobSize) }
     } catch (e: Exception) {
         unsafe { inBlob.free() }
@@ -233,6 +233,9 @@ func getOutBlogSize(inData: Array<UInt8>) {
     }
 }
 
+/**
+ * @throws { BusinessException } 12000012 - external error
+ */
 func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, inBlob: OhosHksBlob) {
     try {
         if (retCode == HKS_SUCCESS) {
