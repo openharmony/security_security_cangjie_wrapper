@@ -53,6 +53,12 @@ public class SymKey <: RemoteDataLite & Key {
         releaseFFIData(myDataId)
     }
 
+    func getKey(): CPointer<Unit> {
+        unsafe {
+            return FfiOHOSSymKeyGetHcfKey(getID())
+        }
+    }
+
     /**
      * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric
      * key.
@@ -133,9 +139,4 @@ public class SymKey <: RemoteDataLite & Key {
         }
     }
 
-    func getKey(): CPointer<Unit> {
-        unsafe {
-            return FfiOHOSSymKeyGetHcfKey(getID())
-        }
-    }
 }

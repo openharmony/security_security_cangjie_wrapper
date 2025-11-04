@@ -76,20 +76,6 @@ public class Md <: RemoteDataLite {
     }
 
     /**
-     * Indicates the algorithm name.
-     *
-     */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
-    ]
-    public prop algName: String {
-        get() {
-            return _algName
-        }
-    }
-
-    /**
      * Update md with DataBlob.
      *
      * @param { DataBlob } input - indicates the DataBlob.
@@ -162,6 +148,20 @@ public class Md <: RemoteDataLite {
             let res = FfiOHOSGetMdLength(getID(), inout errCode)
             checkAndThrow(errCode)
             return res
+        }
+    }
+
+    /**
+     * Indicates the algorithm name.
+     *
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
+    ]
+    public prop algName: String {
+        get() {
+            return _algName
         }
     }
 }

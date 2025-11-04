@@ -101,16 +101,6 @@ public class IvParamsSpec <: ParamsSpec {
 ]
 public class GcmParamsSpec <: ParamsSpec {
     /**
-     * Indicates the additional Authenticated Data in GCM mode.
-     *
-     */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Cipher"
-    ]
-    public var aad: DataBlob
-
-    /**
      * Indicates the GCM algorithm parameters such as iv.
      *
      */
@@ -119,6 +109,16 @@ public class GcmParamsSpec <: ParamsSpec {
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
     public var iv: DataBlob
+
+    /**
+     * Indicates the additional Authenticated Data in GCM mode.
+     *
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Security.CryptoFramework.Cipher"
+    ]
+    public var aad: DataBlob
 
     /**
      * Indicates the output tag from the encryption operation. The tag is used for integrity check.
@@ -156,14 +156,14 @@ public class GcmParamsSpec <: ParamsSpec {
 ]
 public class CcmParamsSpec <: ParamsSpec {
     /**
-     * Indicates the output tag from the encryption operation. The tag is used for integrity check.
+     * Indicates the GCM algorithm parameters such as IV.
      *
      */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public var authTag: DataBlob
+    public var iv: DataBlob
 
     /**
      * Indicates the Additional Authenticated Data in CCM mode.
@@ -176,14 +176,14 @@ public class CcmParamsSpec <: ParamsSpec {
     public var aad: DataBlob
 
     /**
-     * Indicates the GCM algorithm parameters such as IV.
+     * Indicates the output tag from the encryption operation. The tag is used for integrity check.
      *
      */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.CryptoFramework.Cipher"
     ]
-    public var iv: DataBlob
+    public var authTag: DataBlob
 
     /**
      * CcmParamsSpec constructor.

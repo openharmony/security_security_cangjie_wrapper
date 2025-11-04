@@ -75,20 +75,6 @@ public class SymKeyGenerator <: RemoteDataLite {
     }
 
     /**
-     * Indicates the algorithm name of the SymKeyGenerator object.
-     *
-     */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
-    ]
-    public prop algName: String {
-        get() {
-            return _algName
-        }
-    }
-
-    /**
      * Generate a symmetric key object randomly.
      *
      * @returns { SymKey } the SymKey returned by the function.
@@ -137,6 +123,20 @@ public class SymKeyGenerator <: RemoteDataLite {
             LibC.free(cp)
             checkAndThrow(errCode)
             return SymKey(id, _algName)
+        }
+    }
+
+    /**
+     * Indicates the algorithm name of the SymKeyGenerator object.
+     *
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
+    ]
+    public prop algName: String {
+        get() {
+            return _algName
         }
     }
 }
