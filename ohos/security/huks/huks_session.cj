@@ -182,7 +182,7 @@ func updateOrFinish(handle: HuksHandleId, options: HuksOptions, token: Bytes, is
     var inBlob: OhosHksBlob = unsafe { OhosHksBlob.mallocFromBytes(inData) }
     var outBlob: OhosHksBlob = unsafe { OhosHksBlob.malloc(0) }
     let paramSet: HksParamSet
-    var handleBlob: OhosHksBlob
+    var handleBlob: OhosHksBlob = unsafe { OhosHksBlob.mallocFromBytes(0) }
     try {
         let outBlobSize = getOutBlogSize(inData)
         outBlob = unsafe { OhosHksBlob.malloc(outBlobSize) }
@@ -190,8 +190,9 @@ func updateOrFinish(handle: HuksHandleId, options: HuksOptions, token: Bytes, is
         // create OhosHksBlob for user ffi from handle
         handleBlob = unsafe { OhosHksBlob.mallocFromBytes(handle.data) }
     } catch (e: Exception) {
-        outBlob.free()
-        inBlob.free()
+        unsafe { outBlob.free() }
+        unsafe { inBlob.free() }
+        unsafe { handleBlob.free() }
         throw e
     }
     
