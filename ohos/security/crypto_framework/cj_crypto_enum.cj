@@ -26,49 +26,29 @@ import std.deriving.Derive
  * Enum for result code.
  *
  */
-@!APILevel[
-    since: "22",
-    syscap: "SystemCapability.Security.CryptoFramework"
-]
-public enum Result <: ToString {
+enum Result <: ToString {
     /**
      * Indicates that input parameters is invalid.
      *
      */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework"
-    ]
     InvalidParams
     |
     /**
      * Indicates that function or algorithm is not supported.
      *
      */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework"
-    ]
     NotSupport
     |
     /**
      * Indicates the memory operation failed.
      *
      */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework"
-    ]
     ErrOutOfMemory
     |
     /**
      * Indicates that failed to convert parameters between cj and c.
      *
      */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework"
-    ]
     ErrRuntimeError
     |
     @!Hide
@@ -78,10 +58,6 @@ public enum Result <: ToString {
      * Indicates that crypto operation error.
      *
      */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework"
-    ]
     ErrCryptoOperation
     | ...
 
@@ -89,11 +65,7 @@ public enum Result <: ToString {
      * Get the corresponding mapping value.
      *
      */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework"
-    ]
-    public func getValue(): Int32 {
+    func getValue(): Int32 {
         return match (this) {
             case InvalidParams => 401
             case NotSupport => 801
@@ -108,11 +80,7 @@ public enum Result <: ToString {
      * Return the string of the enumeration value.
      *
      */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework"
-    ]
-    public func toString(): String {
+    func toString(): String {
         return match (this) {
             case InvalidParams => "Parameter error."
             case NotSupport => "Capability not supported."
