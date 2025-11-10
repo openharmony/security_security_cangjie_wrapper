@@ -198,9 +198,9 @@ func updateOrFinish(handle: HuksHandleId, options: HuksOptions, token: Bytes, is
     
     if (!token.isEmpty()) {
         if (!paramSet.write(HuksTag.HUKS_TAG_AUTH_TOKEN, token)) {
-            outBlob.free()
-            inBlob.free()
-            handleBlob.free()
+            unsafe { outBlob.free() }
+            unsafe { inBlob.free() }
+            unsafe { handleBlob.free() }
             throw BusinessException(
                 HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(),
                 "properties too big"
