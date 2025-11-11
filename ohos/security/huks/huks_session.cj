@@ -221,7 +221,6 @@ func updateOrFinishSession(inBlob: OhosHksBlob, outBlob: OhosHksBlob, properties
     } catch (e: Exception) {
         throw e
     }
-     
     let retCode = unsafe {
         if (isUpdate) {
             FfiOHOSUpdateSession(inout handleBlob, paramSet.toPointer(), inout inBlob, inout outBlob)
@@ -231,7 +230,6 @@ func updateOrFinishSession(inBlob: OhosHksBlob, outBlob: OhosHksBlob, properties
     }
     processRet(retCode, outBlob, handleBlob, inBlob)
 }
-
 
 func getOutBlogSize(inData: Array<UInt8>) {
     if (UInt32(inData.size) > MAX_KEY_SIZE) {
