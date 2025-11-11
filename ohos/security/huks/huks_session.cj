@@ -179,33 +179,47 @@ func updateOrFinish(handle: HuksHandleId, options: HuksOptions, token: Bytes, is
        options.inData
     }
 
-    var inBlob: OhosHksBlob = unsafe { OhosHksBlob.mallocFromBytes(inData) }
-    var outBlob: OhosHksBlob = unsafe { OhosHksBlob.malloc(0) }
-    let paramSet: HksParamSet
-    var handleBlob: OhosHksBlob = unsafe { OhosHksBlob.mallocFromBytes(0) }
-    try {
-        let outBlobSize = getOutBlogSize(inData)
-        outBlob = unsafe { OhosHksBlob.malloc(outBlobSize) }
-        paramSet = HksParamSet(properties)
-        // create OhosHksBlob for user ffi from handle
-        handleBlob = unsafe { OhosHksBlob.mallocFromBytes(handle.data) }
+    var inBlob: OhosHksBlob = unsafe { OhosHksBlob.mallocFromBytes(inData) }	
+    var outBlob: OhosHksBlob	
+
+    try {	
+        let outBlobSize = getOutBlogSize(inData)	
+        outBlob = unsafe { OhosHksBlob.malloc(outBlobSize) }	
     } catch (e: Exception) {
-        unsafe { outBlob.free() }
         unsafe { inBlob.free() }
-        unsafe { handleBlob.free() }
         throw e
     }
-    
-    if (!token.isEmpty()) {
-        if (!paramSet.write(HuksTag.HUKS_TAG_AUTH_TOKEN, token)) {
-            unsafe { outBlob.free() }
-            unsafe { inBlob.free() }
-            unsafe { handleBlob.free() }
-            throw BusinessException(
-                HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(),
-                "properties too big"
-            )
-        }
+    try {
+        return updateOrFinishSession(inBlob, outBlob, properties, handle, token, isupdate)
+    } finally {	
+        unsafe { outBlob.free() }	
+        unsafe { inBlob.free() }	
+    }
+}
+
+func updateOrFinishSession(inBlob: OhosHksBlob, outBlob: OhosHksBlob, properties: Array<HuksParam>
+    handle: HuksHandleId, token: Bytes, isUpdate: Bool) {
+    let paramSet: HksParamSet
+    try {
+        paramSet = HksParamSet(properties)	
+    } catch (e: Exception) {		
+        throw e	
+    }	
+
+    if (!token.isEmpty()) {	
+        if (!paramSet.write(HuksTag.HUKS_TAG_AUTH_TOKEN, token)) {	
+            throw BusinessException(	
+                HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(),	
+                "properties too big"	
+            )	
+        }	
+    }	
+    // create OhosHksBlob for user ffi from handle 	
+    var handleBlob: OhosHksBlob
+    try {
+        handleBlob = unsafe { OhosHksBlob.mallocFromBytes(handle.data) }
+    } catch (e: Exception) {
+        throw e
     }
      
     let retCode = unsafe {
@@ -217,6 +231,7 @@ func updateOrFinish(handle: HuksHandleId, options: HuksOptions, token: Bytes, is
     }
     processRet(retCode, outBlob, handleBlob, inBlob)
 }
+
 
 func getOutBlogSize(inData: Array<UInt8>) {
     if (UInt32(inData.size) > MAX_KEY_SIZE) {
