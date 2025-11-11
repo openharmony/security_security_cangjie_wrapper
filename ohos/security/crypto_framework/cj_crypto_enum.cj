@@ -26,7 +26,7 @@ import std.deriving.Derive
  * Enum for result code.
  *
  */
-enum Result <: ToString {
+enum Result {
     /**
      * Indicates that input parameters is invalid.
      *
