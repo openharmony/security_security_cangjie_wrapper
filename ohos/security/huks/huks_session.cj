@@ -197,7 +197,7 @@ func updateOrFinish(handle: HuksHandleId, options: HuksOptions, token: Bytes, is
     }
 }
 
-func updateOrFinishSession(inBlob: OhosHksBlob, outBlob: OhosHksBlob, properties: Array<HuksParam>
+func updateOrFinishSession(inBlob: OhosHksBlob, outBlob: OhosHksBlob, properties: Array<HuksParam>,
     handle: HuksHandleId, token: Bytes, isUpdate: Bool) {
     let paramSet: HksParamSet
     try {
@@ -221,14 +221,16 @@ func updateOrFinishSession(inBlob: OhosHksBlob, outBlob: OhosHksBlob, properties
     } catch (e: Exception) {
         throw e
     }
+    var cinBlob = inBlob
+    var coutBlob = outBlob
     let retCode = unsafe {
         if (isUpdate) {
-            FfiOHOSUpdateSession(inout handleBlob, paramSet.toPointer(), inout inBlob, inout outBlob)
+            FfiOHOSUpdateSession(inout handleBlob, paramSet.toPointer(), inout cinBlob, inout coutBlob)
         } else {
-            FfiOHOSFinishSession(inout handleBlob, paramSet.toPointer(), inout inBlob, inout outBlob)
+            FfiOHOSFinishSession(inout handleBlob, paramSet.toPointer(), inout cinBlob, inout coutBlob)
         }
     }
-    processRet(retCode, outBlob, handleBlob, inBlob)
+    processRet(retCode, outBlob, handleBlob)
 }
 
 func getOutBlogSize(inData: Array<UInt8>) {
@@ -242,7 +244,7 @@ func getOutBlogSize(inData: Array<UInt8>) {
 /**
  * @throws { BusinessException } 12000012 - external error
  */
-func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, inBlob: OhosHksBlob) {
+func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob) {
     try {
         if (retCode == HKS_SUCCESS) {
             let retOutData = outBlob.copyToBytes()
@@ -253,8 +255,6 @@ func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, i
     } finally {
         unsafe {
             handleBlob.free()
-            inBlob.free()
-            outBlob.free()
         }
     }
 }
