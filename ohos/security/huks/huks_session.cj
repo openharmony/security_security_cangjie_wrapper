@@ -189,15 +189,24 @@ func updateOrFinish(handle: HuksHandleId, options: HuksOptions, token: Bytes, is
         unsafe { inBlob.free() }
         throw e
     }
+    
+    let sessionParams = SessionParams(inBlob,outBlob)
     try {
-        return updateOrFinishSession(inBlob, outBlob, properties, handle, token, isupdate)
+        return updateOrFinishSession(sessionParams, properties, handle, token, isUpdate)
     } finally {	
         unsafe { outBlob.free() }	
         unsafe { inBlob.free() }	
     }
 }
 
-func updateOrFinishSession(inBlob: OhosHksBlob, outBlob: OhosHksBlob, properties: Array<HuksParam>,
+struct SessionParams {
+    SessionParams(
+        let inBlob: OhosHksBlob,
+        let outBlob: OhosHksBlob
+    ) {}
+}
+
+func updateOrFinishSession(params: SessionParams, properties: Array<HuksParam>,
     handle: HuksHandleId, token: Bytes, isUpdate: Bool) {
     let paramSet: HksParamSet
     try {
@@ -221,8 +230,8 @@ func updateOrFinishSession(inBlob: OhosHksBlob, outBlob: OhosHksBlob, properties
     } catch (e: Exception) {
         throw e
     }
-    var cinBlob = inBlob
-    var coutBlob = outBlob
+    var cinBlob = params.inBlob
+    var coutBlob = params.outBlob
     let retCode = unsafe {
         if (isUpdate) {
             FfiOHOSUpdateSession(inout handleBlob, paramSet.toPointer(), inout cinBlob, inout coutBlob)
@@ -230,7 +239,7 @@ func updateOrFinishSession(inBlob: OhosHksBlob, outBlob: OhosHksBlob, properties
             FfiOHOSFinishSession(inout handleBlob, paramSet.toPointer(), inout cinBlob, inout coutBlob)
         }
     }
-    processRet(retCode, outBlob, handleBlob)
+    processRet(retCode, params.outBlob, handleBlob)
 }
 
 func getOutBlogSize(inData: Array<UInt8>) {
