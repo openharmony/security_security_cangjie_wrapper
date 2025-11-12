@@ -179,50 +179,67 @@ func updateOrFinish(handle: HuksHandleId, options: HuksOptions, token: Bytes, is
        options.inData
     }
 
-    var inBlob: OhosHksBlob = unsafe { OhosHksBlob.mallocFromBytes(inData) }
-    var outBlob: OhosHksBlob
-    try {
-        let outBlobSize = getOutBlogSize(inData)
-        outBlob = unsafe { OhosHksBlob.malloc(outBlobSize) }
+    var inBlob: OhosHksBlob = unsafe { OhosHksBlob.mallocFromBytes(inData) }	
+    var outBlob: OhosHksBlob	
+
+    try {	
+        let outBlobSize = getOutBlogSize(inData)	
+        outBlob = unsafe { OhosHksBlob.malloc(outBlobSize) }	
     } catch (e: Exception) {
         unsafe { inBlob.free() }
         throw e
     }
+    
+    let sessionParams = SessionParams(inBlob,outBlob)
+    try {
+        return updateOrFinishSession(sessionParams, properties, handle, token, isUpdate)
+    } finally {	
+        unsafe { outBlob.free() }	
+        unsafe { inBlob.free() }	
+    }
+}
+
+struct SessionParams {
+    SessionParams(
+        let inBlob: OhosHksBlob,
+        let outBlob: OhosHksBlob
+    ) {}
+}
+
+func updateOrFinishSession(params: SessionParams, properties: Array<HuksParam>,
+    handle: HuksHandleId, token: Bytes, isUpdate: Bool) {
     let paramSet: HksParamSet
     try {
-        paramSet = HksParamSet(properties)
-    } catch (e: Exception) {
-        unsafe { outBlob.free() }
-        unsafe { inBlob.free() }
-        throw e
-    }
-    if (!token.isEmpty()) {
-        if (!paramSet.write(HuksTag.HUKS_TAG_AUTH_TOKEN, token)) {
-            unsafe { outBlob.free() }
-            unsafe { inBlob.free() }
-            throw BusinessException(
-                HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(),
-                "properties too big"
-            )
-        }
-    }
-    // create OhosHksBlob for user ffi from handle 
+        paramSet = HksParamSet(properties)	
+    } catch (e: Exception) {		
+        throw e	
+    }	
+
+    if (!token.isEmpty()) {	
+        if (!paramSet.write(HuksTag.HUKS_TAG_AUTH_TOKEN, token)) {	
+            throw BusinessException(	
+                HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(),	
+                "properties too big"	
+            )	
+        }	
+    }	
+    // create OhosHksBlob for user ffi from handle 	
     var handleBlob: OhosHksBlob
     try {
         handleBlob = unsafe { OhosHksBlob.mallocFromBytes(handle.data) }
     } catch (e: Exception) {
-        unsafe { outBlob.free() }
-        unsafe { inBlob.free() }
         throw e
     }
+    var cinBlob = params.inBlob
+    var coutBlob = params.outBlob
     let retCode = unsafe {
         if (isUpdate) {
-            FfiOHOSUpdateSession(inout handleBlob, paramSet.toPointer(), inout inBlob, inout outBlob)
+            FfiOHOSUpdateSession(inout handleBlob, paramSet.toPointer(), inout cinBlob, inout coutBlob)
         } else {
-            FfiOHOSFinishSession(inout handleBlob, paramSet.toPointer(), inout inBlob, inout outBlob)
+            FfiOHOSFinishSession(inout handleBlob, paramSet.toPointer(), inout cinBlob, inout coutBlob)
         }
     }
-    processRet(retCode, outBlob, handleBlob, inBlob)
+    processRet(retCode, params.outBlob, handleBlob)
 }
 
 func getOutBlogSize(inData: Array<UInt8>) {
@@ -236,7 +253,7 @@ func getOutBlogSize(inData: Array<UInt8>) {
 /**
  * @throws { BusinessException } 12000012 - external error
  */
-func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, inBlob: OhosHksBlob) {
+func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob) {
     try {
         if (retCode == HKS_SUCCESS) {
             let retOutData = outBlob.copyToBytes()
@@ -247,8 +264,6 @@ func processRet(retCode: Int32, outBlob: OhosHksBlob, handleBlob: OhosHksBlob, i
     } finally {
         unsafe {
             handleBlob.free()
-            inBlob.free()
-            outBlob.free()
         }
     }
 }
