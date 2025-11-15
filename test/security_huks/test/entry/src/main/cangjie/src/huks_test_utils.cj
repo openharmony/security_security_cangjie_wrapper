@@ -20,7 +20,7 @@ internal import kit.UniversalKeystoreKit.*
 
 func clean(keyAlias: String) {
     try {
-        if (isKeyItemExist(keyAlias, HuksOptions())) {
+        if (hasKeyItem(keyAlias, HuksOptions())) {
             deleteKeyItem(keyAlias, HuksOptions())
         }
     } catch (e: BusinessException) {

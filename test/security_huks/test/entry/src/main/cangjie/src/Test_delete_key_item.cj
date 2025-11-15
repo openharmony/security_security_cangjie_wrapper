@@ -33,10 +33,10 @@ class Test_SecurityHuks_DeleteKey {
         clean(keyAlias)
         try {
             generateSimpleKey(keyAlias)
-            @Expect(isKeyItemExist(keyAlias, HuksOptions()))
+            @Expect(hasKeyItem(keyAlias, HuksOptions()))
 
             deleteKeyItem(keyAlias, HuksOptions())
-            @Expect(!isKeyItemExist(keyAlias, HuksOptions()))
+            @Expect(!hasKeyItem(keyAlias, HuksOptions()))
         } finally {
             clean(keyAlias)
         }
@@ -49,7 +49,7 @@ class Test_SecurityHuks_DeleteKey {
         clean(keyAlias)
         var flag = false
         try {
-            @Expect(!isKeyItemExist(keyAlias, HuksOptions()))
+            @Expect(!hasKeyItem(keyAlias, HuksOptions()))
             deleteKeyItem(keyAlias, HuksOptions())
         } catch (e: BusinessException) {
             flag = true

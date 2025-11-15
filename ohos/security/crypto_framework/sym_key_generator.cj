@@ -33,15 +33,14 @@ foreign {
 /**
  * Create a symmetric key generator according to the given algorithm name.
  *
- * @param { String } algName - indicates the algorithm name.
+ * @param { String } algName - indicates the algorithm name. Multiple parameters need to be concatenated by "|".
  * @returns { SymKeyGenerator } the symmetric key generator instance.
- * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
- * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 801 - this operation is not supported.
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
+    syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey",
+    throwexception: true
 ]
 public func createSymKeyGenerator(algName: String): SymKeyGenerator {
     unsafe {
@@ -56,7 +55,6 @@ public func createSymKeyGenerator(algName: String): SymKeyGenerator {
 
 /**
  * Provides the SymKeyGenerator type, which is used for generating symmetric key.
- *
  */
 @!APILevel[
     since: "22",
@@ -82,7 +80,9 @@ public class SymKeyGenerator <: RemoteDataLite {
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
+        syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey",
+        throwexception: true,
+        workerthread: true
     ]
     public func generateSymKey(): SymKey {
         unsafe {
@@ -98,13 +98,13 @@ public class SymKeyGenerator <: RemoteDataLite {
      *
      * @param { DataBlob } key - the key data blob.
      * @returns { SymKey } the SymKey  returned by the function.
-     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
-     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
+        syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey",
+        throwexception: true,
+        workerthread: true
     ]
     public func convertKey(key: DataBlob): SymKey {
         unsafe {
@@ -129,6 +129,7 @@ public class SymKeyGenerator <: RemoteDataLite {
     /**
      * Indicates the algorithm name of the SymKeyGenerator object.
      *
+     * @returns { String } algName representation of the Result.
      */
     @!APILevel[
         since: "22",

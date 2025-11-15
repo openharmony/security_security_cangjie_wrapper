@@ -35,13 +35,12 @@ foreign {
  *
  * @param { String } algName - indicates the md algorithm name.
  * @returns { Md } returns the created md instance.
- * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
- * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 17620001 - memory operation failed.
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
+    syscap: "SystemCapability.Security.CryptoFramework.MessageDigest",
+    throwexception: true
 ]
 public func createMd(algName: String): Md {
     unsafe {
@@ -57,7 +56,6 @@ public func createMd(algName: String): Md {
 /**
  * Provides the Md type, which is used for Md generation.
  * Before using any API of the Md class, you must create an Md instance by using createMd.
- *
  */
 @!APILevel[
     since: "22",
@@ -79,15 +77,13 @@ public class Md <: RemoteDataLite {
      * Update md with DataBlob.
      *
      * @param { DataBlob } input - indicates the DataBlob.
-     * @returns { Unit } the promise returned by the function.
-     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
-     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
+        syscap: "SystemCapability.Security.CryptoFramework.MessageDigest",
+        throwexception: true
     ]
     public func update(input: DataBlob): Unit {
         unsafe {
@@ -110,16 +106,16 @@ public class Md <: RemoteDataLite {
     /**
      * Output the result of md calculation.
      *
-     * @returns { DataBlob } the promise returned by the function.
-     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
-     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @returns { DataBlob } Return DataBlob of the result.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
+        syscap: "SystemCapability.Security.CryptoFramework.MessageDigest",
+        throwexception: true,
+        workerthread: true
     ]
     public func digest(): DataBlob {
         unsafe {
@@ -140,7 +136,8 @@ public class Md <: RemoteDataLite {
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.MessageDigest"
+        syscap: "SystemCapability.Security.CryptoFramework.MessageDigest",
+        throwexception: true
     ]
     public func getMdLength(): UInt32 {
         unsafe {
@@ -154,6 +151,7 @@ public class Md <: RemoteDataLite {
     /**
      * Indicates the algorithm name.
      *
+     * @returns { String } algName representation of the Result.
      */
     @!APILevel[
         since: "22",

@@ -45,11 +45,11 @@ class Test_SecurityHuks_Enum {
                 HuksTag.HUKS_TAG_INFO,
                 HuksTag.HUKS_TAG_SALT,
                 HuksTag.HUKS_TAG_ITERATION,
-                HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
-                HuksTag.HUKS_TAG_AGREE_ALG,
+                HuksTag.HUKS_TAG_KEY_GENERATION_TYPE,
+                HuksTag.HUKS_TAG_ALG_FOR_AGREEMENT,
                 HuksTag.HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS,
-                HuksTag.HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS,
-                HuksTag.HUKS_TAG_AGREE_PUBLIC_KEY,
+                HuksTag.HUKS_TAG_PRIVATE_KEY_ALIAS_FOR_AGREEMENT,
+                HuksTag.HUKS_TAG_PUBLIC_KEY_FOR_AGREEMENT,
                 HuksTag.HUKS_TAG_KEY_ALIAS,
                 HuksTag.HUKS_TAG_DERIVE_KEY_SIZE,
                 HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
@@ -106,7 +106,7 @@ class Test_SecurityHuks_Enum {
             let a7 = HuksKeyAlg()
             let a8 = HuksUnwrapSuite()
             let a9 = HuksAuthStorageLevel()
-            let a10 = HuksKeyGenerateType()
+            let a10 = HuksKeyGenerationType()
             let a11 = HuksKeyFlag()
             let a12 = HuksKeyStorageType()
             let a13 = HuksImportKeyType()

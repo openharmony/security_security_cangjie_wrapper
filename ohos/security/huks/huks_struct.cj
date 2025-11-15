@@ -22,7 +22,6 @@ import ohos.business_exception.BusinessException
 
 /**
  * Defines the param field in the properties array of options used in the APIs.
- *
  */
 @!APILevel[
     since: "22",
@@ -31,7 +30,6 @@ import ohos.business_exception.BusinessException
 public class HuksParam {
     /**
      * tag.
-     *
      */
     @!APILevel[
         since: "22",
@@ -40,7 +38,6 @@ public class HuksParam {
     public var tag: UInt32
     /**
      * Value of the tag.
-     *
      */
     @!APILevel[
         since: "22",
@@ -51,6 +48,8 @@ public class HuksParam {
     /**
      *HuksParam constructor
      *
+     * @param { UInt32 } tag - indicates of the huks tag.
+     * @param { HuksParamValue } value - indicates of the huks value.
      */
     @!APILevel[
         since: "22",
@@ -69,9 +68,8 @@ public class HuksParam {
 public type Bytes = Array<UInt8>
 
 /**
-  * Defines enum HuksParamValue.
-  *
-  */
+ * Defines enum HuksParamValue.
+ */
 @!APILevel[
     since: "22",
     syscap: "SystemCapability.Security.Huks.Core"
@@ -86,37 +84,37 @@ public enum HuksParamValue {
     ]
     BooleanValue(Bool)
     | 
-        /**
-         * The returned type is Int32.
-         */
-        @!APILevel[
+    /**
+     * The returned type is Int32.
+     */
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     Int32Value(Int32)
     | 
-        /**
-         * The returned type is UInt32.
-         */
-        @!APILevel[
+    /**
+     * The returned type is UInt32.
+     */
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     Uint32Value(UInt32)
     | 
-        /**
-         * The returned type is UInt64.
-         */
-        @!APILevel[
+    /**
+     * The returned type is UInt64.
+     */
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     Uint64Value(UInt64)
     | 
-        /**
-         * The returned type is Bytes.
-         */
-        @!APILevel[
+    /**
+     * The returned type is Bytes.
+     */
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
@@ -172,7 +170,6 @@ public enum HuksParamValue {
 
 /**
  * Defines options used in the APIs.
- *
  */
 @!APILevel[
     since: "22",
@@ -181,7 +178,6 @@ public enum HuksParamValue {
 public class HuksOptions {
     /**
      * Properties used to hold the HuksParam array.
-     *
      */
     @!APILevel[
         since: "22",
@@ -190,7 +186,6 @@ public class HuksOptions {
     public var properties: Array<HuksParam>
     /**
      * Input data.
-     *
      */
     @!APILevel[
         since: "22",
@@ -199,7 +194,10 @@ public class HuksOptions {
     public var inData: Bytes
 
     /**
-     *HuksOptions constructor
+     * HuksOptions constructor
+     *
+     * @param { Array<HuksParam> }[properties] - indicates of the huksParam array.
+     * @param { Bytes }[inData] - indicates of the huks input data.
      */
     @!APILevel[
         since: "22",
@@ -213,7 +211,6 @@ public class HuksOptions {
 
 /**
  * Defines the struct for a HUKS handle.
- *
  */
 @!APILevel[
     since: "22",
@@ -222,16 +219,14 @@ public class HuksOptions {
 public class HuksSessionHandle {
     /**
      * Value of the handle.
-     *
      */
-     @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
     public var handle: HuksHandleId
     /**
      * Challenge obtained after the initSession operation.
-     *
      */
     @!APILevel[
         since: "22",
@@ -250,7 +245,6 @@ public class HuksSessionHandle {
 
 /**
  * Interface of huks handle.
- *
  */
 @!APILevel[
     since: "22",

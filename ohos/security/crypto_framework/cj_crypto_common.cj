@@ -23,7 +23,6 @@ foreign func memcpy_s(dest: CPointer<UInt8>, destMax: UIntNative, src: CPointer<
 
 /**
  * Defines a buffer array of the Binary Large Object (BLOB) type.
- *
  */
 @!APILevel[
     since: "22",
@@ -32,7 +31,6 @@ foreign func memcpy_s(dest: CPointer<UInt8>, destMax: UIntNative, src: CPointer<
 public class DataBlob {
     /**
      * Indicates the content of data blob.
-     *
      */
     @!APILevel[
         since: "22",
@@ -43,6 +41,7 @@ public class DataBlob {
     /**
      * DataBlob constructor.
      *
+     * @param { Array<UInt8> } data - indicates the  data blob.
      */
     @!APILevel[
         since: "22",
@@ -56,7 +55,6 @@ public class DataBlob {
 /**
  * Defines the child class of ParamsSpec. It is a parameter of init for symmetric encryption or decryption.
  * IvParamsSpec applies to the cipher modes such as CBC, CTR, OFB, and CFB, which use only the IV.
- *
  */
 @!APILevel[
     since: "22",
@@ -69,7 +67,6 @@ public class IvParamsSpec <: ParamsSpec {
      * - AES CBC, CTR, OFB, or CFB mode: 16-byte IV
      * - 3DES CBC, OFB, or CFB mode: 8-byte IV
      * - SM4 CBC, CTR, OFB, or CFB mode: 16-byte IV
-     *
      */
     @!APILevel[
         since: "22",
@@ -80,6 +77,8 @@ public class IvParamsSpec <: ParamsSpec {
     /**
      * IvParamsSpec constructor.
      *
+     * @param { String } algName - Indicates the algorithm name.
+     * @param { DataBlob } iv - indicates the data blob.
      */
     @!APILevel[
         since: "22",
@@ -93,7 +92,6 @@ public class IvParamsSpec <: ParamsSpec {
 
 /**
  * Provides the GcmParamsSpec type, including the parameter iv, aad and authTag.
- *
  */
 @!APILevel[
     since: "22",
@@ -102,7 +100,6 @@ public class IvParamsSpec <: ParamsSpec {
 public class GcmParamsSpec <: ParamsSpec {
     /**
      * Indicates the GCM algorithm parameters such as iv.
-     *
      */
     @!APILevel[
         since: "22",
@@ -112,7 +109,6 @@ public class GcmParamsSpec <: ParamsSpec {
 
     /**
      * Indicates the additional Authenticated Data in GCM mode.
-     *
      */
     @!APILevel[
         since: "22",
@@ -122,7 +118,6 @@ public class GcmParamsSpec <: ParamsSpec {
 
     /**
      * Indicates the output tag from the encryption operation. The tag is used for integrity check.
-     *
      */
     @!APILevel[
         since: "22",
@@ -133,6 +128,10 @@ public class GcmParamsSpec <: ParamsSpec {
     /**
      * GcmParamsSpec constructor.
      *
+     * @param { String } algName - Indicates the algorithm name.
+     * @param { DataBlob } iv - Indicates the GCM algorithm parameters such as iv.
+     * @param { DataBlob } aad - Indicates the additional Authenticated Data in GCM mode.
+     * @param { DataBlob } authTag - Indicates the output tag from the encryption operation. The tag is used for integrity check.
      */
     @!APILevel[
         since: "22",
@@ -148,7 +147,6 @@ public class GcmParamsSpec <: ParamsSpec {
 
 /**
  * Provides the CcmParamsSpec type, including the parameter iv, aad and authTag.
- *
  */
 @!APILevel[
     since: "22",
@@ -157,7 +155,6 @@ public class GcmParamsSpec <: ParamsSpec {
 public class CcmParamsSpec <: ParamsSpec {
     /**
      * Indicates the GCM algorithm parameters such as IV.
-     *
      */
     @!APILevel[
         since: "22",
@@ -167,7 +164,6 @@ public class CcmParamsSpec <: ParamsSpec {
 
     /**
      * Indicates the Additional Authenticated Data in CCM mode.
-     *
      */
     @!APILevel[
         since: "22",
@@ -177,7 +173,6 @@ public class CcmParamsSpec <: ParamsSpec {
 
     /**
      * Indicates the output tag from the encryption operation. The tag is used for integrity check.
-     *
      */
     @!APILevel[
         since: "22",
@@ -188,6 +183,10 @@ public class CcmParamsSpec <: ParamsSpec {
     /**
      * CcmParamsSpec constructor.
      *
+     * @param { String } algName - Indicates the algorithm name.
+     * @param { DataBlob } iv - Indicates the GCM algorithm parameters such as IV.
+     * @param { DataBlob } aad - Indicates the Additional Authenticated Data in CCM mode.
+     * @param { DataBlob } authTag - Indicates the output tag from the encryption operation. The tag is used for integrity check.
      */
     @!APILevel[
         since: "22",

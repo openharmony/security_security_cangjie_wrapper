@@ -80,7 +80,7 @@ enum Result <: ToString {
      * Return the string of the enumeration value.
      *
      */
-    func toString(): String {
+    public func toString(): String {
         return match (this) {
             case InvalidParams => "Parameter error."
             case NotSupport => "Capability not supported."
@@ -122,6 +122,9 @@ func checkAndThrow(errCode: Int32) {
  *
  */
 @Derive[ToString, Equatable]
+/**
+ * Enumerates the cryptographic operations.
+ */
 @!APILevel[
     since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
@@ -129,7 +132,6 @@ func checkAndThrow(errCode: Int32) {
 public enum CryptoMode {
     /**
      * The value of encryption operation for AES, 3DES and RSA.
-     *
      */
     @!APILevel[
         since: "22",
@@ -139,7 +141,6 @@ public enum CryptoMode {
     |
     /**
      * The value of decryption operation for AES, 3DES and RSA.
-     *
      */
     @!APILevel[
         since: "22",
@@ -162,6 +163,10 @@ public enum CryptoMode {
  *
  */
 @Derive[ToString, Equatable]
+/**
+ * Enum for encryption specified parameters.
+ * You can use setCipherSpec to set cipher parameters, and use getCipherSpec to obtain cipher parameters.
+ */
 @!APILevel[
     since: "22",
     syscap: "SystemCapability.Security.CryptoFramework.Cipher"
@@ -169,7 +174,6 @@ public enum CryptoMode {
 public enum CipherSpecItem {
     /**
      * Indicates the algorithm name of the message digest function. It is used during RSA encryption.
-     *
      */
     @!APILevel[
         since: "22",
@@ -179,7 +183,6 @@ public enum CipherSpecItem {
     |
     /**
      * Indicates the algorithm name for the mask generation function. It is used during RSA encryption.
-     *
      */
     @!APILevel[
         since: "22",
@@ -189,7 +192,6 @@ public enum CipherSpecItem {
     |
     /**
      * Indicates the message digest parameter for the MGF1 mask generation function. It is used during RSA encryption.
-     *
      */
     @!APILevel[
         since: "22",
@@ -199,7 +201,6 @@ public enum CipherSpecItem {
     |
     /**
      * Indicates the source of the encoding input P. It is used during RSA encryption.
-     *
      */
     @!APILevel[
         since: "22",
