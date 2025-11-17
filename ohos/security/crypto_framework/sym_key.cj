@@ -35,7 +35,6 @@ foreign {
 /**
  * Provides APIs for symmetric key operations.
  * Its objects need to be passed to init of the Cipher instance in symmetric encryption and decryption.
- *
  */
 @!APILevel[
     since: "22",
@@ -63,6 +62,7 @@ public class SymKey <: RemoteDataLite & Key {
      * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric
      * key.
      *
+     * @returns { String } algName representation of the Result.
      */
     @!APILevel[
         since: "22",
@@ -77,6 +77,7 @@ public class SymKey <: RemoteDataLite & Key {
     /**
      * Indicates the format of the key object.
      *
+     * @returns { String } format representation of the Result.
      */
     @!APILevel[
         since: "22",
@@ -107,7 +108,8 @@ public class SymKey <: RemoteDataLite & Key {
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey"
+        syscap: "SystemCapability.Security.CryptoFramework.Key.SymKey",
+        throwexception: true
     ]
     public func getEncoded(): DataBlob {
         unsafe {
@@ -127,7 +129,6 @@ public class SymKey <: RemoteDataLite & Key {
     /**
      * Clears the keys in the memory. This API returns the result synchronously.
      * You are advised to use this API when symmetric key instances are no longer used.
-     *
      */
     @!APILevel[
         since: "22",

@@ -33,9 +33,9 @@ class Test_SecurityHuks_IsKeyItemExist {
         clean(keyAlias)
         try {
             // false
-            @Expect(!isKeyItemExist(keyAlias, HuksOptions()))
+            @Expect(!hasKeyItem(keyAlias, HuksOptions()))
             generateSimpleKey(keyAlias)
-            @Expect(isKeyItemExist(keyAlias, HuksOptions()))
+            @Expect(hasKeyItem(keyAlias, HuksOptions()))
         } finally {
             clean(keyAlias)
         }
@@ -46,7 +46,7 @@ class Test_SecurityHuks_IsKeyItemExist {
     func test_is_key_item_exist_with_empty_alias() {
         let keyAlias = ""
         try {
-            isKeyItemExist(keyAlias, HuksOptions())
+            hasKeyItem(keyAlias, HuksOptions())
         } catch (e: BusinessException) {
             @Expect(e.code, 401)
         }

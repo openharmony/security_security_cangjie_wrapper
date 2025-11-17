@@ -68,8 +68,8 @@ class Test_SecurityHuks_SM2 {
                     inData: pubKey
                 )
             )
-            @Expect(isKeyItemExist(keyAlias, HuksOptions()))
-            @Expect(isKeyItemExist(keyAliasBak, HuksOptions()))
+            @Expect(hasKeyItem(keyAlias, HuksOptions()))
+            @Expect(hasKeyItem(keyAliasBak, HuksOptions()))
         } finally {
             clean(keyAlias)
             clean(keyAliasBak)

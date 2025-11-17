@@ -35,15 +35,14 @@ foreign {
 /**
  * Creates a Mac instance for MAC operations.
  *
- * @param { string } algName - indicates the mac algorithm name.
+ * @param { String } algName - indicates the mac algorithm name.
  * @returns { Mac } returns the created mac instance.
- * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
- * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 17620001 - memory operation failed.
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.CryptoFramework.Mac"
+    syscap: "SystemCapability.Security.CryptoFramework.Mac",
+    throwexception: true
 ]
 public func createMac(algName: String): Mac {
     unsafe {
@@ -59,7 +58,6 @@ public func createMac(algName: String): Mac {
 /**
  * Provides the Mac type, which is used for Mac generation.
  * Before using any API of the Mac class, you must create a Mac instance by using createMac.
- *
  */
 @!APILevel[
     since: "22",
@@ -83,14 +81,13 @@ public class Mac <: RemoteDataLite {
      * init and doFinal are mandatory, and update is optional.
      *
      * @param { SymKey } key - indicates the SymKey.
-     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;	
-     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Mac"
+        syscap: "SystemCapability.Security.CryptoFramework.Mac",
+        throwexception: true
     ]
     public func initialize(key: SymKey): Unit {
         unsafe {
@@ -103,14 +100,14 @@ public class Mac <: RemoteDataLite {
      * Update mac with DataBlob.
      *
      * @param { DataBlob } input - indicates the DataBlob.
-     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;	
-     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Mac"
+        syscap: "SystemCapability.Security.CryptoFramework.Mac",
+        throwexception: true,
+        workerthread: true
     ]
     public func update(input: DataBlob): Unit {
         unsafe {
@@ -133,15 +130,16 @@ public class Mac <: RemoteDataLite {
     /**
      * Output the result of mac calculation.
      *
-     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
-     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @returns { DataBlob } returns the data blob of the result.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Mac"
+        syscap: "SystemCapability.Security.CryptoFramework.Mac",
+        throwexception: true,
+        workerthread: true
     ]
     public func doFinal(): DataBlob {
         unsafe {
@@ -162,7 +160,8 @@ public class Mac <: RemoteDataLite {
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Mac"
+        syscap: "SystemCapability.Security.CryptoFramework.Mac",
+        throwexception: true
     ]
     public func getMacLength(): UInt32 {
         unsafe {
@@ -173,6 +172,7 @@ public class Mac <: RemoteDataLite {
     /**
      * Indicates the algorithm name.
      *
+     * @returns { String } algName representation of the Result.
      */
     @!APILevel[
         since: "22",

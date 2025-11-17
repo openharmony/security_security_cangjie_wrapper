@@ -45,7 +45,7 @@ class Test_SecurityHuks_GenerateKey {
                  inData: Bytes()
             )
             generateKeyItem(keyAlias, options)
-            @Expect(isKeyItemExist(keyAlias, HuksOptions()))
+            @Expect(hasKeyItem(keyAlias, HuksOptions()))
         } finally {
             clean(keyAlias)
         }

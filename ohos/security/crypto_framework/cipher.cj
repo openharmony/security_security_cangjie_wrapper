@@ -51,15 +51,15 @@ foreign {
  * even with the same specifications.
  *
  * @param { String } transformation - indicates the description to be transformed to cipher specifications.
+ *                                    Multiple parameters need to be concatenated by "|".
  * @returns { Cipher } the cipher object returned by the function.
- * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
- * <br>2. Incorrect parameter types; 3. Parameter verification failed.
  * @throws { BusinessException } 801 - this operation is not supported.
  * @throws { BusinessException } 17620001 - memory operation failed.
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.CryptoFramework.Cipher"
+    syscap: "SystemCapability.Security.CryptoFramework.Cipher",
+    throwexception: true
 ]
 public func createCipher(transformation: String): Cipher {
     unsafe {
@@ -74,7 +74,6 @@ public func createCipher(transformation: String): Cipher {
 
 /**
  * Provides the Cipher type, which is used for encryption and decryption operations.
- *
  */
 @!APILevel[
     since: "22",
@@ -118,16 +117,15 @@ public class Cipher <: RemoteDataLite {
      *
      * @param { CryptoMode } opMode - indicates the crypto mode is encryption or decryption.
      * @param { Key } key - indicates the symmetric key or the asymmetric key.
-     * @param { ParamsSpec } params - indicates the algorithm parameters such as IV.
-     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
-     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
+     * @param { ?ParamsSpec } params - indicates the algorithm parameters such as IV.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Cipher"
+        syscap: "SystemCapability.Security.CryptoFramework.Cipher",
+        throwexception: true
     ]
     public func initialize(opMode: CryptoMode, key: Key, params: ?ParamsSpec): Unit {
         unsafe {
@@ -173,14 +171,15 @@ public class Cipher <: RemoteDataLite {
      *
      * @param { DataBlob } data - indicates the data to be encrypted or decrypted.
      * @returns { DataBlob } the data returned by the function.
-     * @throws { BusinessException } 401 - invalid parameters.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Cipher"
+        syscap: "SystemCapability.Security.CryptoFramework.Cipher",
+        throwexception: true,
+        workerthread: true
     ]
     public func update(data: DataBlob): DataBlob {
         unsafe {
@@ -205,15 +204,15 @@ public class Cipher <: RemoteDataLite {
      *
      * @param { DataBlob } data - indicates the data to be finally encrypted or decrypted.
      * @returns { DataBlob } the data returned by the function.
-     * @throws { BusinessException } 401 - invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified;
-     * <br>2. Incorrect parameter types; 3. Parameter verification failed.
      * @throws { BusinessException } 17620001 - memory operation failed.
      * @throws { BusinessException } 17620002 - failed to convert parameters between cj and c.
      * @throws { BusinessException } 17630001 - crypto operation error.
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Cipher"
+        syscap: "SystemCapability.Security.CryptoFramework.Cipher",
+        throwexception: true,
+        workerthread: true
     ]
     public func doFinal(data: ?DataBlob): DataBlob {
         unsafe {
@@ -238,6 +237,8 @@ public class Cipher <: RemoteDataLite {
 
     /**
      * Indicates the algorithm name of the cipher object.
+     *
+     * @returns { String } algName representation of the Result.
      */
     @!APILevel[
         since: "22",

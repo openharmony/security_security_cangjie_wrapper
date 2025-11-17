@@ -22,26 +22,28 @@ import std.collection.{ collectArray, forEach, map}
 import ohos.business_exception.BusinessException
 
 /**
- * Checks whether a key exists. This API uses a promise to return the result.
+ * Checks whether a key exists.
  *
- * @param { String } keyAlias - keyAlias indicates the key's name.
- * @param { HuksOptions } options - options indicates the properties of the key.
- * @return { Bool } - whether the key exists.
- * @throws { BusinessException } 401 - argument is invalid
+ * @param { String } keyAlias - Alias of the key to check.
+ * @param { HuksOptions } options - Options for checking the key. For example, you can pass in HuksAuthStorageLevel to
+ * specify the security level of the key to check. HuksAuthStorageLevel can be left empty, which means the default
+ * value HUKS_AUTH_STORAGE_LEVEL_DE is used.
+ * @returns { Bool } Used to return the result. If the key exists, then() performs subsequent
  * @throws { BusinessException } 801 - api is not supported
- * @throws { BusinessException } 12000002 - algorithm param is missing
- * @throws { BusinessException } 12000003 - algorithm param is invalid
  * @throws { BusinessException } 12000004 - operating file failed
  * @throws { BusinessException } 12000005 - IPC communication failed
- * @throws { BusinessException } 12000006 - error occured in crypto engine
- * @throws { BusinessException } 12000012 - external error
+ * @throws { BusinessException } 12000006 - error occurred in crypto engine
+ * @throws { BusinessException } 12000011 - queried entity does not exist
+ * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
  * @throws { BusinessException } 12000014 - memory is insufficient
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.Huks.Extension"
+    syscap: "SystemCapability.Security.Huks.Extension",
+    throwexception: true,
+    workerthread: true
 ]
-public func isKeyItemExist(keyAlias: String, options: HuksOptions): Bool {
+public func hasKeyItem(keyAlias: String, options: HuksOptions): Bool {
     if (keyAlias.isEmpty()) {
         throw BusinessException(HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(), "key alias is empty")
     }
@@ -77,26 +79,26 @@ public func isKeyItemExist(keyAlias: String, options: HuksOptions): Bool {
 }
 
 /**
- * Obtains key properties. This API uses a promise to return the result.
+ * Obtains key properties.
  *
- * @param { String } keyAlias - keyAlias indicates the key's name.
- * @param { HuksOptions } options - options indicates the properties of the key.
- * @return { Array<HuksParam> } - the key item properties.
- * @throws { BusinessException } 401 - argument is invalid
+ * @param { String } keyAlias - Key alias, which must be the same as the alias used when the key was generated.
+ * @param { HuksOptions } _ - Empty object (leave this parameter empty).
+ * @returns { Array<HuksParam> } Used to return the result. If the operation is successful,
+ * properties in Array<HuksParam> holds the parameters required for generating the key.
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
- * @throws { BusinessException } 12000002 - algorithm param is missing
- * @throws { BusinessException } 12000003 - algorithm param is invalid
  * @throws { BusinessException } 12000004 - operating file failed
  * @throws { BusinessException } 12000005 - IPC communication failed
- * @throws { BusinessException } 12000006 - error occured in crypto engine
+ * @throws { BusinessException } 12000006 - error occurred in crypto engine
  * @throws { BusinessException } 12000011 - queried entity does not exist
- * @throws { BusinessException } 12000012 - external error
+ * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
  * @throws { BusinessException } 12000014 - memory is insufficient
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.Huks.Extension"
+    syscap: "SystemCapability.Security.Huks.Extension",
+    throwexception: true,
+    workerthread: true
 ]
 public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksParam> {
     // options is a reserved parameter and does not need to be processed currently.
@@ -127,30 +129,30 @@ public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksPa
 }
 
 /**
- * Obtains the certificate for anonymous attestation. This API uses an asynchronous callback to return
- * the result. This operation requires Internet access and takes time. If error code 12000012 is returned, the network
- * is abnormal. If the device is not connected to the network, display a message, indicating that the network is not
- * connected. If the network is connected, the failure may be caused by network jitter. Try again later.
+ * Obtains the certificate for anonymous attestation. This
+ * operation requires Internet access and takes time. If error code 12000012 is returned, the network is abnormal. If
+ * the device is not connected to the network, display a message, indicating that the network is not connected. If the
+ * network is connected, the failure may be caused by network jitter. Try again later.
  *
- * @param { String } keyAlias - keyAlias indicates the key's name.
- * @param { HuksOptions } options - options indicates the properties of the key attestation operation.
- * @return { Array<String> } - the certchain of key.
+ * @param { String } keyAlias - Alias of the key. The certificate to be obtained stores the key.
+ * @param { HuksOptions } options - Parameters and data required for obtaining the certificate.
+ * @returns { Array<String> } Used to return the result. If the operation is successful,
+ * certChains in Array<String> is the certificate chain obtained.
  * @throws { BusinessException } 201 - check permission failed
- * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
- * @throws { BusinessException } 12000002 - algorithm param is missing
- * @throws { BusinessException } 12000003 - algorithm param is invalid
  * @throws { BusinessException } 12000004 - operating file failed
  * @throws { BusinessException } 12000005 - IPC communication failed
- * @throws { BusinessException } 12000006 - error occured in crypto engine
+ * @throws { BusinessException } 12000006 - error occurred in crypto engine
  * @throws { BusinessException } 12000011 - queried entity does not exist
- * @throws { BusinessException } 12000012 - external error
+ * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
  * @throws { BusinessException } 12000014 - memory is insufficient
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.Huks.Extension"
+    syscap: "SystemCapability.Security.Huks.Extension",
+    throwexception: true,
+    workerthread: true
 ]
 public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<String> {
     if (keyAlias.isEmpty()) {
@@ -209,26 +211,26 @@ public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<Str
 }
 
 /**
- * Exports a key. This API uses a promise to return the result.
+ * Exports a key. This API uses a Array<UInt8> to return the result.
  *
- * @param { String } keyAlias - keyAlias indicates the key's name.
- * @param { HuksOptions } options - options indicates the properties of the key.
- * @return { Array<UInt8> } - the exported key
- * @throws { BusinessException } 401 - argument is invalid
+ * @param { String } keyAlias - Key alias, which must be the same as the alias used when the key was generated.
+ * @param { HuksOptions } _ - Empty object (leave this parameter empty).
+ * @returns { Bytes } Used to return the result. If the operation is successful, outData
+ * in Bytes is the public key exported.
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
- * @throws { BusinessException } 12000002 - algorithm param is missing
- * @throws { BusinessException } 12000003 - algorithm param is invalid
  * @throws { BusinessException } 12000004 - operating file failed
  * @throws { BusinessException } 12000005 - IPC communication failed
- * @throws { BusinessException } 12000006 - error occured in crypto engine
+ * @throws { BusinessException } 12000006 - error occurred in crypto engine
  * @throws { BusinessException } 12000011 - queried entity does not exist
- * @throws { BusinessException } 12000012 - external error
+ * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
  * @throws { BusinessException } 12000014 - memory is insufficient
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.Huks.Extension"
+    syscap: "SystemCapability.Security.Huks.Extension",
+    throwexception: true,
+    workerthread: true
 ]
 public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
     if (keyAlias.isEmpty()) {
@@ -265,30 +267,32 @@ public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes {
 }
 
 /**
- * Imports a wrapped key. This API uses a promise to return the result.
+ * Imports a wrapped key.
  *
- * @param { String } keyAlias - keyAlias indicates the name of key to be imported.
- * @param { String } wrappingKeyAlias - wrappingKeyAlias indicates the name of key for wrapping the key to be imported.
- * @param { HuksOptions } options - options indicates the properties of the key.
+ * @param { String } keyAlias - Alias of the wrapped key to import.
+ * @param { String } wrappingKeyAlias - Alias of the data used to unwrap the key imported.
+ * @param { HuksOptions } options - Tags required for the import and the wrapped key to import. The algorithm, key
+ * purpose, and key length are mandatory.
  * @throws { BusinessException } 201 - check permission failed
- * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
  * @throws { BusinessException } 12000002 - algorithm param is missing
  * @throws { BusinessException } 12000003 - algorithm param is invalid
  * @throws { BusinessException } 12000004 - operating file failed
  * @throws { BusinessException } 12000005 - IPC communication failed
- * @throws { BusinessException } 12000006 - error occured in crypto engine
+ * @throws { BusinessException } 12000006 - error occurred in crypto engine
  * @throws { BusinessException } 12000011 - queried entity does not exist
- * @throws { BusinessException } 12000012 - external error
+ * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
  * @throws { BusinessException } 12000013 - queried credential does not exist
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @throws { BusinessException } 12000015 - call service failed
+ * @throws { BusinessException } 12000015 - Failed to obtain the security information via UserIAM
  * @throws { BusinessException } 12000017 - The key with same alias is already exist
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.Huks.Extension"
+    syscap: "SystemCapability.Security.Huks.Extension",
+    throwexception: true,
+    workerthread: true
 ]
 public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, options: HuksOptions): Unit {
     if (keyAlias.isEmpty()) {
@@ -331,13 +335,13 @@ public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, opt
 }
 
 /**
- * Generates a key. This API uses a promise to return the result. Because the key is always
- * protected in a trusted environment (such as a TEE), the promise does not return the key content.
+ * Generates a key. Because the key is always
+ * protected in a trusted environment (such as a TEE), the result does not return the key content.
  * It returns only the information indicating whether the API is successfully called.
  *
  * @param { String } keyAlias - keyAlias indicates the key's name.
- * @param { HuksOptions } options - options indicates the properties of the key.
- * @throws { BusinessException } 401 - argument is invalid
+ * @param { HuksOptions } options - Tags required for generating the key. The algorithm, key purpose,
+ * and key length are mandatory.
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
  * @throws { BusinessException } 12000002 - algorithm param is missing
@@ -345,15 +349,17 @@ public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, opt
  * @throws { BusinessException } 12000004 - operating file failed
  * @throws { BusinessException } 12000005 - IPC communication failed
  * @throws { BusinessException } 12000006 - error occured in crypto engine
- * @throws { BusinessException } 12000012 - external error
+ * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
  * @throws { BusinessException } 12000013 - queried credential does not exist
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @throws { BusinessException } 12000015 - call service failed
+ * @throws { BusinessException } 12000015 - Failed to obtain the security information via UserIAM
  * @throws { BusinessException } 12000017 - The key with same alias is already exist
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.Huks.Extension"
+    syscap: "SystemCapability.Security.Huks.Extension",
+    throwexception: true,
+    workerthread: true
 ]
 public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit {
     if (keyAlias.isEmpty()) {
@@ -385,21 +391,25 @@ public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit {
 }
 
 /**
- * Deletes a key. This API uses a promise to return the result.
+ * Deletes a key.
  *
- * @param { string } keyAlias - keyAlias indicates the key's name.
- * @param { HuksOptions } options - options indicates the properties of the key.
- * @throws { BusinessException } 401 - argument is invalid
+ * @param { String } keyAlias - Alias of the key to delete. It must be the key alias passed in when the key
+ * was generated.
+ * @param { HuksOptions } options - Options for deleting the key. For example, you can pass in HuksAuthStorageLevel to
+ * specify the security level of the key to delete. HuksAuthStorageLevel can be left empty, which means the default
+ * value HUKS_AUTH_STORAGE_LEVEL_DE is used.
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000004 - operating file failed
  * @throws { BusinessException } 12000005 - IPC communication failed
  * @throws { BusinessException } 12000011 - queried entity does not exist
- * @throws { BusinessException } 12000012 - external error
+ * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
  * @throws { BusinessException } 12000014 - memory is insufficient
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.Huks.Extension"
+    syscap: "SystemCapability.Security.Huks.Extension",
+    throwexception: true,
+    workerthread: true
 ]
 public func deleteKeyItem(keyAlias: String, options: HuksOptions): Unit {
     if (keyAlias.isEmpty()) {
@@ -433,12 +443,11 @@ public func deleteKeyItem(keyAlias: String, options: HuksOptions): Unit {
 }
 
 /**
- * Imports a key in plaintext. This API uses a promise to return the result.
+ * Imports a key in plaintext.
  *
- * @param { string } keyAlias - keyAlias indicates the key's name.
+ * @param { String } keyAlias - keyAlias indicates the key's name.
  * @param { HuksOptions } options - Tags required for the import and key to import. The algorithm, key purpose, and
  * key length are mandatory.
- * @throws { BusinessException } 401 - argument is invalid
  * @throws { BusinessException } 801 - api is not supported
  * @throws { BusinessException } 12000001 - algorithm mode is not supported
  * @throws { BusinessException } 12000002 - algorithm param is missing
@@ -447,14 +456,17 @@ public func deleteKeyItem(keyAlias: String, options: HuksOptions): Unit {
  * @throws { BusinessException } 12000005 - IPC communication failed
  * @throws { BusinessException } 12000006 - error occured in crypto engine
  * @throws { BusinessException } 12000011 - queried entity does not exist
- * @throws { BusinessException } 12000012 - external error
+ * @throws { BusinessException } 12000012 - Device environment or input parameter abnormal
  * @throws { BusinessException } 12000013 - queried credential does not exist
  * @throws { BusinessException } 12000014 - memory is insufficient
- * @throws { BusinessException } 12000015 - call service failed
+ * @throws { BusinessException } 12000015 - Failed to obtain the security information via UserIAM
+ * @throws { BusinessException } 12000017 - The key with same alias is already exist
  */
 @!APILevel[
     since: "22",
-    syscap: "SystemCapability.Security.Huks.Extension"
+    syscap: "SystemCapability.Security.Huks.Extension",
+    throwexception: true,
+    workerthread: true
 ]
 public func importKeyItem(keyAlias: String, options: HuksOptions): Unit {
     if (keyAlias.isEmpty()) {

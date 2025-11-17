@@ -23,7 +23,6 @@ import ohos.labels.APILevel
  * Provides the Key type, which is the common parent class of keys.
  * Before performing cryptographic operations, you need to construct a child class object of Key and pass it to init of
  * the Cipher instance.
- *
  */
 @!APILevel[
     since: "22",
@@ -33,6 +32,7 @@ public interface Key {
     /**
      * Indicates the format of the key object.
      *
+     * @returns { String } format representation of the Result.
      */
     @!APILevel[
         since: "22",
@@ -44,6 +44,7 @@ public interface Key {
      * Indicates the algorithm name of the key object. This parameter contains the key length if the key is a symmetric
      * key.
      *
+     * @returns { String } algName representation of the Result.
      */
     @!APILevel[
         since: "22",
@@ -64,7 +65,8 @@ public interface Key {
      */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Security.CryptoFramework.Key"
+        syscap: "SystemCapability.Security.CryptoFramework.Key",
+        throwexception: true
     ]
     func getEncoded(): DataBlob
 }
@@ -72,7 +74,6 @@ public interface Key {
 /**
  * Encapsulates the parameters used for encryption or decryption.You need to construct its child class object and
  * pass it to init for symmetric encryption or decryption.
- *
  */
 @!APILevel[
     since: "22",
@@ -81,7 +82,6 @@ public interface Key {
 public open class ParamsSpec {
     /**
      * Indicates the algorithm name. Should be set before initialization of a cipher object.
-     *
      */
     @!APILevel[
         since: "22",

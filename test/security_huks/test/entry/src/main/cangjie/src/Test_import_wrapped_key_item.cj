@@ -66,7 +66,7 @@ class Test_SecurityHuks_ImportWrappedKeyItem {
                          inData: key
                     )
                 )
-                @Expect(isKeyItemExist(keyAlias, HuksOptions()))
+                @Expect(hasKeyItem(keyAlias, HuksOptions()))
             } catch (e: BusinessException) {
                 // ignore
             }

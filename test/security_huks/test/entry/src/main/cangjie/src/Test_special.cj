@@ -32,7 +32,7 @@ class Test_SecurityHuks_Special {
         let keyAlias = "123";
         clean(keyAlias)
         try {
-            let res = isKeyItemExist(keyAlias, HuksOptions())
+            let res = hasKeyItem(keyAlias, HuksOptions())
         } finally {
             clean(keyAlias)
         }

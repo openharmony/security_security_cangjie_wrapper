@@ -49,7 +49,7 @@ class Test_SecurityHuks_ImportKey {
                    inData: key
                 )
             )
-            @Expect(isKeyItemExist(keyAlias, HuksOptions()))
+            @Expect(hasKeyItem(keyAlias, HuksOptions()))
         } finally {
             clean(keyAlias)
         }
@@ -91,8 +91,8 @@ class Test_SecurityHuks_ImportKey {
                     inData: pubKey
                 )
             )
-            @Expect(isKeyItemExist(keyAlias, HuksOptions()))
-            @Expect(isKeyItemExist(keyAliasBak, HuksOptions()))
+            @Expect(hasKeyItem(keyAlias, HuksOptions()))
+            @Expect(hasKeyItem(keyAliasBak, HuksOptions()))
         } finally {
             clean(keyAlias)
             clean(keyAliasBak)

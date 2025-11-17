@@ -76,7 +76,7 @@ class Test_SecurityHuks_Struct_ffi {
         var flag = false
         try {
             generateSimpleKey(keyAlias)
-            let res = isKeyItemExist(keyAlias, optionsUint32None)
+            let res = hasKeyItem(keyAlias, optionsUint32None)
         } catch (e: BusinessException) {
             flag = true
         } finally {
@@ -92,7 +92,7 @@ class Test_SecurityHuks_Struct_ffi {
         clean(keyAlias)
         var flag = false
         try {
-            let res = isKeyItemExist(keyAlias, optionsBoolNone)
+            let res = hasKeyItem(keyAlias, optionsBoolNone)
         } catch (e: BusinessException) {
             flag = true
         } finally {
@@ -108,7 +108,7 @@ class Test_SecurityHuks_Struct_ffi {
         clean(keyAlias)
         var flag = false
         try {
-            let res = isKeyItemExist(keyAlias, optionsBytesNone)
+            let res = hasKeyItem(keyAlias, optionsBytesNone)
         } catch (e: BusinessException) {
             flag = true
         } finally {
@@ -149,39 +149,39 @@ class Test_SecurityHuks_Struct_ffi {
     func test_hks_param_set_matches() {
         let keyAlias = "123"
         try {
-            isKeyItemExist(keyAlias,
+            hasKeyItem(keyAlias,
                 HuksOptions(properties: [HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksParamValue.Uint32Value(0))], inData: Bytes()))
         } catch (e: Exception) {
             // ignore
         }
         try {
-            isKeyItemExist(keyAlias,
+            hasKeyItem(keyAlias,
                 HuksOptions(properties: [HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksParamValue.BytesValue("123".toArray()))], inData: Bytes())
             )
         } catch (e: Exception) {
             // ignore
         }
 //        try {
-//            isKeyItemExist(keyAlias,
+//            hasKeyItem(keyAlias,
 //                HuksOptions([HuksParam(HuksTag.HUKS_TAG_ACTIVE_DATETIME, HuksParamValue.uint64(0))], inData: Bytes()))
 //        } catch (e: Exception) {
 //            // ignore
 //        }
 //        try {
-//            isKeyItemExist(keyAlias,
+//            hasKeyItem(keyAlias,
 //                HuksOptions([HuksParam(HuksTag.HUKS_TAG_ACTIVE_DATETIME, HuksParamValue.bytes("123".toArray()))],
 //                    inData: Bytes()))
 //        } catch (e: Exception) {
 //            // ignore
 //        }
 //        try {
-//            isKeyItemExist(keyAlias,
+//            hasKeyItem(keyAlias,
 //                HuksOptions([HuksParam(HuksTag.HUKS_TAG_SECURE_KEY_ALIAS, HuksParamValue.boolean(true))], inData: Bytes()))
 //        } catch (e: Exception) {
 //            // ignore
 //        }
 //        try {
-//            isKeyItemExist(keyAlias,
+//            hasKeyItem(keyAlias,
 //                HuksOptions([HuksParam(HuksTag.HUKS_TAG_SECURE_KEY_ALIAS, HuksParamValue.bytes("123".toArray()))],
 //                    inData: Bytes()))
 //        } catch (e: Exception) {
