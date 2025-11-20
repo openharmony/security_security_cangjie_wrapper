@@ -239,7 +239,7 @@ func updateOrFinishSession(params: SessionParams, properties: Array<HuksParam>,
             FfiOHOSFinishSession(inout handleBlob, paramSet.toPointer(), inout cinBlob, inout coutBlob)
         }
     }
-    processRet(retCode, params.outBlob, handleBlob)
+    processRet(retCode, coutBlob, handleBlob)
 }
 
 func getOutBlogSize(inData: Array<UInt8>) {
