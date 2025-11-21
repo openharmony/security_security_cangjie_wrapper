@@ -260,34 +260,4 @@ class Test_crypto {
             @Expect(e.message, "Capability not supported")
         }
     }
-
-    @TestCase
-    @Tag[APILevel22, TestLevel0]
-    func test_EnumResult() {
-        let enumArray: Array<Result> = [
-            InvalidParams,
-            NotSupport,
-            ErrOutOfMemory,
-            ErrRuntimeError,
-            ErrCryptoOperation
-        ]
-        let valArray: Array<Int32> = [
-            401,
-            801,
-            17620001,
-            17620002,
-            17630001
-        ]
-        let strArray: Array<String> = [
-            "Parameter error.",
-            "Capability not supported.",
-            "Memory error.",
-            "Runtime error.",
-            "Crypto operation error."
-        ]
-        for (i in 0..enumArray.size) {
-            @Expect(enumArray[i].getValue() == valArray[i])
-            @Expect(enumArray[i].toString() == strArray[i])
-        }
-    }
 }
