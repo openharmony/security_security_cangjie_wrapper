@@ -18,17 +18,7 @@
   "component": {
     "name": "security_cangjie_wrapper",
     "subsystem": "security",
-    "syscap": [
-      "SystemCapability.Security.CryptoFramework",
-      "SystemCapability.Security.CryptoFramework.Key",
-      "SystemCapability.Security.CryptoFramework.Key.SymKey",
-      "SystemCapability.Security.CryptoFramework.Cipher",
-      "SystemCapability.Security.CryptoFramework.MessageDigest",
-      "SystemCapability.Security.CryptoFramework.Mac",
-      "SystemCapability.Security.CryptoFramework.Rand",
-      "SystemCapability.Security.Huks.Core",
-      "SystemCapability.Security.Huks.Extension"
-    ],
+    "syscap": [],
     "features": [],
     "adapted_system_type": [
       "standard"
