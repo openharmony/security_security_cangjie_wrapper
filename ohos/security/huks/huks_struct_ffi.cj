@@ -376,7 +376,6 @@ class ReadOnlyHksParamSet {
 
     func collectData(): Array<HuksParam> {
         unsafe {
-            let paramSetSize: UInt32 = CPointer<UInt32>(this.rawBuffer).read()
             let paramCnt: UInt32 = CPointer<UInt32>(this.rawBuffer + Int64(sizeOf<UInt32>())).read()
             var ptr: CPointer<OhosHksParam> = CPointer<OhosHksParam>(this.rawBuffer + Int64(sizeOf<UInt32>()) * 2)
 

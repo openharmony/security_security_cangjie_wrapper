@@ -108,7 +108,6 @@ func getError(errCode: Int32): Result {
 
 func checkAndThrow(errCode: Int32) {
     if (errCode == -10001) {
-        let msg = getError(errCode).toString()
         throw BusinessException(401, "Parameter error.")
     }
     if (errCode != 0) {
