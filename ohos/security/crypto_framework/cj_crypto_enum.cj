@@ -51,7 +51,7 @@ enum Result {
      */
     ErrRuntimeError
     |
-    @!Hide
+    @!Hide[isChecked: true]
     ErrParameterCheckFailed
     |
     /**
@@ -208,7 +208,7 @@ public enum CipherSpecItem {
     ]
     OaepMgf1PsrcUint8Arr
     |
-    @!Hide
+    @!Hide[isChecked: true]
     Sm2MdNameStr
     | ...
 
