@@ -18,7 +18,6 @@
 package ohos.security.huks
 
 import ohos.labels.APILevel
-import ohos.business_exception.BusinessException
 
 /**
  * Defines the param field in the properties array of options used in the APIs.
