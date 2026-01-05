@@ -16,7 +16,12 @@
 import("//build/templates/cangjie/cjc.gni")
 
 ohos_cangjie_shared_library("ohos.security") {
-  sources = [ "security.cj" ]
+  
+  if (is_mingw || is_mac){
+    sources = [ "../../mock/ohos.security.cj" ]
+  } else {
+    sources = [ "security.cj" ]
+  }
 
   subsystem_name = "security"
   part_name = "security_cangjie_wrapper"

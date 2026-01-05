@@ -16,16 +16,21 @@
 import("//build/templates/cangjie/cjc.gni")
 
 ohos_cangjie_shared_library("ohos.security.huks") {
-  sources = [
-    "huks_enum.cj",
-    "huks_err.cj",
-    "huks_ffi.cj",
-    "huks_key_item.cj",
-    "huks_limit.cj",
-    "huks_session.cj",
-    "huks_struct.cj",
-    "huks_struct_ffi.cj",
-  ]
+  
+  if (is_mingw || is_mac){
+    sources = [ "../../../mock/ohos.security.huks.cj" ]
+  } else {
+    sources = [
+      "huks_enum.cj",
+      "huks_err.cj",
+      "huks_ffi.cj",
+      "huks_key_item.cj",
+      "huks_limit.cj",
+      "huks_session.cj",
+      "huks_struct.cj",
+      "huks_struct_ffi.cj",
+    ]
+  }
 
   cj_external_deps = [
     "cangjie_ark_interop:ohos.business_exception",
