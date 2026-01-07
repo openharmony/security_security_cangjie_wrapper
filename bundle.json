@@ -42,7 +42,7 @@
         "//base/security/security_cangjie_wrapper/kit/CryptoArchitectureKit:kit.CryptoArchitectureKit",
         "//base/security/security_cangjie_wrapper/kit/UniversalKeystoreKit:kit.UniversalKeystoreKit"
       ],
-      "inner_api": [
+      "inner_kits": [
         {
           "name": "//base/security/security_cangjie_wrapper:copy_sdk_security_cangjie_libs"
         },
