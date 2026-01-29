@@ -1239,27 +1239,32 @@ public enum HuksParamValue {
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
-    ] BooleanValue(Bool)
+    ]
+    BooleanValue(Bool)
     |
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
+    Int32Value(Int32)
     |
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
+    Uint32Value(UInt32)
     |
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
+    Uint64Value(UInt64)
     |
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Security.Huks.Core"
     ]
+    BytesValue(Bytes)
     | ...
 }
 
