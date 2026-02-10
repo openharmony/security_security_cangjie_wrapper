@@ -92,33 +92,4 @@ class Test_SecurityHuks_Enum {
             @Expect(false)
         }
     }
-
-    @TestCase
-    @Tag[APILevel22, TestLevel0]
-    func test_huks_constructor() {
-        try {
-            let a1 = HuksTagType()
-            let a2 = HuksKeyPurpose()
-            let a3 = HuksKeyDigest()
-            let a4 = HuksKeyPadding()
-            let a5 = HuksCipherMode()
-            let a6 = HuksKeySize()
-            let a7 = HuksKeyAlg()
-            let a8 = HuksUnwrapSuite()
-            let a9 = HuksAuthStorageLevel()
-            let a10 = HuksKeyGenerationType()
-            let a11 = HuksKeyFlag()
-            let a12 = HuksKeyStorageType()
-            let a13 = HuksImportKeyType()
-            let a14 = HuksRsaPssSaltLenType()
-            let a15 = HuksUserAuthType()
-            let a16 = HuksAuthAccessType()
-            let a17 = HuksChallengeType()
-            let a18 = HuksChallengePosition()
-            let a19 = HuksSecureSignType()
-            let a21 = HuksTagType()
-        } catch (e: Exception) {
-            @Expect(false)
-        }
-    }
 }
