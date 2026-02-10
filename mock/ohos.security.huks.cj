@@ -76,7 +76,7 @@ public class HuksKeyPurpose {
     ]
     public static const HUKS_KEY_PURPOSE_AGREE: UInt32 = 256
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -134,7 +134,7 @@ public class HuksKeyDigest {
     ]
     public static const HUKS_DIGEST_SHA512: UInt32 = 14
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -180,7 +180,7 @@ public class HuksKeyPadding {
     ]
     public static const HUKS_PADDING_PKCS7: UInt32 = 5
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -226,7 +226,7 @@ public class HuksCipherMode {
     ]
     public static const HUKS_MODE_GCM: UInt32 = 32
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -350,7 +350,7 @@ public class HuksKeySize {
     ]
     public static const HUKS_SM4_KEY_SIZE_128: UInt32 = 128
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -444,7 +444,7 @@ public class HuksKeyAlg {
     ]
     public static const HUKS_ALG_SM4: UInt32 = 152
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -466,7 +466,7 @@ public class HuksUnwrapSuite {
     ]
     public static const HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NO_PADDING: UInt32 = 2
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -494,7 +494,7 @@ public class HuksAuthStorageLevel {
     ]
     public static const HUKS_AUTH_STORAGE_LEVEL_ECE: UInt32 = 2
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -522,7 +522,7 @@ public class HuksKeyGenerationType {
     ]
     public static const HUKS_KEY_GENERATE_TYPE_AGREE: UInt32 = 2
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -556,7 +556,7 @@ public class HuksKeyFlag {
     ]
     public static const HUKS_KEY_FLAG_DERIVE_KEY: UInt32 = 4
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -578,7 +578,7 @@ public class HuksKeyStorageType {
     ]
     public static const HUKS_STORAGE_KEY_EXPORT_ALLOWED: UInt32 = 3
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -606,7 +606,7 @@ public class HuksImportKeyType {
     ]
     public static const HUKS_KEY_TYPE_KEY_PAIR: UInt32 = 2
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -628,7 +628,7 @@ public class HuksRsaPssSaltLenType {
     ]
     public static const HUKS_RSA_PSS_SALT_LEN_MAX: UInt32 = 1
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -656,7 +656,7 @@ public class HuksUserAuthType {
     ]
     public static const HUKS_USER_AUTH_TYPE_PIN: UInt32 = 1 << 2
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -678,7 +678,7 @@ public class HuksAuthAccessType {
     ]
     public static const HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL: UInt32 = 1 << 1
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -706,7 +706,7 @@ public class HuksChallengeType {
     ]
     public static const HUKS_CHALLENGE_TYPE_NONE: UInt32 = 2
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -740,7 +740,7 @@ public class HuksChallengePosition {
     ]
     public static const HUKS_CHALLENGE_POS_3: UInt32 = 3
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -756,7 +756,7 @@ public class HuksSecureSignType {
     ]
     public static const HUKS_SECURE_SIGN_WITH_AUTH_INFO: UInt32 = 1
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -802,7 +802,7 @@ public class HuksTagType {
     ]
     public static const HUKS_TAG_TYPE_BYTES: UInt32 = 5 << 28
     
-    public init() {
+    init() {
         super()
     }
 }
@@ -1076,7 +1076,7 @@ public class HuksTag {
     ]
     public static const HUKS_TAG_AE_TAG: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES | 10009
     
-    public init() {
+    init() {
         super()
     }
 }
