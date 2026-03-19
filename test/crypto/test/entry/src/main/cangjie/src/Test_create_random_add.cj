@@ -95,22 +95,6 @@ class Test_Create_Random_Add {
         // 验证生成的随机数长度是否为1字节
         @Expect(randomData.data.size == 1)
     }
-
-   /*
-    @TestCase
-    @Tag[APILevel22, TestLevel0]
-    func test_random_generateRandom_boundary_max() {
-        let random: Random = createRandom()
-        try {
-            let maxLength: Int32 = Int32.MAX_VALUE
-            let randomData: DataBlob = random.generateRandom(maxLength)
-            @Expect(randomData.data.size == maxLength)
-        } catch (e: BusinessException) {
-            @Expect(e.code == 17630001)
-            @Expect(e.message == "crypto operation error.")
-        }
-    }
-   */
    
     /**
      * 测试Random.setSeed API - 有效等价类：设置有效种子数据

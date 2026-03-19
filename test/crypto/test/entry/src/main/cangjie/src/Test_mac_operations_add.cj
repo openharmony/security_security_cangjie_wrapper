@@ -58,21 +58,5 @@ class Test_Mac_Operations_Add {
         @Expect(result.data.size > 0)
     }
     
-    /**
-     * 测试Mac.getMacLength API - 有效等价类：获取SHA256 MAC长度
-     */
-    /*
-    @TestCase
-    @Tag[APILevel22, TestLevel0]
-    func test_Mac_getMacLength_return_uint32() {
-        // 创建SHA256消息认证码实例
-        let mac: Mac = createMac("SHA256")
-        // 获取MAC长度
-        let length: UInt32 = mac.getMacLength()
-        
-        // 验证MAC长度是否为32字节（SHA256标准长度）
-        @Expect(length == 32) // SHA256 MAC长度为32字节
-    }*/
-    
     
 }
