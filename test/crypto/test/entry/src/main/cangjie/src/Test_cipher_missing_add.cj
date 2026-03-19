@@ -63,35 +63,6 @@ class Test_Cipher_Missing_Add {
     }
     
     /**
-     * 测试Cipher.initialize API - 无效等价类：参数不匹配（ECB模式不需要IV参数）
-     */
-    /*
-    @TestCase
-    @Tag[APILevel22, TestLevel0]
-    func test_Cipher_initialize_params_mismatch() {
-        // 创建AES128|ECB|PKCS7加密算法实例（ECB模式不需要IV参数）
-        let cipher: Cipher = createCipher("AES128|ECB|PKCS7")
-        // 创建AES128对称密钥生成器
-        let keyGenerator: SymKeyGenerator = createSymKeyGenerator("AES128")
-        // 生成对称密钥
-        let key: SymKey = keyGenerator.generateSymKey()
-        // 创建16字节的初始化向量
-        let iv: DataBlob = DataBlob(Array<UInt8>(16, repeat: 0x00))
-        // 创建IvParamsSpec参数
-        let ivParams: IvParamsSpec = IvParamsSpec("IvParamsSpec", iv)
-        
-        // 尝试使用不需要的IV参数初始化Cipher，预期抛出异常
-        try {
-            cipher.initialize(CryptoMode.EncryptMode, key, Some(ivParams))
-            @Expect(false) // 不应该执行到这里
-        } catch (e: BusinessException) {
-            // 验证异常代码是否正确
-            @Expect(e.code == 17630001)
-        }
-    }
-    */
-    
-    /**
      * 测试Cipher.initialize API - 有效等价类：CBC模式加密初始化
      */
     @TestCase

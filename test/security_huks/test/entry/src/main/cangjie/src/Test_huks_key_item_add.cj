@@ -492,61 +492,6 @@ class Test_Huks_KeyItem_Add {
     }
 
     /**
-     * 测试importWrappedKeyItem API - 有效等价类：导入包装密钥
-     */
-    /*
-    @TestCase
-    @Tag[APILevel22, TestLevel0]
-    func test_importWrappedKeyItem_valid() {
-        // 确保测试前密钥不存在
-        try {
-            deleteKeyItem(TEST_KEY_ALIAS, HuksOptions())
-            deleteKeyItem("wrapping_key", HuksOptions())
-        } catch (_) {
-            // 忽略删除不存在密钥的异常
-        }
-
-        // 先生成一个包装密钥
-        let wrappingOptions = HuksOptions(
-            properties: [
-                HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_RSA)),
-                HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksParamValue.Uint32Value(HuksKeySize.HUKS_RSA_KEY_SIZE_2048)),
-                HuksParam(HuksTag.HUKS_TAG_PURPOSE, HuksParamValue.Uint32Value(
-                    HuksKeyPurpose.HUKS_KEY_PURPOSE_WRAP | HuksKeyPurpose.HUKS_KEY_PURPOSE_UNWRAP)),
-                HuksParam(HuksTag.HUKS_TAG_DIGEST, HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SHA256))
-            ]
-        )
-        generateKeyItem("wrapping_key", wrappingOptions)
-
-        // 准备要导入的包装密钥数据（这里使用模拟数据）
-        let wrappedKeyData: Bytes = Array(32, { i => UInt8(i & 0xFF) })
-
-        // 准备导入选项
-        let importOptions = HuksOptions(
-            properties: [
-                HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)),
-                HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_128)),
-                HuksParam(HuksTag.HUKS_TAG_PURPOSE, HuksParamValue.Uint32Value(
-                    HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT))
-            ],
-            inData: wrappedKeyData
-        )
-
-        try {
-            // 由于需要有效的包装密钥数据，这里可能会失败，仅测试参数格式是否正确
-            importWrappedKeyItem(TEST_KEY_ALIAS, "wrapping_key", importOptions)
-        } catch (e: BusinessException) {
-            // 预期可能抛出异常（如包装数据无效）
-            // 仅验证是否是参数错误以外的异常
-            @Expect(false)
-        }
-
-        // 清理：删除生成的密钥
-        deleteKeyItem(TEST_KEY_ALIAS, HuksOptions())
-        deleteKeyItem("wrapping_key", HuksOptions())
-    } */
-
-    /**
      * 测试importWrappedKeyItem API - 无效等价类：空密钥别名
      */
     @TestCase
