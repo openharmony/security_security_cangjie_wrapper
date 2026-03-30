@@ -19,4 +19,16 @@ let _ = testsuite()
 
 func testsuite(): Unit {
     registerTestSuite("Test_crypto", {=> Test_crypto()})
+    registerTestSuite("Test_Cipher_Missing_Add", {=> Test_Cipher_Missing_Add()})
+    registerTestSuite("Test_Cipher_Operations_Add", {=> Test_Cipher_Operations_Add()})
+    registerTestSuite("Test_Create_Cipher_Add", {=> Test_Create_Cipher_Add()})
+    registerTestSuite("Test_Create_Mac_Add", {=> Test_Create_Mac_Add()})
+    registerTestSuite("Test_Create_Md_Add", {=> Test_Create_Md_Add()})
+    registerTestSuite("Test_Create_Random_Add", {=> Test_Create_Random_Add()})
+    registerTestSuite("Test_Create_SymKey_Generator_Add", {=> Test_Create_SymKey_Generator_Add()})
+    registerTestSuite("Test_Mac_Missing_Add", {=> Test_Mac_Missing_Add()})
+    registerTestSuite("Test_Mac_Operations_Add", {=> Test_Mac_Operations_Add()})
+    registerTestSuite("Test_Md_Missing_Add", {=> Test_Md_Missing_Add()})
+    registerTestSuite("Test_Md_Operations_Add", {=> Test_Md_Operations_Add()})
+    registerTestSuite("Test_Random_Operations_Add", {=> Test_Random_Operations_Add()})
 }

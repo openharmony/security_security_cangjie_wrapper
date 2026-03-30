@@ -37,4 +37,13 @@ func testsuite(): Unit {
     registerTestSuite("Test_SecurityHuks_SessionOther", {=> Test_SecurityHuks_SessionOther()})
     registerTestSuite("Test_SecurityHuks_SM2", {=> Test_SecurityHuks_SM2()})
     registerTestSuite("Test_SecurityHuks_KeyExchange", {=> Test_SecurityHuks_KeyExchange()})
+    registerTestSuite("Test_Huks_KeyItem_Delete_Add", {=> Test_Huks_KeyItem_Delete_Add()})
+    registerTestSuite("Test_Huks_KeyItem_Attest_Add", {=> Test_Huks_KeyItem_Attest_Add()})
+    registerTestSuite("Test_Huks_KeyItem_Export_Add", {=> Test_Huks_KeyItem_Export_Add()})
+    registerTestSuite("Test_Huks_KeyItem_Generate_Add", {=> Test_Huks_KeyItem_Generate_Add()})
+    registerTestSuite("Test_Huks_KeyItem_Import_Add", {=> Test_Huks_KeyItem_Import_Add()})
+    registerTestSuite("Test_Huks_KeyItem_Query_Add", {=> Test_Huks_KeyItem_Query_Add()})
+    registerTestSuite("Test_Huks_KeyItem_Add", {=> Test_Huks_KeyItem_Add()})
+    registerTestSuite("Test_Huks_KeyItem_Wrap_Add", {=> Test_Huks_KeyItem_Wrap_Add()})
+    registerTestSuite("Test_Huks_Session_Add", {=> Test_Huks_Session_Add()})
 }
