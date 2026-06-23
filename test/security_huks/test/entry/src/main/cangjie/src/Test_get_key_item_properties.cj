@@ -55,4 +55,66 @@ class Test_SecurityHuks_GetKeyItemProperties {
            @Expect(flag)
        }
    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_get_key_item_properties_aes_full_params() {
+        let keyAlias = "test_get_key_props_aes_full"
+        clean(keyAlias)
+        try {
+            let options = HuksOptions(
+                properties: [
+                    HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_256)),
+                    HuksParam(
+                        HuksTag.HUKS_TAG_PURPOSE,
+                        HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT)
+                    ),
+                    HuksParam(HuksTag.HUKS_TAG_DIGEST, HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SHA256)),
+                    HuksParam(HuksTag.HUKS_TAG_PADDING, HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_PKCS7)),
+                    HuksParam(HuksTag.HUKS_TAG_BLOCK_MODE, HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_CBC)),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_AUTH_ID, HuksParamValue.BytesValue("authId_aes_full".toArray())),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_STORAGE_FLAG, HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS)),
+                    HuksParam(HuksTag.HUKS_TAG_NO_AUTH_REQUIRED, HuksParamValue.BooleanValue(true)),
+                    HuksParam(HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL, HuksParamValue.Uint32Value(HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_DE))
+                ],
+                inData: Bytes()
+            )
+            generateKeyItem(keyAlias, options)
+            let properties = getKeyItemProperties(keyAlias, HuksOptions())
+            @Expect(!properties.isEmpty())
+        } finally {
+            clean(keyAlias)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_get_key_item_properties_rsa_pss() {
+        let keyAlias = "test_get_key_props_rsa_pss"
+        clean(keyAlias)
+        try {
+            let options = HuksOptions(
+                properties: [
+                    HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_RSA)),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksParamValue.Uint32Value(HuksKeySize.HUKS_RSA_KEY_SIZE_2048)),
+                    HuksParam(
+                        HuksTag.HUKS_TAG_PURPOSE,
+                        HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN | HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY)
+                    ),
+                    HuksParam(HuksTag.HUKS_TAG_DIGEST, HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SHA256)),
+                    HuksParam(HuksTag.HUKS_TAG_PADDING, HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_PSS)),
+                    HuksParam(HuksTag.HUKS_TAG_RSA_PSS_SALT_LEN_TYPE, HuksParamValue.Uint32Value(HuksRsaPssSaltLenType.HUKS_RSA_PSS_SALT_LEN_DIGEST)),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_AUTH_ID, HuksParamValue.BytesValue("authId_rsa_pss".toArray())),
+                    HuksParam(HuksTag.HUKS_TAG_NO_AUTH_REQUIRED, HuksParamValue.BooleanValue(true))
+                ],
+                inData: Bytes()
+            )
+            generateKeyItem(keyAlias, options)
+            let properties = getKeyItemProperties(keyAlias, HuksOptions())
+            @Expect(!properties.isEmpty())
+        } finally {
+            clean(keyAlias)
+        }
+    }
 }
