@@ -126,10 +126,13 @@ class HksParamSet {
     init(properties: Array<HuksParam>) {
         this.paramCnt = 0
         this.paramSetSize = UInt32(sizeOf<UInt32>() * 2)
+        this.rawBuffer = CPointer<Byte>()
+        this.paramPtr = CPointer<Byte>()
+        let totalSize = HksParamSet.calcTotalSize(properties)
         this.rawBuffer = unsafe {
             CPointer<UInt8>(
                 calloc(
-                    UIntNative(sizeOf<UInt32>() * 2) + UIntNative(sizeOf<OhosHksParam>()) * UIntNative(HKS_PARAM_SET_MAX_CNT),
+                    UIntNative(totalSize),
                     1
                 )
             )
@@ -161,6 +164,41 @@ class HksParamSet {
                     )
             }
         }
+    }
+
+    static func calcTotalSize(properties: Array<HuksParam>): UInt32 {
+        var totalSize = UInt32(sizeOf<UInt32>() * 2)
+        for (p in properties) {
+            totalSize = HksParamSet.addParamSize(p, totalSize)
+        }
+        return totalSize
+    }
+
+    static func addParamSize(p: HuksParam, totalSize: UInt32): UInt32 {
+        if (totalSize > HKS_PARAM_SET_MAX_SIZE - UInt32(sizeOf<OhosHksParam>())) {
+            throw BusinessException(
+                HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(),
+                "properties too big"
+            )
+        }
+        let newSize = totalSize + UInt32(sizeOf<OhosHksParam>())
+        let maskVal: UInt32 = p.tag & HKS_TAG_TYPE_MASK
+        if (maskVal != HKS_TAG_TYPE_BYTES) {
+            return newSize
+        }
+        match (p.value.toBytes()) {
+            case Some(bs) =>
+                let prepareSize = if (bs.isEmpty()) { 1 } else { bs.size }
+                if (newSize > HKS_PARAM_SET_MAX_SIZE - UInt32(prepareSize)) {
+                    throw BusinessException(
+                        HuksExceptionErrCode.HuksErrCodeIllegalArgument.getValue(),
+                        "properties too big"
+                    )
+                }
+                return newSize + UInt32(prepareSize)
+            case _ => ()
+        }
+        return newSize
     }
 
     func handleInt32(tag: UInt32, val: Option<Int32>) {
@@ -322,8 +360,7 @@ class HksParamSet {
                 if ((param.tag & HKS_TAG_TYPE_MASK) == HKS_TAG_TYPE_BYTES) {
                     memcpy_s(
                         this.rawBuffer + offset,
-                        UIntNative(Int64(UInt32(sizeOf<UInt32>() * 2) + UInt32(sizeOf<OhosHksParam>()) *
-                            HKS_PARAM_SET_MAX_CNT) - offset),
+                        UIntNative(Int64(this.paramSetSize) - offset),
                         param.value.data,
                         UIntNative(param.value.size)
                     )
