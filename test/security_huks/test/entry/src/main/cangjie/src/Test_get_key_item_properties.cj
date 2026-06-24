@@ -72,11 +72,7 @@ class Test_SecurityHuks_GetKeyItemProperties {
                     ),
                     HuksParam(HuksTag.HUKS_TAG_DIGEST, HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SHA256)),
                     HuksParam(HuksTag.HUKS_TAG_PADDING, HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_PKCS7)),
-                    HuksParam(HuksTag.HUKS_TAG_BLOCK_MODE, HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_CBC)),
-                    HuksParam(HuksTag.HUKS_TAG_KEY_AUTH_ID, HuksParamValue.BytesValue("authId_aes_full".toArray())),
-                    HuksParam(HuksTag.HUKS_TAG_KEY_STORAGE_FLAG, HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS)),
-                    HuksParam(HuksTag.HUKS_TAG_NO_AUTH_REQUIRED, HuksParamValue.BooleanValue(true)),
-                    HuksParam(HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL, HuksParamValue.Uint32Value(HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_DE))
+                    HuksParam(HuksTag.HUKS_TAG_BLOCK_MODE, HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_CBC))
                 ],
                 inData: Bytes()
             )
