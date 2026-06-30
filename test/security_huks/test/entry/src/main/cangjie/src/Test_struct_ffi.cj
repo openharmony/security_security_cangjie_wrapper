@@ -368,4 +368,20 @@ class Test_SecurityHuks_Struct_ffi {
             @Expect(flag)
         }
     }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hks_generateKey_error() {
+        let keyAlias = "keyAlias1"
+        try {
+          
+            let options = HuksOptions(
+                properties: [HuksParam(HuksTag.Huks_TAG_IS_ALLOWED_WRAP, HuksParamValue.BooleanValue(true))],
+                inData: Bytes()
+            )
+            generateKeyItem(keyAlias, options)
+        } catch (e: BusinessException) {
+           Expect(e.code, 12000002)
+        } 
+    }
 }
