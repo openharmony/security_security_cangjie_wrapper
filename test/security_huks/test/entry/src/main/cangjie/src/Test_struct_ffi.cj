@@ -189,4 +189,199 @@ class Test_SecurityHuks_Struct_ffi {
 //        }
         return
     }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hks_param_set_int32_none() {
+        let keyAlias = "test_int32_none"
+        clean(keyAlias)
+        var flag = false
+        try {
+            let intTypeTag: UInt32 = UInt32(1) << 28
+            let options = HuksOptions(
+                properties: [HuksParam(intTypeTag, HuksParamValue.BooleanValue(true))],
+                inData: Bytes()
+            )
+            let res = hasKeyItem(keyAlias, options)
+        } catch (e: BusinessException) {
+            flag = true
+        } finally {
+            clean(keyAlias)
+            GC()
+            @Expect(flag)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hks_param_set_uint64_none() {
+        let keyAlias = "test_uint64_none"
+        clean(keyAlias)
+        var flag = false
+        try {
+            let ulongTypeTag: UInt32 = UInt32(3) << 28
+            let options = HuksOptions(
+                properties: [HuksParam(ulongTypeTag, HuksParamValue.BooleanValue(true))],
+                inData: Bytes()
+            )
+            let res = hasKeyItem(keyAlias, options)
+        } catch (e: BusinessException) {
+            flag = true
+        } finally {
+            clean(keyAlias)
+            GC()
+            @Expect(flag)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hks_param_set_to_pointer_with_bytes() {
+        let keyAlias = "test_to_pointer_bytes"
+        clean(keyAlias)
+        try {
+            let options = HuksOptions(
+                properties: [
+                    HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_SIZE, HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_128)),
+                    HuksParam(
+                        HuksTag.HUKS_TAG_PURPOSE,
+                        HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT)
+                    ),
+                    HuksParam(HuksTag.HUKS_TAG_IV, HuksParamValue.BytesValue("1122334455667788".toArray())),
+                    HuksParam(HuksTag.HUKS_TAG_KEY_AUTH_ID, HuksParamValue.BytesValue("authId_test".toArray()))
+                ],
+                inData: Bytes()
+            )
+            generateKeyItem(keyAlias, options)
+            @Expect(hasKeyItem(keyAlias, options))
+        } finally {
+            clean(keyAlias)
+            GC()
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hks_param_set_invalid_tag_type() {
+        let keyAlias = "test_invalid_tag_type"
+        clean(keyAlias)
+        var flag = false
+        try {
+            let invalidTag: UInt32 = UInt32(0)
+            let options = HuksOptions(
+                properties: [HuksParam(invalidTag, HuksParamValue.Uint32Value(1))],
+                inData: Bytes()
+            )
+            let res = hasKeyItem(keyAlias, options)
+        } catch (e: BusinessException) {
+            flag = true
+        } finally {
+            clean(keyAlias)
+            GC()
+            @Expect(flag)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hks_param_set_unknown_tag_type() {
+        let keyAlias = "test_unknown_tag_type"
+        clean(keyAlias)
+        var flag = false
+        try {
+            let unknownTypeTag: UInt32 = UInt32(6) << 28
+            let options = HuksOptions(
+                properties: [HuksParam(unknownTypeTag, HuksParamValue.Uint32Value(1))],
+                inData: Bytes()
+            )
+            let res = hasKeyItem(keyAlias, options)
+        } catch (e: BusinessException) {
+            flag = true
+        } finally {
+            clean(keyAlias)
+            GC()
+            @Expect(flag)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hks_param_set_int32_some() {
+        let keyAlias = "test_int32_some"
+        clean(keyAlias)
+        var flag = false
+        try {
+            let intTypeTag: UInt32 = UInt32(1) << 28
+            let options = HuksOptions(
+                properties: [HuksParam(intTypeTag, HuksParamValue.Int32Value(1))],
+                inData: Bytes()
+            )
+            let res = hasKeyItem(keyAlias, options)
+        } catch (e: BusinessException) {
+            flag = true
+        } finally {
+            clean(keyAlias)
+            GC()
+            @Expect(flag)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hks_param_set_uint32_too_many() {
+        let keyAlias = "test_uint32_too_many"
+        clean(keyAlias)
+        var flag = false
+        try {
+            let uint32Param = HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksParamValue.Uint32Value(1))
+            let tooManyUint32 = Array<HuksParam>(100, repeat: uint32Param)
+            let options = HuksOptions(properties: tooManyUint32, inData: Bytes())
+            let res = hasKeyItem(keyAlias, options)
+        } catch (e: BusinessException) {
+            flag = true
+        } finally {
+            clean(keyAlias)
+            GC()
+            @Expect(flag)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hks_param_set_uint64_some() {
+        let keyAlias = "test_uint64_some"
+        clean(keyAlias)
+        var flag = false
+        try {
+            let ulongTypeTag: UInt32 = UInt32(3) << 28
+            let options = HuksOptions(
+                properties: [HuksParam(ulongTypeTag, HuksParamValue.Uint64Value(UInt64(1)))],
+                inData: Bytes()
+            )
+            let res = hasKeyItem(keyAlias, options)
+        } catch (e: BusinessException) {
+            flag = true
+        } finally {
+            clean(keyAlias)
+            GC()
+            @Expect(flag)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_hks_generateKey_error() {
+        let keyAlias = "keyAlias1"
+        try {
+          
+            let options = HuksOptions(
+                properties: [HuksParam(HuksTag.HUKS_TAG_IS_ALLOWED_WRAP, HuksParamValue.BooleanValue(true))],
+                inData: Bytes()
+            )
+            generateKeyItem(keyAlias, options)
+        } catch (e: BusinessException) {
+           @Expect(e.code, 12000002)
+        } 
+    }
 }
