@@ -381,7 +381,7 @@ class Test_SecurityHuks_Struct_ffi {
             )
             generateKeyItem(keyAlias, options)
         } catch (e: BusinessException) {
-           Expect(e.code, 12000002)
+           @Expect(e.code, 12000002)
         } 
     }
 }
