@@ -376,7 +376,7 @@ class Test_SecurityHuks_Struct_ffi {
         try {
           
             let options = HuksOptions(
-                properties: [HuksParam(HuksTag.Huks_TAG_IS_ALLOWED_WRAP, HuksParamValue.BooleanValue(true))],
+                properties: [HuksParam(HuksTag.HUKS_TAG_IS_ALLOWED_WRAP, HuksParamValue.BooleanValue(true))],
                 inData: Bytes()
             )
             generateKeyItem(keyAlias, options)
