@@ -210,16 +210,4 @@ public enum CipherSpecItem {
     @!Hide[isChecked: true]
     Sm2MdNameStr
     | ...
-
-    prop value: Int32 {
-        get() {
-            match (this) {
-                case OaepMdNameStr => 100
-                case OaepMgfNameStr => 101
-                case OaepMgf1MdStr => 102
-                case OaepMgf1PsrcUint8Arr => 103
-                case _ => throw BusinessException(17620003, "Parameter check failed.")
-            }
-        }
-    }
 }
