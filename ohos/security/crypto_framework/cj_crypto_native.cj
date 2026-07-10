@@ -43,21 +43,6 @@ struct HcfBlob {
         }
     }
 
-    init(arr: Array<UInt8>) {
-        unsafe {
-            if (arr.size == 0) {
-                this.head = CPointer<UInt8>()
-                this.size = 0
-            } else {
-                this.head = safeMalloc<UInt8>(count: arr.size)
-                this.size = UIntNative(arr.size)
-                let cp = acquireArrayRawData(arr)
-                memcpy_s(this.head, this.size, cp.pointer, this.size)
-                releaseArrayRawData(cp)
-            }
-        }
-    }
-
     func toDataBlob(): DataBlob {
         unsafe {
             if (this.size == 0) {
@@ -84,47 +69,4 @@ struct CParamsSpec {
         let add: HcfBlob,
         let authTag: HcfBlob
     ) {}
-}
-
-@C
-struct HcfBigInteger {
-    HcfBigInteger(
-        let data: CPointer<UInt8>,
-        let len: UInt32
-    ) {}
-
-    init(value: BigInt) {
-        let digits = value.toBytes()
-        digits.reverse()
-        unsafe {
-            if (digits.size == 0) {
-                this.data = CPointer<UInt8>()
-                this.len = 0
-            } else {
-                this.data = safeMalloc<UInt8>(count: digits.size)
-                this.len = UInt32(digits.size)
-                let cp = acquireArrayRawData(digits)
-                memcpy_s(this.data, UIntNative(this.len), cp.pointer, UIntNative(this.len))
-                releaseArrayRawData(cp)
-            }
-        }
-    }
-
-    func toArray(): Array<UInt8> {
-        if (data.isNull()) {
-            return []
-        }
-        let arr = Array<UInt8>(Int64(len), repeat: 0)
-        unsafe {
-            let cp = acquireArrayRawData(arr)
-            memcpy_s(cp.pointer, UIntNative(this.len), this.data, UIntNative(this.len))
-            releaseArrayRawData(cp)
-        }
-        arr.reverse()
-        return arr
-    }
-
-    func free(): Unit {
-        unsafe { LibC.free(data) }
-    }
 }
